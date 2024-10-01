@@ -13,16 +13,10 @@ public class GerenciadorMapaArquivo {
         BufferedReader br = null;
         MapaConfiguracao configMapa = new MapaConfiguracao();
         try {
+
             br = new BufferedReader(new FileReader(caminhoArquivo));
 
-            String[] FrutasValidas = new Array<String>() = {"maracuja",
-                "laranja",
-                "abacate",
-                "coco",
-                "acerola",
-                "amora",
-                "goiaba"
-            }
+            String[] FrutasValidas = new Array<String>() = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" }
 
             while (br.ready()) {
                 String linha = br.readLine();
@@ -35,34 +29,15 @@ public class GerenciadorMapaArquivo {
                     case "pedras":
                         configMapa.setQtdPedras(Integer.parseInt(partesLinhas[1]));
                         break;
-                    case "maracuja":
-                        configMapa.addInKey("maracuja", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "laranja":
-                        configMapa.addInKey("laranja", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "abacate":
-                        configMapa.addInKey("abacate", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "coco":
-                        configMapa.addInKey("coco", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "acerola":
-                        configMapa.addInKey("acerola", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "amora":
-                        configMapa.addInKey("amora", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
-                    case "goiaba":
-                        configMapa.addInKey("goiaba", new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
-                        break;
                     case "bichadas":
                         configMapa.setProbabilidadeBichadas(Integer.parseInt(partesLinhas[1]));
                         break;
                     case "mochila":
                         configMapa.setTamanhoMochila(Integer.parseInt(partesLinhas[1]));
                         break;
-                    default: 
+                    default: if (FrutasValidas.contains(partesLinhas[0].toLowerCase())) {
+                        configMapa.qntFrutasPorTipo.put(partesLinhas[0].toLowerCase(), Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])); 
+                    }
                 }
             }
 
