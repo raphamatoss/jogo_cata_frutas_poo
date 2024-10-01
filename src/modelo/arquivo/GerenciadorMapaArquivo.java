@@ -11,7 +11,7 @@ public class GerenciadorMapaArquivo {
 
     public static MapaConfiguracao importarArquivoTerreno(String caminhoArquivo) {
         BufferedReader br = null;
-        ConfiguracaoDoMapa configMapa = new ConfiguracaoDoMapa();
+        MapaConfiguracao configMapa = new MapaConfiguracao();
         try {
             br = new BufferedReader(new FileReader(caminhoArquivo));
 
@@ -88,7 +88,7 @@ public class GerenciadorMapaArquivo {
         return null; // Retorna null caso haja erro na leitura do arquivo
     }
 
-    public static void exportarArquivoTerreno(String caminhoArquivo, ConfiguracaoDoMapa configuracaoDoMapa) {
+    public static void exportarArquivoTerreno(String caminhoArquivo, MapaConfiguracao configuracaoDoMapa) {
         BufferedWriter bw = null;
 
         try {
