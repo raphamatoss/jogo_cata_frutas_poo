@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 public class Grama extends CelulaTerreno {
 
@@ -23,6 +23,6 @@ public class Grama extends CelulaTerreno {
 
     @Override
     public String toString() {
-        return ".";
+        return "  .  ";
     }
 }

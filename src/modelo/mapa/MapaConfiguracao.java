@@ -28,9 +28,6 @@ public class MapaConfiguracao {
         this.tamanhoMochila = tamanhoMochila;
     }
 
-    public void adicionarPorChave(String chaveFruta, QuantidadeFrutas qtdFrutas){
-        qntFrutasPorTipo.put(chaveFruta, qtdFrutas);
-    }
     
     @Override
     public String toString() {
@@ -40,8 +37,8 @@ public class MapaConfiguracao {
         
         for (Map.Entry<String, QuantidadeFrutas> entry : qntFrutasPorTipo.entrySet()) {
             sb.append(entry.getKey()).append(" ")
-              .append(((QuantidadeFrutas) entry.getValue()).grama).append(" ")
-              .append(((QuantidadeFrutas) entry.getValue()).arvore).append("\n");
+              .append(entry.getValue().grama).append(" ")
+              .append(entry.getValue().arvore).append("\n");
         }
         
         sb.append("bichadas ").append(probabilidadeBichadas).append("\n");

@@ -1,6 +1,6 @@
-package utils;
+package modelo.utils;
 
-import entidades.*;
+import modelo.entidades.*;
 
 public class Verificador {
 

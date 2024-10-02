@@ -1,6 +1,6 @@
-package entidades;
+package modelo.entidades;
 
-import tipos.Coordenada;
+import modelo.tipos.Coordenada;
 
 public abstract class ElementoDinamico {
     private final Coordenada posicao;
