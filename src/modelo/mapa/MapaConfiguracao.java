@@ -9,7 +9,7 @@ public class MapaConfiguracao {
 
     protected int dimensao;
     protected int qtdPedras;
-    protected Map<String, QuantidadeFrutas> qntFrutasPorTipo = new HashMap<>();
+    public Map<String, QuantidadeFrutas> qntFrutasPorTipo = new HashMap<>();
     protected int probabilidadeBichadas;
     protected int tamanhoMochila;
 

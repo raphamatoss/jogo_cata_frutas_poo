@@ -16,7 +16,7 @@ public class GerenciadorMapaArquivo {
 
             br = new BufferedReader(new FileReader(caminhoArquivo));
 
-            String[] FrutasValidas = new Array<String>() = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" }
+            String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
 
             while (br.ready()) {
                 String linha = br.readLine();
@@ -35,8 +35,8 @@ public class GerenciadorMapaArquivo {
                     case "mochila":
                         configMapa.setTamanhoMochila(Integer.parseInt(partesLinhas[1]));
                         break;
-                    default: if (FrutasValidas.contains(partesLinhas[0].toLowerCase())) {
-                        configMapa.qntFrutasPorTipo.put(partesLinhas[0].toLowerCase(), Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])); 
+                    default: if (Arrays.asList(FrutasValidas).contains(partesLinhas[0].toLowerCase())) {
+                        configMapa.qntFrutasPorTipo.put(partesLinhas[0].toLowerCase(),new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2]))); 
                     }
                 }
             }
