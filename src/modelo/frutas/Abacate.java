@@ -15,6 +15,6 @@ public class Abacate extends Fruta {
 
     @Override
     public String toString() {
-        return "ab ";
+        return "ab";
     }
 }

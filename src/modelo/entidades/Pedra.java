@@ -7,6 +7,6 @@ public class Pedra extends CelulaTerreno {
 
     @Override
     public String toString() {
-        return "  #  ";
+        return "#";
     }
 }

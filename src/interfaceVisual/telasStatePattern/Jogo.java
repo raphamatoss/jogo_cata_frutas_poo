@@ -4,6 +4,7 @@ import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Jogo extends Tela {
     Mapa mapa;
@@ -46,8 +47,8 @@ public class Jogo extends Tela {
                     buttons[i][j] = new JButton();
                     buttons[i][j].setBounds(startX + j * tamanhoCelula, startY + i * tamanhoCelula, tamanhoCelula, tamanhoCelula);
 
-                    // Opcional: Define o texto para indicar as coordenadas
                     buttons[i][j].setText(floresta[i][j].toString());
+                    buttons[i][j].setFont(new Font("Arial", Font.BOLD, 10));
 
                     // Adiciona o botão ao painel
                     panel.add(buttons[i][j]);
