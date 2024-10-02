@@ -82,7 +82,7 @@ public class Frame{
     public ReprodutorDeSom getReprodutorDeSom() {
         return reprodutorDeSom;
     }
-    */
+     */
 
     public boolean getTerrenoCarregado(){
         return  this.temTerreno;

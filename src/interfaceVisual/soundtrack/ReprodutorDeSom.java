@@ -1,3 +1,4 @@
+/*
 package interfaceVisual.soundtrack;
 
 import jaco.mp3.player.MP3Player;
@@ -46,3 +47,5 @@ public class ReprodutorDeSom {
         player.pause();
     }
  }
+
+ */
