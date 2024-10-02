@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 public abstract class CelulaTerreno {
 

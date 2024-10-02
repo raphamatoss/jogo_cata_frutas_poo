@@ -1,6 +1,6 @@
-package utils;
+package modelo.utils;
 
-public abstract class Random {
+public abstract class Randomizador {
     /**
      * Gera um número inteiro aleatório dentro de um intervalo específico.
      * <p>

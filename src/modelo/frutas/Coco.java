@@ -1,6 +1,6 @@
-package frutas;
+package modelo.frutas;
 
-import entidades.Fruta;
+import modelo.entidades.Fruta;
 
 public class Coco extends Fruta {
     public Coco(boolean bichada) {
@@ -14,6 +14,6 @@ public class Coco extends Fruta {
 
     @Override
     public String toString() {
-        return "c";
+        return "co ";
     }
 }

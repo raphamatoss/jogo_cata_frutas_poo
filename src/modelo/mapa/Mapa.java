@@ -1,11 +1,9 @@
-package terreno;
+package modelo.mapa;
 
-import entidades.*;
-import frutas.*;
-import tipos.*;
-import utils.Frutas;
-import utils.Random;
-import utils.Verificador;
+import modelo.entidades.*;
+import modelo.frutas.*;
+import modelo.tipos.*;
+import modelo.utils.Randomizador;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,15 +13,15 @@ import java.util.Map;
 public class Mapa {
 
     private final int dimensao;
-    private final Abacate[][] floresta;
-    private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();;
+    private CelulaTerreno[][] floresta;
+    private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
     private final ArrayList<Jogador> jogadores =  new ArrayList<>();
 
 
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
 
         this.dimensao = configuracaoDoMapa.dimensao;
-        floresta = new Abacate[dimensao][dimensao];
+        floresta = new CelulaTerreno[dimensao][dimensao];
         for (int i=0; i<numeroJogadores; i++) this.jogadores.add(new Jogador("" + i));
         carregarTerreno(configuracaoDoMapa);
 
@@ -32,7 +30,7 @@ public class Mapa {
 
     // getters -----------------------------------------
     public int getDimensao() {return dimensao;}
-    public Abacate[][] getFloresta() {return floresta;}
+    public CelulaTerreno[][] getFloresta() {return floresta;}
     public ArrayList<Arvore> getArvoresFloresta() {return arvoresFloresta;}
     // ------------------------------------------------
 
@@ -42,8 +40,8 @@ public class Mapa {
         boolean livre;
         int x, y;
         do {
-            x = Random.gerarInteiroAleatorio(0, dimensao - 1);
-            y = Random.gerarInteiroAleatorio(0, dimensao - 1);
+            x = Randomizador.gerarInteiroAleatorio(0, dimensao - 1);
+            y = Randomizador.gerarInteiroAleatorio(0, dimensao - 1);
 
             livre = floresta[x][y] instanceof Grama;
         } while (!livre);
@@ -54,8 +52,9 @@ public class Mapa {
         int x, y;
         do{
             Coordenada c = gerarCoordenadaValida();
-            x = c.getX(); y = c.getY();
-        }while (( (Grama) floresta[x][y]).getFrutaOcupante() != null);
+            x = c.getX();
+            y = c.getY();
+        }while (((Grama) floresta[x][y]).getFrutaOcupante() != null);
         return new Coordenada(x, y);
     }
 
@@ -63,9 +62,9 @@ public class Mapa {
         boolean livre;
         int x, y;
         do {
-            x = Random.gerarInteiroAleatorio(0, dimensao - 1);
-            y = Random.gerarInteiroAleatorio(0, dimensao - 1);
-
+        	//TODO: Verificar se o jogador pode ser gerado em cima de pedras e árvores e frutas no chão.
+            Coordenada c = gerarCoordenadaValidaFruta();
+            x = c.getX(); y = c.getY();
             livre = floresta[x][y].getJogadorOcupante() == null;
         } while (!livre);
         return new Coordenada(x, y);
@@ -75,11 +74,13 @@ public class Mapa {
     
 
    // Posicionar Elementos ------------------------------------
-    private void posicionarGramas() {
-        for (Abacate[] line : floresta) {
-            Arrays.fill(line, new Grama());
-        }
-    }
+   private void posicionarGramas() {
+       for (CelulaTerreno[] line : floresta) {
+           for (int i = 0; i < line.length; i++) {
+               line[i] = new Grama();  // Criando uma nova instância de Grama para cada célula
+           }
+       }
+   }
 
 
     private void posicionarPedras(int qtdPedras) {
@@ -89,14 +90,16 @@ public class Mapa {
         }
     }
 
-    private void posicionarArvores(Map<Frutas, QuantidadeFrutas> FrutaMap) {
+    private void posicionarArvores(Map<String, QuantidadeFrutas> FrutaMap) {
         int qtdArvore = 0;
-        for (Map.Entry<Frutas, QuantidadeFrutas> entry : FrutaMap.entrySet()){
+        for (Map.Entry<String, QuantidadeFrutas> entry : FrutaMap.entrySet()){
+            if(entry.getKey() == "maracuja") continue;
             qtdArvore+= entry.getValue().arvore;
         }
         for (int i = 0; i < qtdArvore; i++) {
             Coordenada c = gerarCoordenadaValida();
             floresta[c.getX()][c.getY()] = new Arvore();
+            arvoresFloresta.add((Arvore) floresta[c.getX()][c.getY()]);
         }
     }
 
@@ -105,48 +108,56 @@ public class Mapa {
 
 
     private boolean decidirBichada(int probabilidade){
-        return Random.sortearTrue(probabilidade);
+        return Randomizador.sortearTrue(probabilidade);
         // Separada em uma função para caso sofra alteração.
     }
 
-    private Fruta gerarFrutaPorTipo(Frutas f, boolean bichada){
-        switch (f){
-            case MARACUJA -> {
+    private Fruta gerarFrutaPorTipo(String fruta, boolean bichada){
+        switch (fruta){
+            case "maracuja" -> {
                 return new Maracuja(bichada);
             }
-            case LARANJA -> {
+            case "laranja" -> {
                 return new Laranja(bichada);
             }
-            case ABACATE -> {
+            case "abacate" -> {
                 return new Abacate(bichada);
             }
-            case COCO -> {
+            case "coco" -> {
                 return new Coco(bichada);
             }
-            case ACEROLA -> {
+            case "acerola" -> {
                 return new Acerola(bichada);
             }
-            case AMORA -> {
+            case "amora" -> {
                 return new Amora(bichada);
             }
-            case GOIABA -> {
+            case "goiaba" -> {
                 return new Goiaba(bichada);
             }
         }
         return null;
     }
 
-    private void posicionarFrutas(Map<Frutas, QuantidadeFrutas> quantidadeFrutasMap, int probabilidadeBichada) {
+    public CelulaTerreno celulaEm (Coordenada c){
+        CelulaTerreno[] linha = floresta[c.getX()];
+        CelulaTerreno celula = linha[c.getY()];
+        return celula;
+    }
 
-            // Para cada conjunto de <Frutas, quantidades <Arvore, Grama>>
-            for (Map.Entry<Frutas, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()) {
+    private void posicionarFrutas(Map<String, QuantidadeFrutas> quantidadeFrutasMap, int probabilidadeBichada) {
+
+            // Para cada conjunto de <String, quantidades <Arvore, Grama>>
+            for (Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()) {
+
                 // Para cada quantidade na grama
-                for (int i = 0; i < entry.getValue().grama; i++) {
-                    Coordenada c = gerarCoordenadaValidaFruta();
-                    boolean bichada = decidirBichada(probabilidadeBichada);
-                    Fruta fruta = gerarFrutaPorTipo(entry.getKey(), bichada);
-                    //TODO: Tratar o caso em que a fruta retornada é nula, apesar de que acho qeu esse caso nunca ocorre.
-                    ((Grama) floresta[c.getX()][c.getY()]).setFrutaOcupante(fruta);
+                boolean bichada = decidirBichada(probabilidadeBichada);
+                Fruta fruta = gerarFrutaPorTipo(entry.getKey(), bichada);
+
+                for (int i = 0; i < (entry.getValue()).grama; i++) {
+                    CelulaTerreno celula = celulaEm(gerarCoordenadaValidaFruta());
+                    Grama grama = (Grama) celula;
+                    grama.setFrutaOcupante(fruta);
                 }
             }
     }
@@ -158,72 +169,52 @@ public class Mapa {
     }
 
     private void posicionarJogadores (ArrayList<Jogador> jogadores) {
-        // valores para posicionar o jogador
         for(Jogador jogador : jogadores) {
-            Coordenada c = gerarCoordenadaValidaJogador();
-            floresta[c.getX()][c.getY()].setJogadorOcupante(jogador);
+            posicionarJogador(jogador);
         }
     }
 
+    public void selecionarFrutadasArvores(Map<String, QuantidadeFrutas> quantidadeFrutasMap) {
+
+        //Mantenha como está. A lógica faz sentido.
+        // LEMBRAR DE IMPLEMENTAR O DECIDIR BICHADA QUANDO A FRUTA É GERADA PELA ÁRVORE.
+        int aSetadasFloresta=0;
+    	for(Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()){
+            Fruta frutaModelo = gerarFrutaPorTipo(entry.getKey(), false);
+            for(int aSetadas=0; aSetadas<entry.getValue().arvore;aSetadas++) {
+                arvoresFloresta.get(aSetadasFloresta).setFrutaDaArvore(frutaModelo);
+                aSetadasFloresta++;
+            }
+        }
+    }
 
     private void carregarTerreno(MapaConfiguracao configuracao) {
 
         posicionarGramas();
         posicionarPedras(configuracao.qtdPedras);
-        posicionarArvores(configuracao.qntFrutasPorTipo);
-        posicionarFrutas(configuracao.qntFrutasPorTipo,configuracao.probabilidadeBichadas);
-        posicionarJogadores(this.jogadores);
+        posicionarArvores(configuracao.qntFrutasPorTipo);    // erro, arvores maracuja n existem (CHECAR SOLUÇÂO)
+        posicionarFrutas(configuracao.qntFrutasPorTipo,configuracao.probabilidadeBichadas);  // erro, parece que frutas do mesmo tipo são adicionadas em todas as linhas do mapa
+        selecionarFrutadasArvores(configuracao.qntFrutasPorTipo);
+        posicionarJogadores(this.jogadores);     // erro -> gerar coordenada valida jogador, parece haver um looping infinito
 
     }
-
-    //TODO: Corrigir.
+    
+    public void printarCelula(CelulaTerreno celula) {
+    	System.out.print(celula);
+    }
+    
+    public void printarLinha(CelulaTerreno[] linha) {
+    	System.out.print("\\ ");
+    	for(CelulaTerreno celula : linha) {
+    		printarCelula(celula);
+    	}
+        System.out.println(" ");
+    }
+ 
     public void visualizarTerreno() {
-        final int larguraCelula = 5;
-
-        for (Abacate[] linha : floresta) {
-            for (Abacate celula : linha) {
-                String representacao = "?"; // Estou inicializando a variável com "?" que sinaliza que um elemento estranho apareceu no mapa
-
-                if (Verificador.isGrama(celula)) {
-                    // A célula é uma Grama
-                    if (Verificador.temFrutaNaGrama(celula) && Verificador.temJogadorNaGrama(celula)) {
-                        // Possui Jogador e Fruta -> Jogador/Fruta
-                        representacao = celula.getJogadorOcupante().toString() + "/" + ((Grama) celula).getFrutaOcupante().toString();
-                    } else if (Verificador.temFrutaNaGrama(celula)) {
-                        // Possui apenas Fruta
-                        representacao = ((Grama) celula).getFrutaOcupante().toString();
-                    } else if(Verificador.temJogadorNaGrama(celula)) {
-                        // Possui apenas Jogador
-                        representacao = celula.getJogadorOcupante().toString();
-                    } else {
-                        // Grama desocupada.
-                        representacao = celula.toString();
-                    }
-                } else if (Verificador.isPedra(celula)) {
-                    // A célula é uma Pedra
-                    if (Verificador.temJogadorNaPedra(celula)) {
-                        // Possui um Jogador encima da Pedra
-                        representacao = celula.getJogadorOcupante().toString() + "/" + celula;
-                    } else {
-                        // Pedra desocupada.
-                        representacao = celula.toString();
-                    }
-                } else if (Verificador.isArvore(celula)) {
-                    // A célula é uma Arvore
-                    if (Verificador.temJogadorNaArvore(celula)) {
-                        // Possui um Jogador em baixo da Arvore.
-                        representacao = celula.getJogadorOcupante().toString() + "/" + celula;
-                    } else {
-                        // Arvore desocupada.
-                        representacao = celula.toString();
-                    }
-                }
-
-                // Ajusta a largura da representação para a largura fixa da célula
-                System.out.printf("%-" + larguraCelula + "s", representacao); // %-3s: uma String com largura fixa de 3 unidades
-            }
-            System.out.println();
-        }
+    	for(CelulaTerreno[] linha : floresta) {
+    		printarLinha(linha);
+    	}
     }
 
 }

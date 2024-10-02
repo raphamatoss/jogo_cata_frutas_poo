@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 // TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
 // Definitivamente não está nem perto de finalizar
@@ -37,6 +37,6 @@ public class Jogador extends ElementoDinamico {
     @Override
     public String toString() {
         // TODO: Isso aqui é temporário...
-        return String.format("J%s", this.nome);
+        return " J" + this.nome + "  ";
     }
 }

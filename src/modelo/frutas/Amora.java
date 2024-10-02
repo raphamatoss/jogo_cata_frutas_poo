@@ -1,6 +1,6 @@
-package frutas;
+package modelo.frutas;
 
-import entidades.Fruta;
+import modelo.entidades.Fruta;
 
 public class Amora extends Fruta {
     public Amora(boolean bichada) {
@@ -14,7 +14,7 @@ public class Amora extends Fruta {
 
     @Override
     public String toString() {
-        return "am";
+        return "am ";
     }
 
 

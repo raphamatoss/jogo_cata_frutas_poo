@@ -1,6 +1,6 @@
-package frutas;
+package modelo.frutas;
 
-import entidades.Fruta;
+import modelo.entidades.Fruta;
 
 public class Goiaba extends Fruta {
     public Goiaba(boolean bichada) {
@@ -14,7 +14,7 @@ public class Goiaba extends Fruta {
 
     @Override
     public String toString() {
-        return "g";
+        return "go ";
     }
 
 }

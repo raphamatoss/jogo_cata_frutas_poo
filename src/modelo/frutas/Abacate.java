@@ -1,6 +1,6 @@
-package frutas;
+package modelo.frutas;
 
-import entidades.Fruta;
+import modelo.entidades.Fruta;
 
 public class Abacate extends Fruta {
 
@@ -15,6 +15,6 @@ public class Abacate extends Fruta {
 
     @Override
     public String toString() {
-        return "ab";
+        return "ab ";
     }
 }
