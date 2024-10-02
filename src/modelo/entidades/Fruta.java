@@ -22,4 +22,5 @@ public abstract class Fruta {
 
 
     public abstract void causarEfeito(); // TODO: Precisamos criar a lógica do causarEfeito()
+
 }
