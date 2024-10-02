@@ -13,5 +13,6 @@ public class Main {
 		Mapa mapa = new Mapa(configuracaoDoMapa, 2);
 		mapa.visualizarTerreno();
 
+		GerenciadorMapaArquivo.exportarArquivoTerreno("./output.txt", configuracaoDoMapa);
 	}
 }
