@@ -1,6 +1,6 @@
-package frutas;
+package modelo.frutas;
 
-import entidades.Fruta;
+import modelo.entidades.Fruta;
 
 public class Acerola extends Fruta {
     public Acerola(boolean bichada) {
@@ -14,6 +14,6 @@ public class Acerola extends Fruta {
 
     @Override
     public String toString() {
-        return "ac";
+        return "ac ";
     }
 }

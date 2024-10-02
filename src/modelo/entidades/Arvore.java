@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 public class Arvore extends CelulaTerreno {
 
@@ -24,7 +24,6 @@ public class Arvore extends CelulaTerreno {
 
 
     public void gerarFrutaArvore() {
-        return;
         /* TODO: Será que transformamos essa função em abstract ou será que podemos usar algo chamado reflection
         A ideia que eu tive aqui foi a seguinte:
         - Essa função acessa o jogadorOcupante.mochila
@@ -34,7 +33,6 @@ public class Arvore extends CelulaTerreno {
     }
 
     public void gerarMaracuja() {
-        return;
         /*
         TODO: Minha ideia é a seguinte:
         - Terreno possui uma lista com todas as árvores do cenário
@@ -44,5 +42,10 @@ public class Arvore extends CelulaTerreno {
         |-> Se maracujaRestantesArvore != 0 entao (se mRA % 2 == 0 and rodadaAtual != 0 entao gere a fruta)
         |-> Essa árvore é validada: possui uma vizinha 8 livre (consulte a seção 5 do manual)
         */
+    }
+    
+    @Override
+    public String toString() {
+		return  " A" + this.frutaDaArvore;
     }
 }

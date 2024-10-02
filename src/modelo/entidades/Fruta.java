@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 public abstract class Fruta {
 
@@ -8,9 +8,10 @@ public abstract class Fruta {
 
 
     // getters & setters ------------------------------
-    public void bicharFruta(boolean bichada) {
+    public void bicharFruta() {
     	bichada=true;
     }
+
     public boolean isBichada() {
         return bichada;
     }
@@ -21,4 +22,5 @@ public abstract class Fruta {
 
 
     public abstract void causarEfeito(); // TODO: Precisamos criar a lógica do causarEfeito()
+
 }

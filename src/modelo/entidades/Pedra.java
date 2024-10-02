@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 public class Pedra extends CelulaTerreno {
 
@@ -7,6 +7,6 @@ public class Pedra extends CelulaTerreno {
 
     @Override
     public String toString() {
-        return "#";
+        return "  #  ";
     }
 }
