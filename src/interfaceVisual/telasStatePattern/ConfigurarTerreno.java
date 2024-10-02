@@ -20,7 +20,7 @@ public class ConfigurarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
             }
         });
 
@@ -30,7 +30,7 @@ public class ConfigurarTerreno extends Tela{
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
                 frame.setState(frame.getMenu());
             }
         });
