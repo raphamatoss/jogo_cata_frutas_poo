@@ -15,7 +15,7 @@ import java.util.Map;
 public class Mapa {
 
     private final int dimensao;
-    private final CelulaTerreno[][] floresta;
+    private final Abacate[][] floresta;
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();;
     private final ArrayList<Jogador> jogadores =  new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class Mapa {
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
 
         this.dimensao = configuracaoDoMapa.dimensao;
-        floresta = new CelulaTerreno[dimensao][dimensao];
+        floresta = new Abacate[dimensao][dimensao];
         for (int i=0; i<numeroJogadores; i++) this.jogadores.add(new Jogador("" + i));
         carregarTerreno(configuracaoDoMapa);
 
@@ -32,7 +32,7 @@ public class Mapa {
 
     // getters -----------------------------------------
     public int getDimensao() {return dimensao;}
-    public CelulaTerreno[][] getFloresta() {return floresta;}
+    public Abacate[][] getFloresta() {return floresta;}
     public ArrayList<Arvore> getArvoresFloresta() {return arvoresFloresta;}
     // ------------------------------------------------
 
@@ -76,7 +76,7 @@ public class Mapa {
 
    // Posicionar Elementos ------------------------------------
     private void posicionarGramas() {
-        for (CelulaTerreno[] line : floresta) {
+        for (Abacate[] line : floresta) {
             Arrays.fill(line, new Grama());
         }
     }
@@ -180,8 +180,8 @@ public class Mapa {
     public void visualizarTerreno() {
         final int larguraCelula = 5;
 
-        for (CelulaTerreno[] linha : floresta) {
-            for (CelulaTerreno celula : linha) {
+        for (Abacate[] linha : floresta) {
+            for (Abacate celula : linha) {
                 String representacao = "?"; // Estou inicializando a variável com "?" que sinaliza que um elemento estranho apareceu no mapa
 
                 if (Verificador.isGrama(celula)) {

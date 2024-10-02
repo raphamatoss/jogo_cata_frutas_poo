@@ -46,10 +46,12 @@ public class Frame{
         frame.setVisible(true);
     }
 
+    
     public static void main(String[] args) {
         Frame frame = new Frame();
     }
 
+	
     public void setState(Tela novaTela){
         frame.remove(atual.getPanel());
         this.atual = novaTela;
