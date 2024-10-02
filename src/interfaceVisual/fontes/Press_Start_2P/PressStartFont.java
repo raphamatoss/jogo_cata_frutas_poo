@@ -15,6 +15,16 @@ public class PressStartFont {
         }
     }
 
+    public PressStartFont(int size) {
+        try {
+            InputStream is = getClass().getResourceAsStream("./PressStart2P-Regular.ttf");
+            pressStart = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(Font.PLAIN, size);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Font getFont() {
         return pressStart;
     }

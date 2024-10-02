@@ -1,6 +1,6 @@
 package interfaceVisual.telasStatePattern;
 
-import interfaceVisual.soundtrack.ReprodutorDeSom;
+//import interfaceVisual.soundtrack.ReprodutorDeSom;
 
 import javax.swing.*;
 
@@ -18,7 +18,7 @@ public class Frame{
 
     private Tela atual;
     private JFrame frame;
-    private ReprodutorDeSom reprodutorDeSom;
+    //private ReprodutorDeSom reprodutorDeSom;
 
     public Frame(){
         frame = new JFrame("Cata-Frutas");
@@ -40,7 +40,7 @@ public class Frame{
         frame.add(atual.getPanel());
       
         // jaco mp3 player precisa receber o caminho do arquivo de som a partir do src/
-        reprodutorDeSom = new ReprodutorDeSom("./soundtrack/CataFrutasOST_1.mp3");
+        //reprodutorDeSom = new ReprodutorDeSom("./soundtrack/CataFrutasOST_1.mp3");
 
         //tem terreno e comecou partida são falsos quando instanciados.
         frame.setVisible(true);
@@ -76,9 +76,11 @@ public class Frame{
         return creditos;
     }
 
+    /*
     public ReprodutorDeSom getReprodutorDeSom() {
         return reprodutorDeSom;
     }
+     */
 
     public boolean getTerrenoCarregado(){
         return  this.temTerreno;

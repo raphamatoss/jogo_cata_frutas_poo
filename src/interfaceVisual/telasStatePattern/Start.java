@@ -19,7 +19,7 @@ public class Start extends Tela {
         botaoStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
                 frame.setState(frame.getMenu());
             }
         });
@@ -30,6 +30,7 @@ public class Start extends Tela {
         botaoConfig.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                /*
                 frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
                 if (frame.getReprodutorDeSom().getIsAtivo()) {
                     frame.getReprodutorDeSom().pausarSom();
@@ -38,6 +39,7 @@ public class Start extends Tela {
                     frame.getReprodutorDeSom().tocarSom();
                     frame.getReprodutorDeSom().setIsAtivo(true);
                 }
+                 */
             }
         });
 
