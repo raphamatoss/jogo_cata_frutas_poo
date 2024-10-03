@@ -24,7 +24,7 @@ public class ConfigurarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                frame.getReprodutorDeSom().tocarBotao();
             }
         });
 
@@ -34,7 +34,7 @@ public class ConfigurarTerreno extends Tela{
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getMenu());
             }
         });
@@ -58,6 +58,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarDimensao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getDimensao();
                 if (verificador.setDimensao(atual + 1)) {
                     numeroDimensao.setText(Integer.toString(verificador.getDimensao()));
@@ -74,6 +75,7 @@ public class ConfigurarTerreno extends Tela{
         removerDimensao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getDimensao();
                 if (verificador.setDimensao(atual - 1)) {
                     numeroDimensao.setText(Integer.toString(verificador.getDimensao()));
@@ -98,6 +100,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarCapacidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getTamanhoMochila();
                 if (verificador.setTamanhoMochila(atual + 1)) {
                     numeroCapacidade.setText(Integer.toString(verificador.getTamanhoMochila()));
@@ -114,6 +117,7 @@ public class ConfigurarTerreno extends Tela{
         removerCapacidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getTamanhoMochila();
                 if (verificador.setTamanhoMochila(atual - 1)) {
                     numeroCapacidade.setText(Integer.toString(verificador.getTamanhoMochila()));
@@ -138,6 +142,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasOuroChao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroChao();
                 if (verificador.setFrutasOuroChao(atual + 1)) {
                     numeroFrutasOuroChao.setText(Integer.toString(verificador.getFrutasOuroChao()));
@@ -157,6 +162,7 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasOuroChao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroChao();
                 if (verificador.setFrutasOuroChao(atual - 1)) {
                     numeroFrutasOuroChao.setText(Integer.toString(verificador.getFrutasOuroChao()));
@@ -184,6 +190,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasOuroSurgir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroASurgir();
                 if (verificador.setFrutasOuroASurgir(atual + 1)) {
                     numeroFrutasOuroSurgir.setText(Integer.toString(verificador.getFrutasOuroASurgir()));
@@ -203,6 +210,7 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasOuroSurgir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroASurgir();
                 if (verificador.setFrutasOuroASurgir(atual - 1)) {
                     numeroFrutasOuroSurgir.setText(Integer.toString(verificador.getFrutasOuroASurgir()));
@@ -230,6 +238,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasDiversas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasDiversas();
                 if (verificador.setFrutasDiversas(atual + 1)) {
                     numeroFrutasDiversas.setText(Integer.toString(verificador.getFrutasDiversas()));
@@ -246,6 +255,7 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasDiversas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasDiversas();
                 if (verificador.setFrutasDiversas(atual - 1)) {
                     numeroFrutasDiversas.setText(Integer.toString(verificador.getFrutasDiversas()));
@@ -271,6 +281,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarBichadas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getChanceBichada();
                 if (verificador.setChanceBichada(atual + 5)) {
                     String porcentagem = Integer.toString(verificador.getChanceBichada()) + "%";
@@ -288,6 +299,7 @@ public class ConfigurarTerreno extends Tela{
         removerBichadas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getChanceBichada();
                 if (verificador.setChanceBichada(atual - 5)) {
                     String porcentagem = Integer.toString(verificador.getChanceBichada()) + "%";
@@ -314,6 +326,7 @@ public class ConfigurarTerreno extends Tela{
         adicionarPedras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getPedras();
                 if (verificador.setPedras(atual + 1)) {
                     numeroPedras.setText(Integer.toString(verificador.getPedras()));
@@ -330,6 +343,7 @@ public class ConfigurarTerreno extends Tela{
         removerPedras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getPedras();
                 if (verificador.setPedras(atual - 1)) {
                     numeroPedras.setText(Integer.toString(verificador.getPedras()));
@@ -342,12 +356,6 @@ public class ConfigurarTerreno extends Tela{
         });
 
         // arvore coco
-        JButton adicionarArvoreCoco = new JButton(bgAdicionar);
-        adicionarArvoreCoco.setBounds(795, 229, 20,20);
-
-        JButton removerArvoreCoco = new JButton(bgRemover);
-        removerArvoreCoco.setBounds(735, 229, 20,20);
-
         JLabel numeroArvoresCoco = new JLabel(bgDisplay);
         numeroArvoresCoco.setBounds(760,224,30, 30);
         numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
@@ -355,13 +363,42 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresCoco.setFont(new PressStartFont().getFont());
         numeroArvoresCoco.setForeground(Color.white);
 
+        JButton adicionarArvoreCoco = new JButton(bgAdicionar);
+        adicionarArvoreCoco.setBounds(795, 229, 20,20);
+        adicionarArvoreCoco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvCoco();
+                if (verificador.setArvCoco(atual + 1)) {
+                    numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreCoco = new JButton(bgRemover);
+        removerArvoreCoco.setBounds(735, 229, 20,20);
+        removerArvoreCoco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvCoco();
+                if (verificador.setArvCoco(atual - 1)) {
+                    numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+
         // arvore laranja
-        JButton adicionarArvoreLaranja = new JButton(bgAdicionar);
-        adicionarArvoreLaranja.setBounds(795, 271, 20,20);
-
-        JButton removerArvoreLaranja = new JButton(bgRemover);
-        removerArvoreLaranja.setBounds(735, 271, 20,20);
-
         JLabel numeroArvoresLaranja = new JLabel(bgDisplay);
         numeroArvoresLaranja.setBounds(760,266,30, 30);
         numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
@@ -369,13 +406,41 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresLaranja.setFont(new PressStartFont().getFont());
         numeroArvoresLaranja.setForeground(Color.white);
 
+        JButton adicionarArvoreLaranja = new JButton(bgAdicionar);
+        adicionarArvoreLaranja.setBounds(795, 271, 20,20);
+        adicionarArvoreLaranja.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvLaranja();
+                if (verificador.setArvLaranja(atual + 1)) {
+                    numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreLaranja = new JButton(bgRemover);
+        removerArvoreLaranja.setBounds(735, 271, 20,20);
+        removerArvoreLaranja.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvLaranja();
+                if (verificador.setArvLaranja(atual - 1)) {
+                    numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
         // arvore abacate
-        JButton adicionarArvoreAbacate = new JButton(bgAdicionar);
-        adicionarArvoreAbacate.setBounds(795, 314, 20,20);
-
-        JButton removerArvoreAbacate = new JButton(bgRemover);
-        removerArvoreAbacate.setBounds(735, 314, 20,20);
-
         JLabel numeroArvoresAbacate = new JLabel(bgDisplay);
         numeroArvoresAbacate.setBounds(760,309,30, 30);
         numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
@@ -383,13 +448,41 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAbacate.setFont(new PressStartFont().getFont());
         numeroArvoresAbacate.setForeground(Color.white);
 
+        JButton adicionarArvoreAbacate = new JButton(bgAdicionar);
+        adicionarArvoreAbacate.setBounds(795, 314, 20,20);
+        adicionarArvoreAbacate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAbacate();
+                if (verificador.setArvAbacate(atual + 1)) {
+                    numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreAbacate = new JButton(bgRemover);
+        removerArvoreAbacate.setBounds(735, 314, 20,20);
+        removerArvoreAbacate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAbacate();
+                if (verificador.setArvAbacate(atual - 1)) {
+                    numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
         // "arvore" amora
-        JButton adicionarArvoreAmora = new JButton(bgAdicionar);
-        adicionarArvoreAmora.setBounds(795, 357, 20,20);
-
-        JButton removerArvoreAmora = new JButton(bgRemover);
-        removerArvoreAmora.setBounds(735, 357, 20,20);
-
         JLabel numeroArvoresAmora = new JLabel(bgDisplay);
         numeroArvoresAmora.setBounds(760,352,30, 30);
         numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
@@ -397,13 +490,41 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAmora.setFont(new PressStartFont().getFont());
         numeroArvoresAmora.setForeground(Color.white);
 
+        JButton adicionarArvoreAmora = new JButton(bgAdicionar);
+        adicionarArvoreAmora.setBounds(795, 357, 20,20);
+        adicionarArvoreAmora.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAmora();
+                if (verificador.setArvAmora(atual + 1)) {
+                    numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreAmora = new JButton(bgRemover);
+        removerArvoreAmora.setBounds(735, 357, 20,20);
+        removerArvoreAmora.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAmora();
+                if (verificador.setArvAmora(atual - 1)) {
+                    numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
         // arvore acerola
-        JButton adicionarArvoreAcerola = new JButton(bgAdicionar);
-        adicionarArvoreAcerola.setBounds(795, 399, 20,20);
-
-        JButton removerArvoreAcerola = new JButton(bgRemover);
-        removerArvoreAcerola.setBounds(735, 399, 20,20);
-
         JLabel numeroArvoresAcerola = new JLabel(bgDisplay);
         numeroArvoresAcerola.setBounds(760,394,30, 30);
         numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
@@ -411,19 +532,81 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAcerola.setFont(new PressStartFont().getFont());
         numeroArvoresAcerola.setForeground(Color.white);
 
+        JButton adicionarArvoreAcerola = new JButton(bgAdicionar);
+        adicionarArvoreAcerola.setBounds(795, 399, 20,20);
+        adicionarArvoreAcerola.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAcerola();
+                if (verificador.setArvAcerola(atual + 1)) {
+                    numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreAcerola = new JButton(bgRemover);
+        removerArvoreAcerola.setBounds(735, 399, 20,20);
+        removerArvoreAcerola.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvAcerola();
+                if (verificador.setArvAcerola(atual - 1)) {
+                    numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
         // arvore goiaba
-        JButton adicionarArvoreGoiaba = new JButton(bgAdicionar);
-        adicionarArvoreGoiaba.setBounds(795, 441, 20,20);
-
-        JButton removerArvoreGoiaba = new JButton(bgRemover);
-        removerArvoreGoiaba.setBounds(735, 441, 20,20);
-
         JLabel numeroArvoresGoiaba = new JLabel(bgDisplay);
         numeroArvoresGoiaba.setBounds(760,436,30, 30);
         numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
         numeroArvoresGoiaba.setHorizontalTextPosition(JLabel.CENTER);
         numeroArvoresGoiaba.setFont(new PressStartFont().getFont());
         numeroArvoresGoiaba.setForeground(Color.white);
+
+        JButton adicionarArvoreGoiaba = new JButton(bgAdicionar);
+        adicionarArvoreGoiaba.setBounds(795, 441, 20,20);
+        adicionarArvoreGoiaba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvGoiaba();
+                if (verificador.setArvGoiaba(atual + 1)) {
+                    numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é maior do que o permitido!", "Valor Excedido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        JButton removerArvoreGoiaba = new JButton(bgRemover);
+        removerArvoreGoiaba.setBounds(735, 441, 20,20);
+        removerArvoreGoiaba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                int atual = verificador.getArvGoiaba();
+                if (verificador.setArvGoiaba(atual - 1)) {
+                    numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
 
         //comecar
         panel.add(botaoComecar);
