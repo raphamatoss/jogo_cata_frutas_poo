@@ -4,17 +4,11 @@ import modelo.entidades.Fruta;
 
 public class Goiaba extends Fruta {
     public Goiaba(boolean bichada) {
-        super(bichada);
+        super(bichada, "go");
     }
 
     @Override
     public void causarEfeito() {
 
     }
-
-    @Override
-    public String toString() {
-        return "go";
-    }
-
 }

@@ -4,7 +4,7 @@ import modelo.entidades.Fruta;
 
 public class Laranja extends Fruta {
     public Laranja(boolean bichada) {
-        super(bichada);
+        super(bichada, "la");
     }
 
     @Override
@@ -12,8 +12,4 @@ public class Laranja extends Fruta {
 
     }
 
-    @Override
-    public String toString() {
-        return "la";
-    }
 }
