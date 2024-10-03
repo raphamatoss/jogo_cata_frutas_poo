@@ -14,7 +14,7 @@ public class Amora extends Fruta {
 
     @Override
     public String toString() {
-        return "am ";
+        return "am";
     }
 
 

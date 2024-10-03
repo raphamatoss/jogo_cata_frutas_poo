@@ -46,6 +46,6 @@ public class Arvore extends CelulaTerreno {
     
     @Override
     public String toString() {
-		return  " A" + this.frutaDaArvore;
+		return  this.frutaDaArvore.toString().toUpperCase();
     }
 }

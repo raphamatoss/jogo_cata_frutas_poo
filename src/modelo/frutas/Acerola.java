@@ -14,6 +14,6 @@ public class Acerola extends Fruta {
 
     @Override
     public String toString() {
-        return "ac ";
+        return "ac";
     }
 }
