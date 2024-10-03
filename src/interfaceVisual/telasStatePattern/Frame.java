@@ -35,7 +35,7 @@ public class Frame {
         this.jogo = new Jogo(this);
         this.geradorTerreno = new GeradorTerreno(this);
         this.creditos = new Creditos(this);
-        this.atual = this.jogo;
+        this.atual = this.jogo; // TODO: (Gustavo): eu mudei esse estado atual só pra fazer o state de Jogo
 
         frame.add(atual.getPanel());
       
