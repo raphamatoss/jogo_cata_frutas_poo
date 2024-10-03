@@ -14,7 +14,7 @@ public class Goiaba extends Fruta {
 
     @Override
     public String toString() {
-        return "go ";
+        return "go";
     }
 
 }
