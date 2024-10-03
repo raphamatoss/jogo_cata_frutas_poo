@@ -14,6 +14,6 @@ public class Laranja extends Fruta {
 
     @Override
     public String toString() {
-        return "la ";
+        return "la";
     }
 }

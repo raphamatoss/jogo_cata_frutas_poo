@@ -13,30 +13,40 @@ import java.util.Map;
 public class Mapa {
 
     private final int dimensao;
-    private CelulaTerreno[][] floresta;
+    private final CelulaTerreno[][] floresta;
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
-    private final ArrayList<Jogador> jogadores =  new ArrayList<>();
+    private final ArrayList<Jogador> jogadores = new ArrayList<>();
 
 
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
-
         this.dimensao = configuracaoDoMapa.dimensao;
-        floresta = new CelulaTerreno[dimensao][dimensao];
-        for (int i=0; i<numeroJogadores; i++) this.jogadores.add(new Jogador("" + i));
-        carregarTerreno(configuracaoDoMapa);
 
+        floresta = new CelulaTerreno[dimensao][dimensao];
+
+        for (int i = 0; i < numeroJogadores; i++)
+            this.jogadores.add(new Jogador("" + i));
+
+        carregarTerreno(configuracaoDoMapa);
     }
 
 
     // getters -----------------------------------------
-    public int getDimensao() {return dimensao;}
-    public CelulaTerreno[][] getFloresta() {return floresta;}
-    public ArrayList<Arvore> getArvoresFloresta() {return arvoresFloresta;}
+    public int getDimensao() {
+        return dimensao;
+    }
+
+    public CelulaTerreno[][] getFloresta() {
+        return floresta;
+    }
+
+    public ArrayList<Arvore> getArvoresFloresta() {
+        return arvoresFloresta;
+    }
     // ------------------------------------------------
 
 
     // Coordenadas Válidas -------------------------
-    private Coordenada gerarCoordenadaValida(){
+    private Coordenada gerarCoordenadaValida() {
         boolean livre;
         int x, y;
         do {
@@ -48,40 +58,39 @@ public class Mapa {
         return new Coordenada(x, y);
     }
 
-    private Coordenada gerarCoordenadaValidaFruta(){
+    private Coordenada gerarCoordenadaValidaFruta() {
         int x, y;
-        do{
+        do {
             Coordenada c = gerarCoordenadaValida();
             x = c.getX();
             y = c.getY();
-        }while (((Grama) floresta[x][y]).getFrutaOcupante() != null);
+        } while (((Grama) floresta[x][y]).getFrutaOcupante() != null);
         return new Coordenada(x, y);
     }
 
-    private Coordenada gerarCoordenadaValidaJogador(){
+    private Coordenada gerarCoordenadaValidaJogador() {
         boolean livre;
         int x, y;
         do {
-        	//TODO: Verificar se o jogador pode ser gerado em cima de pedras e árvores e frutas no chão.
+            //TODO: Verificar se o jogador pode ser gerado em cima de pedras e árvores e frutas no chão.
             Coordenada c = gerarCoordenadaValidaFruta();
-            x = c.getX(); y = c.getY();
+            x = c.getX();
+            y = c.getY();
             livre = floresta[x][y].getJogadorOcupante() == null;
         } while (!livre);
         return new Coordenada(x, y);
     }
-   // ---------------------------------------------------------
-  
-    
+    // ---------------------------------------------------------
 
-   // Posicionar Elementos ------------------------------------
-   private void posicionarGramas() {
-       for (CelulaTerreno[] line : floresta) {
-           for (int i = 0; i < line.length; i++) {
-               line[i] = new Grama();  // Criando uma nova instância de Grama para cada célula
-           }
-       }
-   }
 
+    // Posicionar Elementos ------------------------------------
+    private void posicionarGramas() {
+        for (CelulaTerreno[] line : floresta) {
+            for (int i = 0; i < line.length; i++) {
+                line[i] = new Grama();  // Criando uma nova instância de Grama para cada célula
+            }
+        }
+    }
 
     private void posicionarPedras(int qtdPedras) {
         for (int i = 0; i < qtdPedras; i++) {
@@ -92,9 +101,9 @@ public class Mapa {
 
     private void posicionarArvores(Map<String, QuantidadeFrutas> FrutaMap) {
         int qtdArvore = 0;
-        for (Map.Entry<String, QuantidadeFrutas> entry : FrutaMap.entrySet()){
-            if(entry.getKey() == "maracuja") continue;
-            qtdArvore+= entry.getValue().arvore;
+        for (Map.Entry<String, QuantidadeFrutas> entry : FrutaMap.entrySet()) {
+            if (entry.getKey() == "maracuja") continue;
+            qtdArvore += entry.getValue().arvore;
         }
         for (int i = 0; i < qtdArvore; i++) {
             Coordenada c = gerarCoordenadaValida();
@@ -103,17 +112,14 @@ public class Mapa {
         }
     }
 
-   // ---------------------------------------------------------
-
-
-
-    private boolean decidirBichada(int probabilidade){
+    // ---------------------------------------------------------
+    private boolean decidirBichada(int probabilidade) {
         return Randomizador.sortearTrue(probabilidade);
         // Separada em uma função para caso sofra alteração.
     }
 
-    private Fruta gerarFrutaPorTipo(String fruta, boolean bichada){
-        switch (fruta){
+    private Fruta gerarFrutaPorTipo(String fruta, boolean bichada) {
+        switch (fruta) {
             case "maracuja" -> {
                 return new Maracuja(bichada);
             }
@@ -139,7 +145,7 @@ public class Mapa {
         return null;
     }
 
-    public CelulaTerreno celulaEm (Coordenada c){
+    public CelulaTerreno celulaEm(Coordenada c) {
         CelulaTerreno[] linha = floresta[c.getX()];
         CelulaTerreno celula = linha[c.getY()];
         return celula;
@@ -147,29 +153,29 @@ public class Mapa {
 
     private void posicionarFrutas(Map<String, QuantidadeFrutas> quantidadeFrutasMap, int probabilidadeBichada) {
 
-            // Para cada conjunto de <String, quantidades <Arvore, Grama>>
-            for (Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()) {
+        // Para cada conjunto de <String, quantidades <Arvore, Grama>>
+        for (Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()) {
 
-                // Para cada quantidade na grama
-                boolean bichada = decidirBichada(probabilidadeBichada);
-                Fruta fruta = gerarFrutaPorTipo(entry.getKey(), bichada);
+            // Para cada quantidade na grama
+            boolean bichada = decidirBichada(probabilidadeBichada);
+            Fruta fruta = gerarFrutaPorTipo(entry.getKey(), bichada);
 
-                for (int i = 0; i < (entry.getValue()).grama; i++) {
-                    CelulaTerreno celula = celulaEm(gerarCoordenadaValidaFruta());
-                    Grama grama = (Grama) celula;
-                    grama.setFrutaOcupante(fruta);
-                }
+            for (int i = 0; i < (entry.getValue()).grama; i++) {
+                CelulaTerreno celula = celulaEm(gerarCoordenadaValidaFruta());
+                Grama grama = (Grama) celula;
+                grama.setFrutaOcupante(fruta);
             }
+        }
     }
 
-    private void posicionarJogador (Jogador jogador) {
+    private void posicionarJogador(Jogador jogador) {
         // valores para posicionar o jogador
         Coordenada c = gerarCoordenadaValidaJogador();
         floresta[c.getX()][c.getY()].setJogadorOcupante(jogador);
     }
 
-    private void posicionarJogadores (ArrayList<Jogador> jogadores) {
-        for(Jogador jogador : jogadores) {
+    private void posicionarJogadores(ArrayList<Jogador> jogadores) {
+        for (Jogador jogador : jogadores) {
             posicionarJogador(jogador);
         }
     }
@@ -178,10 +184,10 @@ public class Mapa {
 
         //Mantenha como está. A lógica faz sentido.
         // LEMBRAR DE IMPLEMENTAR O DECIDIR BICHADA QUANDO A FRUTA É GERADA PELA ÁRVORE.
-        int aSetadasFloresta=0;
-    	for(Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()){
+        int aSetadasFloresta = 0;
+        for (Map.Entry<String, QuantidadeFrutas> entry : quantidadeFrutasMap.entrySet()) {
             Fruta frutaModelo = gerarFrutaPorTipo(entry.getKey(), false);
-            for(int aSetadas=0; aSetadas<entry.getValue().arvore;aSetadas++) {
+            for (int aSetadas = 0; aSetadas < entry.getValue().arvore; aSetadas++) {
                 arvoresFloresta.get(aSetadasFloresta).setFrutaDaArvore(frutaModelo);
                 aSetadasFloresta++;
             }
@@ -193,28 +199,36 @@ public class Mapa {
         posicionarGramas();
         posicionarPedras(configuracao.qtdPedras);
         posicionarArvores(configuracao.qntFrutasPorTipo);    // erro, arvores maracuja n existem (CHECAR SOLUÇÂO)
-        posicionarFrutas(configuracao.qntFrutasPorTipo,configuracao.probabilidadeBichadas);  // erro, parece que frutas do mesmo tipo são adicionadas em todas as linhas do mapa
+        posicionarFrutas(configuracao.qntFrutasPorTipo, configuracao.probabilidadeBichadas);  // erro, parece que frutas do mesmo tipo são adicionadas em todas as linhas do mapa
         selecionarFrutadasArvores(configuracao.qntFrutasPorTipo);
         posicionarJogadores(this.jogadores);     // erro -> gerar coordenada valida jogador, parece haver um looping infinito
 
     }
-    
+
     public void printarCelula(CelulaTerreno celula) {
-    	System.out.print(celula);
-    }
-    
-    public void printarLinha(CelulaTerreno[] linha) {
-    	System.out.print("\\ ");
-    	for(CelulaTerreno celula : linha) {
-    		printarCelula(celula);
-    	}
-        System.out.println(" ");
-    }
- 
-    public void visualizarTerreno() {
-    	for(CelulaTerreno[] linha : floresta) {
-    		printarLinha(linha);
-    	}
+        String celulaStr = celula.toString();
+
+        System.out.print(String.format("%-2s", celulaStr)); // Ajusta à esquerda para garantir o alinhamento
     }
 
+    public void printarLinha(CelulaTerreno[] linha) {
+        for (CelulaTerreno celula : linha) {
+            printarCelula(celula);
+            System.out.print(" | "); // Separador entre as células
+        }
+    }
+
+    public void visualizarTerreno() {
+        // Imprime cada linha com o índice da linha correspondente
+        for (int i = 0; i < dimensao; i++) {
+            System.out.printf("%3d | ", i); // Impressão do índice da linha
+
+            // Imprime as células da linha
+            CelulaTerreno[] linha = floresta[i];
+
+            printarLinha(linha);
+
+            System.out.println();
+        }
+    }
 }
