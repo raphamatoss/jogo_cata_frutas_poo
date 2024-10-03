@@ -37,6 +37,6 @@ public class Jogador extends ElementoDinamico {
     @Override
     public String toString() {
         // TODO: Isso aqui é temporário...
-        return " J" + this.nome + "  ";
+        return "J" + this.nome;
     }
 }
