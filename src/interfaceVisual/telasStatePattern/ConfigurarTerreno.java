@@ -82,7 +82,9 @@ public class ConfigurarTerreno extends Tela{
                 }
                 else {
                     JOptionPane.showMessageDialog(null,
-                            "O valor inserido é menor do que o permitido!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
+                            "O valor inserido é menor do que o permitido ou " +
+                            "a quantidade de elementos no \nterreno é maior do que o possível, " +
+                            "diminua-os ou mantenha a dimensão atual!", "Valor Inválido", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

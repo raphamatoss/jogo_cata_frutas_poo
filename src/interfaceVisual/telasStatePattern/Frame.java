@@ -35,7 +35,7 @@ public class Frame{
         this.jogo = new Jogo(this);
         this.geradorTerreno = new GeradorTerreno(this);
         this.creditos = new Creditos(this);
-        this.atual = this.jogo;
+        this.atual = this.start;
 
         frame.add(atual.getPanel());
       

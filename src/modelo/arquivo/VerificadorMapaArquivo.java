@@ -55,11 +55,19 @@ public class VerificadorMapaArquivo {
     }
 
     public boolean setDimensao(int dimensao) {
-        if (dimensao < 5 || dimensao > 20)
+        if (dimensao < 5 || dimensao > 12)
             return false;
+        else if (dimensao < this.dimensao && espacoDisponivel < (this.dimensao*this.dimensao - dimensao*dimensao)) {
+            return false;
+        }
         else {
             int aux = dimensao*dimensao;
-            espacoDisponivel = espacoDisponivel + (2*dimensao - 1);
+            if (dimensao < this.dimensao) {
+                espacoDisponivel = espacoDisponivel - (this.dimensao*this.dimensao - dimensao*dimensao);
+            }
+            else {
+                espacoDisponivel = espacoDisponivel + (2*dimensao - 1);
+            }
             this.dimensao = dimensao;
             return true;
         }
