@@ -4,7 +4,7 @@ import modelo.entidades.Fruta;
 
 public class Coco extends Fruta {
     public Coco(boolean bichada) {
-        super(bichada);
+        super(bichada, "co");
     }
 
     @Override
@@ -12,8 +12,4 @@ public class Coco extends Fruta {
 
     }
 
-    @Override
-    public String toString() {
-        return "co";
-    }
 }
