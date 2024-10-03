@@ -14,6 +14,6 @@ public class Maracuja extends Fruta {
 
     @Override
     public String toString() {
-        return "ma";
+        return "  ma ";
     }
 }

@@ -11,6 +11,8 @@ public class Arvore extends CelulaTerreno {
         rodadasRestantesParaGerarFruta = 5; // TODO: Enquanto não tiver um jogadorOcupante isso daqui deve ser sempre 5
     }
 
+
+
     // getters & setters -----------------------------------------------
     public int getRodadasRestantesParaGerarFruta() {return rodadasRestantesParaGerarFruta;}
     public void setRodadasRestantesParaGerarFruta(int rodadasRestantesParaGerarFruta) {
@@ -44,6 +46,6 @@ public class Arvore extends CelulaTerreno {
     
     @Override
     public String toString() {
-		return this.frutaDaArvore.toString().toUpperCase();
+		return  " A" + this.frutaDaArvore;
     }
 }

@@ -23,15 +23,16 @@ public class Grama extends CelulaTerreno {
 
     @Override
     public String toString() {
+        //Corrigir, fiz na pressa.
         if(this.getJogadorOcupante() != null && frutaOcupante == null){
-            return getJogadorOcupante().toString();
+            return " " + getJogadorOcupante() + " ";
         }
         else if (this.getJogadorOcupante() != null && frutaOcupante != null){
-            return getJogadorOcupante().toString() + "/" + frutaOcupante.toString();
+            return " " + getJogadorOcupante() + frutaOcupante + " ";
         }
         else if (frutaOcupante != null){
-            return frutaOcupante.toString();
+            return " " + frutaOcupante + " ";
         }
-        else return ".";
+        else return "  .  ";
     }
 }

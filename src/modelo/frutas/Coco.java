@@ -14,6 +14,6 @@ public class Coco extends Fruta {
 
     @Override
     public String toString() {
-        return "co";
+        return "co ";
     }
 }

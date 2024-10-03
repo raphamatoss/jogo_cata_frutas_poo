@@ -12,7 +12,6 @@ public abstract class CelulaTerreno {
 	public Jogador getJogadorOcupante() {
 		return jogadorOcupante;
 	}
-	
 	public void setJogadorOcupante(Jogador jogadorOcupante) {
 		this.jogadorOcupante = jogadorOcupante;}
 	// -------------------------------------------------------------

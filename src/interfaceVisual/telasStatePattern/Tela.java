@@ -10,7 +10,7 @@ public abstract class Tela {
 
     public Tela(Frame frame) {
         this.frame = frame;
-
+      
         panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 1024, 624);
