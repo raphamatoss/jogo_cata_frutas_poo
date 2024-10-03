@@ -19,8 +19,6 @@ public class Main {
 
 		Jogo jogo = ((Jogo) frame.getJogo());
 
-		jogo.setMapa(mapa);
-
-		jogo.atualizarMapa();
+		jogo.inicializarMapa(mapa);
 	}
 }
