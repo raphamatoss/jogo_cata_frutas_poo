@@ -23,7 +23,7 @@ public class ImportarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                frame.getReprodutorDeSom().tocarBotao();
             }
         });
 
@@ -33,7 +33,7 @@ public class ImportarTerreno extends Tela{
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getMenu());
             }
         });
@@ -48,7 +48,7 @@ public class ImportarTerreno extends Tela{
         botaoSelecionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.getReprodutorDeSom().tocarSom("./soundtrack/pressionarBotao.mp3");
+                frame.getReprodutorDeSom().tocarBotao();
                 JFileChooser fileChooser = new JFileChooser();
                 FileNameExtensionFilter filtroExtensao = new FileNameExtensionFilter(
                         "Apenas arquivos .txt ou .trn", "txt", "trn");

@@ -1,4 +1,3 @@
-/*
 package interfaceVisual.soundtrack;
 
 import jaco.mp3.player.MP3Player;
@@ -7,6 +6,8 @@ import java.io.File;
 
 public class ReprodutorDeSom {
       MP3Player player;
+      MP3Player playerBotao;
+
     boolean isAtivo;
     public ReprodutorDeSom(String string) {
         try{
@@ -43,9 +44,16 @@ public class ReprodutorDeSom {
         }
     }
 
+    public void tocarBotao() {
+        try {
+            new MP3Player(new File("./interfaceVisual/soundtrack/pressionarBotao.mp3")).play();
+        }
+        catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
     public void pausarSom() {
         player.pause();
     }
  }
-
- */
