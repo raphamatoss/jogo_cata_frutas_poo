@@ -1,12 +1,16 @@
 package interfaceVisual.telasStatePattern;
 
 import interfaceVisual.fontes.Press_Start_2P.PressStartFont;
+import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.arquivo.VerificadorMapaArquivo;
+import modelo.mapa.MapaConfiguracao;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class ConfigurarTerreno extends Tela{
 
@@ -25,16 +29,7 @@ public class ConfigurarTerreno extends Tela{
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
-            }
-        });
-
-        ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/salvar.png"));
-        JButton botaoSalvar = new JButton(bgSalvar);
-        botaoSalvar.setBounds(830, 510, 47, 49);
-        botaoSalvar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+                frame.setState(frame.getJogo());
             }
         });
 
@@ -54,6 +49,31 @@ public class ConfigurarTerreno extends Tela{
         ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("./../imagens/displayContador.png"));
 
         VerificadorMapaArquivo verificador = new VerificadorMapaArquivo();
+
+        ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/salvar.png"));
+        JButton botaoSalvar = new JButton(bgSalvar);
+        botaoSalvar.setBounds(830, 510, 47, 49);
+        botaoSalvar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+                JFileChooser fileChooser = new JFileChooser(new File("C:\\"));
+                fileChooser.setDialogTitle("Salvar arquivo de terreno");
+
+                FileNameExtensionFilter filtroExtensao = new FileNameExtensionFilter(
+                        "Arquivo .txt", "txt");
+
+                fileChooser.setFileFilter(filtroExtensao);
+
+                int output = fileChooser.showSaveDialog(null);
+                if(output == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    System.out.println(file.getAbsolutePath());
+                    verificador.distribuirFrutas(); // distribui as frutas diversas em quantidades de cada tipo de fruta
+                    GerenciadorMapaArquivo.exportarArquivoTerreno(file.getAbsolutePath(), new MapaConfiguracao(verificador));
+                }
+            }
+        });
 
         // dimensao
         JLabel numeroDimensao = new JLabel(bgDisplay);
