@@ -17,7 +17,7 @@ public class ImportarTerreno extends Tela{
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
 
-        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/comecar.png"));
+        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/comecar2.png"));
         JButton botaoComecar = new JButton(bgComecar);
         botaoComecar.setBounds(324, 510, 377,49);
         botaoComecar.addActionListener(new ActionListener() {

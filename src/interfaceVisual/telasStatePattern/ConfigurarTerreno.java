@@ -20,8 +20,18 @@ public class ConfigurarTerreno extends Tela{
 
         ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/comecar.png"));
         JButton botaoComecar = new JButton(bgComecar);
-        botaoComecar.setBounds(500, 510, 377,49);
+        botaoComecar.setBounds(500, 510, 323,49);
         botaoComecar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
+            }
+        });
+
+        ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/salvar.png"));
+        JButton botaoSalvar = new JButton(bgSalvar);
+        botaoSalvar.setBounds(830, 510, 47, 49);
+        botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
@@ -612,6 +622,8 @@ public class ConfigurarTerreno extends Tela{
 
         //comecar
         panel.add(botaoComecar);
+        //salvar
+        panel.add(botaoSalvar);
         //voltar
         panel.add(botaoVoltar);
         //coco
