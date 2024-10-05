@@ -20,9 +20,15 @@ public class VerificadorMapaArquivo {
     private int arvAmora;
     private int arvAcerola;
     private int arvGoiaba;
+    private int coco;
+    private int laranja;
+    private int abacate;
+    private int amora;
+    private int acerola;
+    private int goiaba;
     private int espacoDisponivel;
 
-    //private static Random random = new Random(42);
+    private static Random random = new Random(System.currentTimeMillis());
 
 	public VerificadorMapaArquivo() {
         dimensao = 5;
@@ -41,6 +47,13 @@ public class VerificadorMapaArquivo {
         frutasOuroTotais = frutasOuroChao + frutasOuroASurgir;
 
         frutasDiversas = 8;
+
+        laranja = 0;
+        abacate = 0;
+        coco = 0;
+        acerola = 0;
+        amora = 0;
+        goiaba = 0;
 
         chanceBichada = 25;
 
@@ -320,5 +333,56 @@ public class VerificadorMapaArquivo {
 
     public void setEspacoDisponivel(int espacoDisponivel) {
         this.espacoDisponivel = espacoDisponivel;
+    }
+
+    public int getCoco() {
+        return coco;
+    }
+
+    public int getLaranja() {
+        return laranja;
+    }
+
+    public int getAbacate() {
+        return abacate;
+    }
+
+    public int getAmora() {
+        return amora;
+    }
+
+    public int getAcerola() {
+        return acerola;
+    }
+
+    public int getGoiaba() {
+        return goiaba;
+    }
+
+    public void distribuirFrutas() {
+        for (int i = 0; i < frutasDiversas; i++) {
+            switch (random.nextInt(6)) {
+                case(0):
+                    laranja++;
+                    break;
+                case(1):
+                    abacate++;
+                    break;
+                case(2):
+                    coco++;
+                    break;
+                case(3):
+                    acerola++;
+                    break;
+                case(4):
+                    amora++;
+                    break;
+                case(5):
+                    goiaba++;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

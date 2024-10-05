@@ -24,6 +24,7 @@ public class ImportarTerreno extends Tela{
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
+                frame.setState(frame.getJogo());
             }
         });
 
@@ -50,6 +51,7 @@ public class ImportarTerreno extends Tela{
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
                 JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Selecione um arquivo de terreno");
                 FileNameExtensionFilter filtroExtensao = new FileNameExtensionFilter(
                         "Apenas arquivos .txt ou .trn", "txt", "trn");
 
