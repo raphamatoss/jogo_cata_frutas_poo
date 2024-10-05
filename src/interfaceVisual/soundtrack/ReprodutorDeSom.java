@@ -5,8 +5,8 @@ import jaco.mp3.player.MP3Player;
 import java.io.File;
 
 public class ReprodutorDeSom {
-      MP3Player player;
-      MP3Player playerBotao;
+      private MP3Player player;
+      private static MP3Player botaoPlayer;
 
     boolean isAtivo;
     public ReprodutorDeSom(String string) {
@@ -44,9 +44,10 @@ public class ReprodutorDeSom {
         }
     }
 
-    public void tocarBotao() {
+    public static void tocarBotao() {
         try {
-            new MP3Player(new File("./interfaceVisual/soundtrack/pressionarBotao.mp3")).play();
+            botaoPlayer = new MP3Player(new File("./interfaceVisual/soundtrack/pressionarBotao.mp3"));
+            botaoPlayer.play();
         }
         catch (Exception e) {
             e.getMessage();
