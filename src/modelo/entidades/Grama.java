@@ -1,5 +1,7 @@
 package modelo.entidades;
 
+import javax.swing.ImageIcon;
+
 public class Grama extends CelulaTerreno {
 
     public Fruta frutaOcupante;
