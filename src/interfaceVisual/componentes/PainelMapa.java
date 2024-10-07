@@ -43,7 +43,7 @@ public class PainelMapa extends JPanel {
         for (int i = 0; i < dimensao; i++) {
             for (int j = 0; j < dimensao; j++) {
                 // Cria o botão e define seu tamanho e posição
-                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], tamanhoBtnCelulaTerreno);
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j]);
 
                 int posicaoX = startX + j * tamanhoBtnCelulaTerreno;
                 int posicaoY = startY + i * tamanhoBtnCelulaTerreno;
