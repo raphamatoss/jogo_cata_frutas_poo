@@ -16,6 +16,11 @@ public class PainelMapa extends JPanel {
         setBounds(0, 0, 624, 624);
     }
 
+    public PainelMapa(Mapa mapa) {
+        this();
+        this.mapa = mapa;
+    }
+
     public void setMapa(Mapa mapa) {
         this.mapa = mapa;
     }
