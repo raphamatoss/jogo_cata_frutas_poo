@@ -1,5 +1,9 @@
 package modelo.utils;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Randomizador {
     /**
      * Gera um número inteiro aleatório dentro de um intervalo específico.
@@ -21,7 +25,6 @@ public abstract class Randomizador {
         return (int) (Math.random() * ((fim - inicio) + 1) + inicio);
     }
 
-    // TODO: Será que podemos receber probabilidade do tipo double/float, caso sim precisamos ajustar toda a lógica de TerrenoConfiguracao e TerrenoArquivoManager
     public static boolean sortearTrue(int probabilidadeParaTrue) {
         // Verificar se a probabilidadeParaTrue está entre 0 e 100
         if (probabilidadeParaTrue < 0 || probabilidadeParaTrue > 100) {
@@ -31,5 +34,37 @@ public abstract class Randomizador {
         int numeroSorteado = gerarInteiroAleatorio(1, 99);
 
         return numeroSorteado < probabilidadeParaTrue;
+    }
+
+    public static String sortearPacoteTextura() {
+        final String CAMINHO_DIRETORIO_PACOTES = "./../src/interfaceVisual/imagens/blocos";
+
+        List<String> pacotes = new ArrayList<>();
+
+        File diretorio = new File(CAMINHO_DIRETORIO_PACOTES);
+
+        if (diretorio.exists() && diretorio.isDirectory()) {
+            for (File subDiretorio : diretorio.listFiles()) {
+                if (subDiretorio.exists() && subDiretorio.isDirectory()) {
+                    pacotes.add(subDiretorio.getName());
+                }
+            }
+        } else {
+            System.out.println("Diretório principal não encontrado: " + CAMINHO_DIRETORIO_PACOTES);
+        }
+
+        if (!pacotes.isEmpty()) {
+            int indice = (int) (Math.random() * pacotes.size());
+
+            String pacoteSorteado = pacotes.get(indice);
+
+            System.out.println(pacoteSorteado);
+
+            return pacoteSorteado;
+        } else {
+            System.out.println("Nenhum pacote de textura foi encontrado.");
+
+            return null;
+        }
     }
 }

@@ -35,7 +35,7 @@ public class Frame{
         this.jogo = new Jogo(this);
         this.geradorTerreno = new GeradorTerreno(this);
         this.creditos = new Creditos(this);
-        this.atual = this.start;
+        this.atual = this.jogo;
 
         frame.add(atual.getPanel());
       
@@ -45,12 +45,6 @@ public class Frame{
         //tem terreno e comecou partida são falsos quando instanciados.
         frame.setVisible(true);
     }
-
-    
-    public static void main(String[] args) {
-        Frame frame = new Frame();
-    }
-
 	
     public void setState(Tela novaTela){
         frame.remove(atual.getPanel());
