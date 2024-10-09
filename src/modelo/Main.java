@@ -4,6 +4,7 @@ import interfaceVisual.telasStatePattern.Frame;
 import interfaceVisual.telasStatePattern.Jogo;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.*;
+import modelo.utils.Randomizador;
 
 public class Main {
 
@@ -19,8 +20,8 @@ public class Main {
 
 		Jogo jogo = ((Jogo) frame.getJogo());
 
-		jogo.setMapa(mapa);
+		jogo.inicializarMapa(mapa);
 
-		jogo.atualizarMapa();
+		Randomizador.sortearPacoteTextura();
 	}
 }
