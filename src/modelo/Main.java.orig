@@ -4,7 +4,7 @@ import interfaceVisual.telasStatePattern.Frame;
 import interfaceVisual.telasStatePattern.Jogo;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.*;
-import modelo.utils.Randomizador;
+<<<<<<< HEAD
 /**
  * Essa classe é atualmente o ponto de partida do programa.
  * Sua única função é iniciar a interface gráfica com o jogador.
@@ -12,6 +12,10 @@ import modelo.utils.Randomizador;
  *
  * @see interfaceVisual.telasStatePattern.Frame
  */
+=======
+import modelo.utils.Randomizador;
+
+>>>>>>> origin
 public class Main {
 
 	public static void main(String[] args) {
