@@ -9,7 +9,7 @@ import modelo.mapa.*;
  * Sua única função é iniciar a interface gráfica com o jogador.
  * 
  *
- * @see Frame
+ * @see interfaceVisual.telasStatePattern.Frame
  */
 public class Main {
 
@@ -38,3 +38,6 @@ public class Main {
 // -> Use @see no final do comentário para linkar com alguma parte do documento
 // -> Use @return para comentar sobre o retorno.
 // -> Use @param para comentar sobre o parametro, diga o nome do parametro após @param. 
+//
+//
+// => Lembrar que deve ser dado o caminho completo (acho) para que o see e o link funcionem.
