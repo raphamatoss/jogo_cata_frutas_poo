@@ -24,7 +24,7 @@ public class Start extends Tela {
             }
         });
 
-        ImageIcon botaoConfigBackground = new ImageIcon(this.getClass().getResource("./../imagens/botoes/config.png"));
+        ImageIcon botaoConfigBackground = new ImageIcon(this.getClass().getResource("./../imagens/botoes/soundOn.png"));
         JButton botaoConfig = new JButton(botaoConfigBackground);
         botaoConfig.setBounds(920, 450, 57,57);
         botaoConfig.addActionListener(new ActionListener() {
@@ -34,9 +34,11 @@ public class Start extends Tela {
                 if (frame.getReprodutorDeSom().getIsAtivo()) {
                     frame.getReprodutorDeSom().pausarSom();
                     frame.getReprodutorDeSom().setIsAtivo(false);
+                    botaoConfig.setIcon(new ImageIcon(this.getClass().getResource("./../imagens/botoes/soundOff.png")));
                 } else {
                     frame.getReprodutorDeSom().tocarSom();
                     frame.getReprodutorDeSom().setIsAtivo(true);
+                    botaoConfig.setIcon(botaoConfigBackground);
                 }
             }
         });

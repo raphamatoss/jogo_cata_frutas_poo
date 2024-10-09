@@ -2,7 +2,10 @@ package interfaceVisual.telasStatePattern;
 
 import interfaceVisual.soundtrack.ReprodutorDeSom;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Frame{
     private Tela start;
@@ -27,6 +30,7 @@ public class Frame{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("./../imagens/gameIcon.png")));
 
         this.start = new Start(this);
         this.menu = new Menu(this);
@@ -35,7 +39,7 @@ public class Frame{
         this.jogo = new Jogo(this);
         this.geradorTerreno = new GeradorTerreno(this);
         this.creditos = new Creditos(this);
-        this.atual = this.jogo;
+        this.atual = this.start;
 
         frame.add(atual.getPanel());
       
