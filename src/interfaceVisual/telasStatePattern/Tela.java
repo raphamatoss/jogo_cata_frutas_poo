@@ -8,6 +8,11 @@ public abstract class Tela {
     protected JPanel panel;
     protected Frame frame;
 
+    public Tela() {
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBounds(0, 0, 512, 312);
+    }
     public Tela(Frame frame) {
         this.frame = frame;
       

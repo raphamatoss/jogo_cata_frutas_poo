@@ -3,6 +3,7 @@ package interfaceVisual.telasStatePattern;
 import interfaceVisual.fontes.Press_Start_2P.PressStartFont;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.arquivo.VerificadorMapaArquivo;
+import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class ConfigurarTerreno extends Tela{
 
         ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/comecar.png"));
         JButton botaoComecar = new JButton(bgComecar);
-        botaoComecar.setBounds(500, 510, 323,49);
+        botaoComecar.setBounds(500, 510, 272,49);
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +73,16 @@ public class ConfigurarTerreno extends Tela{
                     verificador.distribuirFrutas(); // distribui as frutas diversas em quantidades de cada tipo de fruta
                     GerenciadorMapaArquivo.exportarArquivoTerreno(file.getAbsolutePath(), new MapaConfiguracao(verificador));
                 }
+            }
+        });
+
+        ImageIcon bgPreview = new ImageIcon(this.getClass().getResource("./../imagens/botoes/preview.png"));
+        JButton botaoPreview = new JButton(bgPreview);
+        botaoPreview.setBounds(778, 510, 47, 49);
+        botaoPreview.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Preview preview = new Preview(new Mapa(new MapaConfiguracao(verificador), 0));
             }
         });
 
@@ -644,6 +655,8 @@ public class ConfigurarTerreno extends Tela{
         panel.add(botaoComecar);
         //salvar
         panel.add(botaoSalvar);
+        //preview
+        panel.add(botaoPreview);
         //voltar
         panel.add(botaoVoltar);
         //coco
