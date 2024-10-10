@@ -21,7 +21,5 @@ public class Main {
 		Jogo jogo = ((Jogo) frame.getJogo());
 
 		jogo.inicializarMapa(mapa);
-
-		Randomizador.sortearPacoteTextura();
 	}
 }
