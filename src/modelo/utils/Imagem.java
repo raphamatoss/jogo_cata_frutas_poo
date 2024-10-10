@@ -23,13 +23,15 @@ public class Imagem {
         // Desenha a imagem base
         g2d.drawImage(imagemBase.getImage(), 0, 0, largura, altura, null);
 
+        // Obtém o tamanho da imagem sobreposta
+        int larguraSobreposta = imagemSobreposta.getIconWidth();
+        int alturaSobreposta = imagemSobreposta.getIconHeight();
+
         // Calcula a posição da imagem sobreposta para centralizá-la
-        int larguraSobreposta = largura / 2;  // Ajusta o tamanho da imagem sobreposta
-        int alturaSobreposta = altura / 2;
         int posX = (largura - larguraSobreposta) / 2;
         int posY = (altura - alturaSobreposta) / 2;
 
-        // Desenha a imagem sobreposta no centro da imagem base
+        // Desenha a imagem sobreposta no centro da imagem base com o tamanho original
         g2d.drawImage(imagemSobreposta.getImage(), posX, posY, larguraSobreposta, alturaSobreposta, null);
 
         // Libera os recursos gráficos

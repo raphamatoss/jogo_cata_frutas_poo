@@ -1,8 +1,10 @@
 package modelo.entidades;
 
+import modelo.utils.Imagem;
 import modelo.utils.Randomizador;
 
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 public class Pedra extends CelulaTerreno {
 
@@ -18,10 +20,14 @@ public class Pedra extends CelulaTerreno {
 
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
-        boolean cogumelo = Randomizador.sortearTrue(75);
+        String caminhoGrama = "./interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+        String caminhoPedra = "./interfaceVisual/imagens/pedras/pedra.png";
 
-        String caminho = "./interfaceVisual/imagens/blocos/" + pacoteTextura + (cogumelo ? "/pedra.png" : "/pedra_com_cogumelos.png");
+        ImageIcon iconGrama = new ImageIcon(caminhoGrama);
+        ImageIcon iconPedra = new ImageIcon(caminhoPedra);
 
-        return new ImageIcon(caminho);
+        BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconPedra);
+
+        return new ImageIcon(imagemCombinada);
     }
 }
