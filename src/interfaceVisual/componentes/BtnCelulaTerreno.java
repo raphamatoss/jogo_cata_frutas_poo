@@ -1,9 +1,7 @@
 package interfaceVisual.componentes;
 
-import modelo.entidades.Arvore;
 import modelo.entidades.CelulaTerreno;
 import modelo.entidades.Grama;
-import modelo.entidades.Pedra;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,23 +9,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BtnCelulaTerreno extends JButton {
-    public BtnCelulaTerreno(CelulaTerreno celulaTerreno) {
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura) {
         super();
 
-        ImageIcon icon;
+        ImageIcon icon = celulaTerreno.toImageIcon(pacoteTextura);
 
-        if (celulaTerreno instanceof Grama) {
-            Grama grama = (Grama) celulaTerreno;
-            icon = new ImageIcon(this.getClass().getResource("./../imagens/blocos/verde/verde.png"));
-            /*
-            if (grama.frutaOcupante.getNome() == "ac")
-                icon = new ImageIcon(this.getClass().getResource("./../imagens/blocos/acerola.png"));
-             */
-        }
-        else if (celulaTerreno instanceof Pedra)
-            icon = new ImageIcon(this.getClass().getResource("./../imagens/blocos/verde1_com_pedra.png"));
-        else
-            icon = new ImageIcon(this.getClass().getResource("./../imagens/blocos/verde1_com_arvore_laranja.png"));
+        setIcon(icon);
 
         setMargin(new Insets(0, 0, 0, 0));
 
@@ -44,7 +31,5 @@ public class BtnCelulaTerreno extends JButton {
                 setBorder(BorderFactory.createEmptyBorder());
             }
         });
-
-        setIcon(icon);
     }
 }

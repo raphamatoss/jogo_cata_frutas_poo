@@ -30,6 +30,7 @@ public class ConfigurarTerreno extends Tela{
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
+
                 frame.setState(frame.getJogo());
             }
         });

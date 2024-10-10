@@ -59,8 +59,6 @@ public abstract class Randomizador {
 
             String pacoteSorteado = pacotes.get(indice);
 
-            System.out.println(pacoteSorteado);
-
             return pacoteSorteado;
         } else {
             System.out.println("Nenhum pacote de textura foi encontrado.");
