@@ -82,6 +82,7 @@ public class ConfigurarTerreno extends Tela{
         botaoPreview.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getReprodutorDeSom().tocarBotao();
                 Preview preview = new Preview(new Mapa(new MapaConfiguracao(verificador), 0));
             }
         });
