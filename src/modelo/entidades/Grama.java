@@ -37,4 +37,11 @@ public class Grama extends CelulaTerreno {
         }
         else return ".";
     }
+
+    @Override
+    public ImageIcon toImageIcon(String pacoteTextura) {
+        String caminho = "./interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+
+        return new ImageIcon(caminho);
+    }
 }

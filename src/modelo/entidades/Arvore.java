@@ -1,5 +1,7 @@
 package modelo.entidades;
 
+import javax.swing.*;
+
 public class Arvore extends CelulaTerreno {
 
     private Fruta frutaDaArvore;
@@ -47,5 +49,10 @@ public class Arvore extends CelulaTerreno {
     @Override
     public String toString() {
 		return  this.frutaDaArvore.toString().toUpperCase();
+    }
+
+    @Override
+    public ImageIcon toImageIcon(String pacoteTextura) {
+        return null;
     }
 }
