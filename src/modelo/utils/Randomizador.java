@@ -16,6 +16,7 @@ public abstract class Randomizador {
      * @param fim O valor final do intervalo (inclusivo). Se `fim` for menor que `inicio`, `inicio` será ajustado para `fim`.
      * @return Um número inteiro aleatório entre `inicio` e `fim`, ambos inclusivos.
      *
+     * @deprecated
      */
     public static int gerarInteiroAleatorio(int inicio, int fim) {
         if (fim < inicio) {
