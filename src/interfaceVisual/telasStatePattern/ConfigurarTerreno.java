@@ -93,7 +93,7 @@ public class ConfigurarTerreno extends Tela{
         numeroDimensao.setBounds(400,170,30, 30);
         numeroDimensao.setText(Integer.toString(verificador.getDimensao()));
         numeroDimensao.setHorizontalTextPosition(JLabel.CENTER);
-        numeroDimensao.setFont(new PressStartFont().getFont());
+//        numeroDimensao.setFont(new PressStartFont().getFont());
         numeroDimensao.setForeground(Color.white);
 
         JButton adicionarDimensao = new JButton(bgAdicionar);
@@ -137,7 +137,7 @@ public class ConfigurarTerreno extends Tela{
         numeroCapacidade.setBounds(400,520,30, 30);
         numeroCapacidade.setText(Integer.toString(verificador.getTamanhoMochila()));
         numeroCapacidade.setHorizontalTextPosition(JLabel.CENTER);
-        numeroCapacidade.setFont(new PressStartFont().getFont());
+//        numeroCapacidade.setFont(new PressStartFont().getFont());
         numeroCapacidade.setForeground(Color.white);
 
         JButton adicionarCapacidade = new JButton(bgAdicionar);
@@ -179,7 +179,7 @@ public class ConfigurarTerreno extends Tela{
         numeroFrutasOuroChao.setBounds(400,265,30, 30);
         numeroFrutasOuroChao.setText(Integer.toString(verificador.getFrutasOuroChao()));
         numeroFrutasOuroChao.setHorizontalTextPosition(JLabel.CENTER);
-        numeroFrutasOuroChao.setFont(new PressStartFont().getFont());
+//        numeroFrutasOuroChao.setFont(new PressStartFont().getFont());
         numeroFrutasOuroChao.setForeground(Color.white);
 
         JButton adicionarFrutasOuroChao = new JButton(bgAdicionar);
@@ -227,7 +227,7 @@ public class ConfigurarTerreno extends Tela{
         numeroFrutasOuroSurgir.setBounds(400,300,30, 30);
         numeroFrutasOuroSurgir.setText(Integer.toString(verificador.getFrutasOuroASurgir()));
         numeroFrutasOuroSurgir.setHorizontalTextPosition(JLabel.CENTER);
-        numeroFrutasOuroSurgir.setFont(new PressStartFont().getFont());
+//        numeroFrutasOuroSurgir.setFont(new PressStartFont().getFont());
         numeroFrutasOuroSurgir.setForeground(Color.white);
 
         JButton adicionarFrutasOuroSurgir = new JButton(bgAdicionar);
@@ -275,7 +275,7 @@ public class ConfigurarTerreno extends Tela{
         numeroFrutasDiversas.setBounds(400,355,30, 30);
         numeroFrutasDiversas.setText(Integer.toString(verificador.getFrutasDiversas()));
         numeroFrutasDiversas.setHorizontalTextPosition(JLabel.CENTER);
-        numeroFrutasDiversas.setFont(new PressStartFont().getFont());
+//        numeroFrutasDiversas.setFont(new PressStartFont().getFont());
         numeroFrutasDiversas.setForeground(Color.white);
 
         JButton adicionarFrutasDiversas = new JButton(bgAdicionar);
@@ -318,7 +318,7 @@ public class ConfigurarTerreno extends Tela{
         String porcentagem = Integer.toString(verificador.getChanceBichada()) + "%";
         numeroBichadas.setText(porcentagem);
         numeroBichadas.setHorizontalTextPosition(JLabel.CENTER);
-        numeroBichadas.setFont(new PressStartFont(7).getFont());
+//        numeroBichadas.setFont(new PressStartFont(7).getFont());
         numeroBichadas.setForeground(Color.white);
 
         JButton adicionarBichadas = new JButton(bgAdicionar);
@@ -363,7 +363,7 @@ public class ConfigurarTerreno extends Tela{
         numeroPedras.setBounds(400,465,30, 30);
         numeroPedras.setText(Integer.toString(verificador.getPedras()));
         numeroPedras.setHorizontalTextPosition(JLabel.CENTER);
-        numeroPedras.setFont(new PressStartFont().getFont());
+//        numeroPedras.setFont(new PressStartFont().getFont());
         numeroPedras.setForeground(Color.white);
 
         JButton adicionarPedras = new JButton(bgAdicionar);
@@ -405,7 +405,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresCoco.setBounds(760,224,30, 30);
         numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
         numeroArvoresCoco.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresCoco.setFont(new PressStartFont().getFont());
+//        numeroArvoresCoco.setFont(new PressStartFont().getFont());
         numeroArvoresCoco.setForeground(Color.white);
 
         JButton adicionarArvoreCoco = new JButton(bgAdicionar);
@@ -448,7 +448,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresLaranja.setBounds(760,266,30, 30);
         numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
         numeroArvoresLaranja.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresLaranja.setFont(new PressStartFont().getFont());
+//        numeroArvoresLaranja.setFont(new PressStartFont().getFont());
         numeroArvoresLaranja.setForeground(Color.white);
 
         JButton adicionarArvoreLaranja = new JButton(bgAdicionar);
@@ -490,7 +490,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAbacate.setBounds(760,309,30, 30);
         numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
         numeroArvoresAbacate.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresAbacate.setFont(new PressStartFont().getFont());
+//        numeroArvoresAbacate.setFont(new PressStartFont().getFont());
         numeroArvoresAbacate.setForeground(Color.white);
 
         JButton adicionarArvoreAbacate = new JButton(bgAdicionar);
@@ -532,7 +532,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAmora.setBounds(760,352,30, 30);
         numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
         numeroArvoresAmora.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresAmora.setFont(new PressStartFont().getFont());
+//        numeroArvoresAmora.setFont(new PressStartFont().getFont());
         numeroArvoresAmora.setForeground(Color.white);
 
         JButton adicionarArvoreAmora = new JButton(bgAdicionar);
@@ -574,7 +574,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresAcerola.setBounds(760,394,30, 30);
         numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
         numeroArvoresAcerola.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresAcerola.setFont(new PressStartFont().getFont());
+//        numeroArvoresAcerola.setFont(new PressStartFont().getFont());
         numeroArvoresAcerola.setForeground(Color.white);
 
         JButton adicionarArvoreAcerola = new JButton(bgAdicionar);
@@ -616,7 +616,7 @@ public class ConfigurarTerreno extends Tela{
         numeroArvoresGoiaba.setBounds(760,436,30, 30);
         numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
         numeroArvoresGoiaba.setHorizontalTextPosition(JLabel.CENTER);
-        numeroArvoresGoiaba.setFont(new PressStartFont().getFont());
+//        numeroArvoresGoiaba.setFont(new PressStartFont().getFont());
         numeroArvoresGoiaba.setForeground(Color.white);
 
         JButton adicionarArvoreGoiaba = new JButton(bgAdicionar);

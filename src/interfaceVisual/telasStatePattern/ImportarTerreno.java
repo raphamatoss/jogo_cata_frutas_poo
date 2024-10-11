@@ -62,7 +62,7 @@ public class ImportarTerreno extends Tela{
                 if(output == JFileChooser.APPROVE_OPTION) {
                     displayPath.setText(fileChooser.getSelectedFile().getAbsolutePath());
                     displayPath.setHorizontalTextPosition(JLabel.CENTER);
-                    displayPath.setFont(new PressStartFont().getFont());
+//                    displayPath.setFont(new PressStartFont().getFont());
                     displayPath.setForeground(Color.white);
                 }
             }
