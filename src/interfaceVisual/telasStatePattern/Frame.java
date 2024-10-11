@@ -2,11 +2,11 @@ package interfaceVisual.telasStatePattern;
 
 import interfaceVisual.soundtrack.ReprodutorDeSom;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
+/** Define a janela principal da interface gráfica do jogo.
+ */
 public class Frame{
     private Tela start;
     private Tela menu;
@@ -23,6 +23,10 @@ public class Frame{
     private JFrame frame;
     private ReprodutorDeSom reprodutorDeSom;
 
+    /**
+     * O construtor estabelece a configuração do JFrame e inicializa as telas do jogo, bem como o
+     * reprodutor musical.
+     */
     public Frame(){
         frame = new JFrame("Cata-Frutas");
         frame.setSize(1024 + 16,624 + 39);
@@ -50,6 +54,9 @@ public class Frame{
         frame.setVisible(true);
     }
 
+    /** Altera a tela do frame pela nova passada como parâmetro.
+     * @param novaTela
+     */
     public void setState(Tela novaTela){
         frame.remove(atual.getPanel());
         this.atual = novaTela;
