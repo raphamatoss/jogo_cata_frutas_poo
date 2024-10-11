@@ -29,7 +29,7 @@ public class Frame{
      */
     public Frame(){
         frame = new JFrame("Cata-Frutas");
-        frame.setSize(1024 + 16,624 + 39);
+        frame.setSize(1024,624);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
