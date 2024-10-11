@@ -1,5 +1,10 @@
 package modelo.entidades;
 
+import modelo.utils.Imagem;
+
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+
 public class Arvore extends CelulaTerreno {
 
     private Fruta frutaDaArvore;
@@ -12,15 +17,19 @@ public class Arvore extends CelulaTerreno {
     }
 
 
-
     // getters & setters -----------------------------------------------
-    public int getRodadasRestantesParaGerarFruta() {return rodadasRestantesParaGerarFruta;}
+    public int getRodadasRestantesParaGerarFruta() {
+        return rodadasRestantesParaGerarFruta;
+    }
+
     public void setRodadasRestantesParaGerarFruta(int rodadasRestantesParaGerarFruta) {
         this.rodadasRestantesParaGerarFruta = rodadasRestantesParaGerarFruta;
     }
-    public void setFrutaDaArvore(Fruta fruta){this.frutaDaArvore =fruta;}
-    // ------------------------------------------------------------------
 
+    public void setFrutaDaArvore(Fruta fruta) {
+        this.frutaDaArvore = fruta;
+    }
+    // ------------------------------------------------------------------
 
 
     public void gerarFrutaArvore() {
@@ -43,9 +52,24 @@ public class Arvore extends CelulaTerreno {
         |-> Essa árvore é validada: possui uma vizinha 8 livre (consulte a seção 5 do manual)
         */
     }
-    
+
     @Override
     public String toString() {
-		return  this.frutaDaArvore.toString().toUpperCase();
+        return this.frutaDaArvore.toString().toUpperCase();
+    }
+
+    @Override
+    public ImageIcon toImageIcon(String pacoteTextura) {
+        // Caminhos das imagens
+        String caminhoGrama = "./interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+        String nomeFrutaArvore = this.frutaDaArvore.getClass().getSimpleName().toLowerCase();
+        String caminhoArvore = "./interfaceVisual/imagens/arvores/arvore_" + nomeFrutaArvore + ".png";
+
+        ImageIcon texturaGrama = new ImageIcon(caminhoGrama);
+        ImageIcon arvore = new ImageIcon(caminhoArvore);
+
+        BufferedImage imagemCombinada = Imagem.combinarImagens(texturaGrama, arvore);
+
+        return new ImageIcon(imagemCombinada);
     }
 }

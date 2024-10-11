@@ -13,6 +13,9 @@ import modelo.utils.Randomizador;
  *
  * @see interfaceVisual.telasStatePattern.Frame
  */
+=======
+
+>>>>>>> origin
 public class Main {
 
 	public static void main(String[] args) {

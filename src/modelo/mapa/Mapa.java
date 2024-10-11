@@ -19,7 +19,7 @@ public class Mapa {
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
         floresta = new CelulaTerreno[dimensao][dimensao];
-        this.mapaTools = new MapaTools(floresta, dimensao-1);
+        this.mapaTools = new MapaTools(floresta, dimensao);
         for (int i = 0; i < numeroJogadores; i++)
             this.jogadores.add(new Jogador("" + (i+1)));
         carregarTerreno(configuracaoDoMapa);

@@ -2,6 +2,7 @@ package interfaceVisual.componentes;
 
 import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
+import modelo.utils.Randomizador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +10,14 @@ import java.awt.*;
 public class PainelMapa extends JPanel {
 
     Mapa mapa;
+    String pacoteTextura;
 
     public PainelMapa() {
         setLayout(null);
         setBackground(Color.LIGHT_GRAY);  // Cor de fundo para visualizar a área reservada
         setBounds(0, 0, 624, 624);
-    }
 
-    public PainelMapa(Mapa mapa) {
-        this();
-        this.mapa = mapa;
+        this.pacoteTextura = Randomizador.sortearPacoteTextura();
     }
 
     public void setMapa(Mapa mapa) {
@@ -48,7 +47,7 @@ public class PainelMapa extends JPanel {
         for (int i = 0; i < dimensao; i++) {
             for (int j = 0; j < dimensao; j++) {
                 // Cria o botão e define seu tamanho e posição
-                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j]);
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], this.pacoteTextura);
 
                 int posicaoX = startX + j * tamanhoBtnCelulaTerreno;
                 int posicaoY = startY + i * tamanhoBtnCelulaTerreno;

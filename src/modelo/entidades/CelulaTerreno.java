@@ -1,5 +1,7 @@
 package modelo.entidades;
 
+import javax.swing.*;
+
 public abstract class CelulaTerreno {
 
 	private Jogador jogadorOcupante;
@@ -16,4 +18,5 @@ public abstract class CelulaTerreno {
 		this.jogadorOcupante = jogadorOcupante;}
 	// -------------------------------------------------------------
 
+	public abstract ImageIcon toImageIcon(String pacoteTextura);
 }

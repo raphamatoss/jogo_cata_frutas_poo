@@ -4,6 +4,7 @@ import modelo.entidades.Arvore;
 import modelo.entidades.CelulaTerreno;
 import modelo.entidades.Grama;
 import modelo.tipos.Coordenada;
+import java.util.Random;
 
 /**
 * Esta classe tem o intuito de simplificar e generalizar algumas funções úteis ao se trabalhar com o mapa do jogo
@@ -55,9 +56,10 @@ public class MapaTools {
      * @return {@code new Coordenada(x,y)} 
      */
     public Coordenada gerarCoordenada(){
+        Random r = new Random();
         int x, y;
-        x = Randomizador.gerarInteiroAleatorio(0, dimensao - 1);
-        y = Randomizador.gerarInteiroAleatorio(0, dimensao - 1);
+        x = r.nextInt(dimensao);
+        y = r.nextInt(dimensao);
         return new Coordenada(x, y);
     }
 
