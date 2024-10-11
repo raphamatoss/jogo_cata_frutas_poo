@@ -61,12 +61,12 @@ public class Arvore extends CelulaTerreno {
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
         // Caminhos das imagens
-        String caminhoGrama = "./interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+        String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
         String nomeFrutaArvore = this.frutaDaArvore.getClass().getSimpleName().toLowerCase();
-        String caminhoArvore = "./interfaceVisual/imagens/arvores/arvore_" + nomeFrutaArvore + ".png";
+        String caminhoArvore = "/interfaceVisual/imagens/arvores/arvore_" + nomeFrutaArvore + ".png";
 
-        ImageIcon texturaGrama = new ImageIcon(caminhoGrama);
-        ImageIcon arvore = new ImageIcon(caminhoArvore);
+        ImageIcon texturaGrama = new ImageIcon(this.getClass().getResource(caminhoGrama));
+        ImageIcon arvore = new ImageIcon(this.getClass().getResource(caminhoArvore));
 
         BufferedImage imagemCombinada = Imagem.combinarImagens(texturaGrama, arvore);
 

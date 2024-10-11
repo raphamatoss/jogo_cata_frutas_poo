@@ -1,10 +1,10 @@
-package modelo;
+package main;
 
 import interfaceVisual.telasStatePattern.Frame;
 import interfaceVisual.telasStatePattern.Jogo;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.*;
-import modelo.utils.Randomizador;
+
 /**
  * Essa classe é atualmente o ponto de partida do programa.
  * Sua única função é iniciar a interface gráfica com o jogador.
@@ -16,18 +16,7 @@ import modelo.utils.Randomizador;
 public class Main {
 
 	public static void main(String[] args) {
-
-		MapaConfiguracao configuracaoDoMapa = GerenciadorMapaArquivo.importarArquivoTerreno("./input.txt");
-		assert configuracaoDoMapa != null;
-
-		Mapa mapa = new Mapa(configuracaoDoMapa, 2);
-		mapa.visualizarTerreno();
-
 		Frame frame = new Frame();
-
-		Jogo jogo = ((Jogo) frame.getJogo());
-
-		jogo.inicializarMapa(mapa);
 	}
 }
 

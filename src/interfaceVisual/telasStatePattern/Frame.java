@@ -34,7 +34,7 @@ public class Frame{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("./../imagens/gameIcon.png")));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/gameIcon.png")));
 
         this.start = new Start(this);
         this.menu = new Menu(this);
@@ -48,7 +48,7 @@ public class Frame{
         frame.add(atual.getPanel());
       
         // jaco mp3 player precisa receber o caminho do arquivo de som a partir do src/
-        reprodutorDeSom = new ReprodutorDeSom("./interfaceVisual/soundtrack/CataFrutasOST_1.mp3");
+        // reprodutorDeSom = new ReprodutorDeSom("src/interfaceVisual/soundtrack/CataFrutasOST_1.mp3");
 
         //tem terreno e comecou partida são falsos quando instanciados.
         frame.setVisible(true);
@@ -90,6 +90,7 @@ public class Frame{
     public boolean getTerrenoCarregado(){
         return  this.temTerreno;
     }
+
     public void setTerrenoCarregado(Boolean b){
         this.temTerreno = b;
     }
@@ -97,6 +98,7 @@ public class Frame{
     public boolean getTemPartida(){
         return  this.comecouPartida;
     }
+
     public void setTemPartida(Boolean b){
         this.comecouPartida = b;
     }
