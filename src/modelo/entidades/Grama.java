@@ -36,15 +36,15 @@ public class Grama extends CelulaTerreno {
 
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
-        String caminhoGrama = "src/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
-        ImageIcon iconGrama = new ImageIcon(caminhoGrama);
+        String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+        ImageIcon iconGrama = new ImageIcon(this.getClass().getResource(caminhoGrama));
 
         if (this.frutaOcupante != null) {
             // Caso haja uma fruta naquela célula -> Combinar o sprite da fruta com o da grama.
             String nomeFruta = this.getFrutaOcupante().getClass().getSimpleName().toLowerCase();
-            String caminhoFruta = "src/interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
+            String caminhoFruta = "/interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
 
-            ImageIcon iconFruta = new ImageIcon(caminhoFruta);
+            ImageIcon iconFruta = new ImageIcon(this.getClass().getResource(caminhoFruta));
 
             BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconFruta);
 
