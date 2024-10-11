@@ -18,12 +18,12 @@ public class ConfigurarTerreno extends Tela{
     public ConfigurarTerreno(Frame frame){
         super(frame);
 
-        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("./../imagens/menuConfigurarTerreno.png"));
+        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuConfigurarTerreno.png"));
         JLabel background = new JLabel(bgImage);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
 
-        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/comecar.png"));
+        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/comecar.png"));
         JButton botaoComecar = new JButton(bgComecar);
         botaoComecar.setBounds(500, 510, 272,49);
         botaoComecar.addActionListener(new ActionListener() {
@@ -35,7 +35,7 @@ public class ConfigurarTerreno extends Tela{
             }
         });
 
-        ImageIcon bgVoltar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/voltar.png"));
+        ImageIcon bgVoltar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/voltar.png"));
         JButton botaoVoltar = new JButton(bgVoltar);
         botaoVoltar.setBounds(29, 32, 75,75);
         botaoVoltar.addActionListener(new ActionListener() {
@@ -46,13 +46,13 @@ public class ConfigurarTerreno extends Tela{
             }
         });
 
-        ImageIcon bgAdicionar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/mais.png"));
-        ImageIcon bgRemover = new ImageIcon(this.getClass().getResource("./../imagens/botoes/menos.png"));
-        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("./../imagens/displayContador.png"));
+        ImageIcon bgAdicionar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/mais.png"));
+        ImageIcon bgRemover = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/menos.png"));
+        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/displayContador.png"));
 
         VerificadorMapaArquivo verificador = new VerificadorMapaArquivo();
 
-        ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("./../imagens/botoes/salvar.png"));
+        ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/salvar.png"));
         JButton botaoSalvar = new JButton(bgSalvar);
         botaoSalvar.setBounds(830, 510, 47, 49);
         botaoSalvar.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class ConfigurarTerreno extends Tela{
             }
         });
 
-        ImageIcon bgPreview = new ImageIcon(this.getClass().getResource("./../imagens/botoes/preview.png"));
+        ImageIcon bgPreview = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/preview.png"));
         JButton botaoPreview = new JButton(bgPreview);
         botaoPreview.setBounds(778, 510, 47, 49);
         botaoPreview.addActionListener(new ActionListener() {
