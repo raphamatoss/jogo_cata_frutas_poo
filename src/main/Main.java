@@ -1,3 +1,5 @@
+package main;
+
 import interfaceVisual.telasStatePattern.Frame;
 import interfaceVisual.telasStatePattern.Jogo;
 import modelo.arquivo.GerenciadorMapaArquivo;
