@@ -12,10 +12,22 @@ import modelo.utils.Randomizador;
  *
  * @see interfaceVisual.telasStatePattern.Frame
  */
+
 public class Main {
 
 	public static void main(String[] args) {
+
+		MapaConfiguracao configuracaoDoMapa = GerenciadorMapaArquivo.importarArquivoTerreno("./input.txt");
+		assert configuracaoDoMapa != null;
+
+		Mapa mapa = new Mapa(configuracaoDoMapa, 2);
+		mapa.visualizarTerreno();
+
 		Frame frame = new Frame();
+
+		Jogo jogo = ((Jogo) frame.getJogo());
+
+		jogo.inicializarMapa(mapa);
 	}
 }
 

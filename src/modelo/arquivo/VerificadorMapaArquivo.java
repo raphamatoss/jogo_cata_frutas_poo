@@ -57,20 +57,14 @@ public class VerificadorMapaArquivo {
         frutasOuroTotais = frutasOuroChao + frutasOuroASurgir;
 
         frutasDiversas = 8;
-
-        laranja = 0;
-        abacate = 0;
-        coco = 0;
-        acerola = 0;
-        amora = 0;
-        goiaba = 0;
+        distribuirFrutas();
 
         chanceBichada = 25;
 
         tamanhoMochila = frutasOuroTotais / 2 + 1;
 
         espacoDisponivel = espacoDisponivel - (pedras + arvLaranja + arvAbacate +
-                arvAmora + arvAcerola + arvGoiaba + arvCoco + frutasOuroChao + frutasDiversas);
+                arvAmora + arvAcerola + arvGoiaba + arvCoco + frutasOuroChao + frutasDiversas) - 2;
     }
 
     /**
@@ -208,6 +202,28 @@ public class VerificadorMapaArquivo {
             else
                 espacoDisponivel--;
             this.frutasDiversas = frutasDiversas;
+            switch (random.nextInt(6)) {
+                case(0):
+                    laranja++;
+                    break;
+                case(1):
+                    abacate++;
+                    break;
+                case(2):
+                    coco++;
+                    break;
+                case(3):
+                    acerola++;
+                    break;
+                case(4):
+                    amora++;
+                    break;
+                case(5):
+                    goiaba++;
+                    break;
+                default:
+                    break;
+            }
             return true;
         }
     }
