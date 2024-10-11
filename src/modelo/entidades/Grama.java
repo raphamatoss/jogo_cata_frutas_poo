@@ -36,13 +36,13 @@ public class Grama extends CelulaTerreno {
 
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
-        String caminhoGrama = "./interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+        String caminhoGrama = "src/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
         ImageIcon iconGrama = new ImageIcon(caminhoGrama);
 
         if (this.frutaOcupante != null) {
             // Caso haja uma fruta naquela célula -> Combinar o sprite da fruta com o da grama.
             String nomeFruta = this.getFrutaOcupante().getClass().getSimpleName().toLowerCase();
-            String caminhoFruta = "./interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
+            String caminhoFruta = "src/interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
 
             ImageIcon iconFruta = new ImageIcon(caminhoFruta);
 

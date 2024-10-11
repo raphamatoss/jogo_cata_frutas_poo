@@ -48,7 +48,7 @@ public class Frame{
         frame.add(atual.getPanel());
       
         // jaco mp3 player precisa receber o caminho do arquivo de som a partir do src/
-        reprodutorDeSom = new ReprodutorDeSom("./interfaceVisual/soundtrack/CataFrutasOST_1.mp3");
+        reprodutorDeSom = new ReprodutorDeSom("src/interfaceVisual/soundtrack/CataFrutasOST_1.mp3");
 
         //tem terreno e comecou partida são falsos quando instanciados.
         frame.setVisible(true);

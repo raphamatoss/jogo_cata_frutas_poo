@@ -51,7 +51,7 @@ public abstract class Randomizador {
      * Ainda em desenvolvimento.
      */
     public static String sortearPacoteTextura() {
-        final String CAMINHO_DIRETORIO_PACOTES = "./../src/interfaceVisual/imagens/blocos";
+        final String CAMINHO_DIRETORIO_PACOTES = "src/interfaceVisual/imagens/blocos";
 
         List<String> pacotes = new ArrayList<>();
 

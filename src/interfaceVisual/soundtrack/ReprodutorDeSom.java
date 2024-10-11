@@ -59,7 +59,8 @@ public class ReprodutorDeSom {
      */
     public static void tocarBotao() {
         try {
-            botaoPlayer = new MP3Player(new File("./interfaceVisual/soundtrack/pressionarBotao.mp3"));
+            // ./interfaceVisual/soundtrack/pressionarBotao.mp3
+            botaoPlayer = new MP3Player(new File("src/interfaceVisual/soundtrack/pressionarBotao.mp3"));
             botaoPlayer.play();
         }
         catch (Exception e) {
