@@ -1,7 +1,9 @@
 package modelo.entidades;
 
 import modelo.tipos.Coordenada;
-
+/**
+ * Essa classe serve de molde para o jogador e possivelmente para outros elementos que se movam.
+ */
 public abstract class ElementoDinamico {
     private final Coordenada posicao;
 
@@ -21,6 +23,9 @@ public abstract class ElementoDinamico {
     // --------------------------------------------------
 
 
+    /**
+     * Reimplementa o método mover das coordenadas pelo sentido.
+     */
     public void mover(int dx, int dy) {
         this.posicao.mover(dx, dy);
     }
