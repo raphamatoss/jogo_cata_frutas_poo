@@ -5,8 +5,14 @@ import modelo.utils.Imagem;
 import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 
+/**
+ * Essa classe corresponde ao elemento básico de terreno e é o único qeu pode conter uma fruta frutaOcupante.
+ */
 public class Grama extends CelulaTerreno {
 
+    /**
+     * Fruta ocupante da posição da grama.
+     */
     public Fruta frutaOcupante;
 
     public Grama() {
@@ -22,6 +28,9 @@ public class Grama extends CelulaTerreno {
         this.frutaOcupante = frutaOcupante;
     }
 
+    /**
+     * Responsável por gerar o modelo para exibição no terminal
+     */
     @Override
     public String toString() {
         //Corrigir, fiz na pressa.
@@ -34,6 +43,9 @@ public class Grama extends CelulaTerreno {
         } else return ".";
     }
 
+    /**
+     * Gera a imagem da grama com base em uma seleção de pacotes de sprites.
+     */
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
         String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
