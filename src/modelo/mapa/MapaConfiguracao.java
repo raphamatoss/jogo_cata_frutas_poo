@@ -3,7 +3,7 @@ package modelo.mapa;
 import java.util.HashMap;
 import java.util.Map;
 
-import modelo.arquivo.VerificadorMapaArquivo;
+import modelo.arquivo.VerificadorConfiguracao;
 import modelo.tipos.QuantidadeFrutas;
 
 /**
@@ -40,13 +40,13 @@ public class MapaConfiguracao {
 
     public MapaConfiguracao() {}
 
-    public MapaConfiguracao(VerificadorMapaArquivo verificador) {
+    public MapaConfiguracao(VerificadorConfiguracao verificador) {
         this.dimensao = verificador.getDimensao();
         this.qtdPedras = verificador.getPedras();
         this.probabilidadeBichadas = verificador.getChanceBichada();
         this.tamanhoMochila = verificador.getTamanhoMochila();
 
-        // String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
+        String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
 
         qntFrutasPorTipo.put("maracuja", new QuantidadeFrutas(verificador.getFrutasOuroASurgir(), verificador.getFrutasOuroChao()));
         qntFrutasPorTipo.put("laranja", new QuantidadeFrutas(verificador.getArvLaranja(), verificador.getLaranja()));

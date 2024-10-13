@@ -2,6 +2,8 @@ package modelo.arquivo;
 
 import modelo.tipos.QuantidadeFrutas;
 import modelo.mapa.MapaConfiguracao;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.*;
 
@@ -32,6 +34,8 @@ public class GerenciadorMapaArquivo {
     public static MapaConfiguracao importarArquivoTerreno(String caminhoArquivo) {
         BufferedReader br = null;
         MapaConfiguracao configMapa = new MapaConfiguracao();
+        ArrayList<String> data = new ArrayList<>();
+
         try {
 
             br = new BufferedReader(new FileReader(caminhoArquivo));
@@ -45,22 +49,36 @@ public class GerenciadorMapaArquivo {
                 switch (partesLinhas[0].toLowerCase()) {
                     case "dimensao":
                         configMapa.setDimensao(Integer.parseInt(partesLinhas[1]));
+                        data.add(partesLinhas[0]);
+                        data.add(partesLinhas[1]);
                         break;
                     case "pedras":
                         configMapa.setQtdPedras(Integer.parseInt(partesLinhas[1]));
+                        data.add(partesLinhas[0]);
+                        data.add(partesLinhas[1]);
                         break;
                     case "bichadas":
                         configMapa.setProbabilidadeBichadas(Integer.parseInt(partesLinhas[1]));
+                        data.add(partesLinhas[0]);
+                        data.add(partesLinhas[1]);
                         break;
                     case "mochila":
                         configMapa.setTamanhoMochila(Integer.parseInt(partesLinhas[1]));
+                        data.add(partesLinhas[0]);
+                        data.add(partesLinhas[1]);
                         break;
                     default: 
                         if (Arrays.asList(FrutasValidas).contains(partesLinhas[0].toLowerCase())) {
                             configMapa.qntFrutasPorTipo.put(partesLinhas[0].toLowerCase(), new QuantidadeFrutas(Integer.parseInt(partesLinhas[1]), Integer.parseInt(partesLinhas[2])));
+                            data.add(partesLinhas[0]);
+                            data.add(partesLinhas[1]);
+                            data.add(partesLinhas[2]);
                         }
                 }
             }
+
+            if (data.size() != 29)
+                return null;
 
             return configMapa;
 

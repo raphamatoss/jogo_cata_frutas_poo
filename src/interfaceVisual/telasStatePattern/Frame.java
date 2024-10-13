@@ -1,7 +1,5 @@
 package interfaceVisual.telasStatePattern;
 
-import interfaceVisual.soundtrack.ReprodutorDeSom;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,8 +19,6 @@ public class Frame{
 
     private Tela atual;
     private JFrame frame;
-    private ReprodutorDeSom reprodutorDeSom;
-
     /**
      * O construtor estabelece a configuração do JFrame e inicializa as telas do jogo, bem como o
      * reprodutor musical.
@@ -81,10 +77,6 @@ public class Frame{
 
     public Tela getCreditos() {
         return creditos;
-    }
-
-    public ReprodutorDeSom getReprodutorDeSom() {
-        return reprodutorDeSom;
     }
 
     public boolean getTerrenoCarregado(){

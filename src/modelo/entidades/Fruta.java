@@ -1,5 +1,6 @@
 package modelo.entidades;
 
+import javax.xml.namespace.QName;
 /**
  * Essa classe implementa o comportamento abstrato das frutas do jogo.
  */
