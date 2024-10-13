@@ -1,6 +1,5 @@
 package interfaceVisual.telasStatePattern;
 
-import interfaceVisual.fontes.Press_Start_2P.PressStartFont;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.arquivo.VerificadorMapaArquivo;
 import modelo.mapa.Mapa;
@@ -29,8 +28,6 @@ public class ConfigurarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
-
                 //frame.setState(frame.getJogo());
             }
         });
@@ -41,7 +38,6 @@ public class ConfigurarTerreno extends Tela{
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getMenu());
             }
         });
@@ -58,7 +54,6 @@ public class ConfigurarTerreno extends Tela{
         botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 JFileChooser fileChooser = new JFileChooser(new File("C:\\"));
                 fileChooser.setDialogTitle("Salvar arquivo de terreno");
 
@@ -83,7 +78,6 @@ public class ConfigurarTerreno extends Tela{
         botaoPreview.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 Preview preview = new Preview(new Mapa(new MapaConfiguracao(verificador), 0));
             }
         });
@@ -101,7 +95,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarDimensao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getDimensao();
                 if (verificador.setDimensao(atual + 1)) {
                     numeroDimensao.setText(Integer.toString(verificador.getDimensao()));
@@ -118,7 +111,6 @@ public class ConfigurarTerreno extends Tela{
         removerDimensao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getDimensao();
                 if (verificador.setDimensao(atual - 1)) {
                     numeroDimensao.setText(Integer.toString(verificador.getDimensao()));
@@ -145,7 +137,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarCapacidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getTamanhoMochila();
                 if (verificador.setTamanhoMochila(atual + 1)) {
                     numeroCapacidade.setText(Integer.toString(verificador.getTamanhoMochila()));
@@ -162,7 +153,6 @@ public class ConfigurarTerreno extends Tela{
         removerCapacidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getTamanhoMochila();
                 if (verificador.setTamanhoMochila(atual - 1)) {
                     numeroCapacidade.setText(Integer.toString(verificador.getTamanhoMochila()));
@@ -187,7 +177,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasOuroChao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroChao();
                 if (verificador.setFrutasOuroChao(atual + 1)) {
                     numeroFrutasOuroChao.setText(Integer.toString(verificador.getFrutasOuroChao()));
@@ -207,7 +196,6 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasOuroChao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroChao();
                 if (verificador.setFrutasOuroChao(atual - 1)) {
                     numeroFrutasOuroChao.setText(Integer.toString(verificador.getFrutasOuroChao()));
@@ -235,7 +223,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasOuroSurgir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroASurgir();
                 if (verificador.setFrutasOuroASurgir(atual + 1)) {
                     numeroFrutasOuroSurgir.setText(Integer.toString(verificador.getFrutasOuroASurgir()));
@@ -255,7 +242,6 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasOuroSurgir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasOuroASurgir();
                 if (verificador.setFrutasOuroASurgir(atual - 1)) {
                     numeroFrutasOuroSurgir.setText(Integer.toString(verificador.getFrutasOuroASurgir()));
@@ -283,7 +269,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarFrutasDiversas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasDiversas();
                 if (verificador.setFrutasDiversas(atual + 1)) {
                     numeroFrutasDiversas.setText(Integer.toString(verificador.getFrutasDiversas()));
@@ -300,7 +285,6 @@ public class ConfigurarTerreno extends Tela{
         removerFrutasDiversas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getFrutasDiversas();
                 if (verificador.setFrutasDiversas(atual - 1)) {
                     numeroFrutasDiversas.setText(Integer.toString(verificador.getFrutasDiversas()));
@@ -326,7 +310,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarBichadas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getChanceBichada();
                 if (verificador.setChanceBichada(atual + 5)) {
                     String porcentagem = Integer.toString(verificador.getChanceBichada()) + "%";
@@ -344,7 +327,6 @@ public class ConfigurarTerreno extends Tela{
         removerBichadas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getChanceBichada();
                 if (verificador.setChanceBichada(atual - 5)) {
                     String porcentagem = Integer.toString(verificador.getChanceBichada()) + "%";
@@ -371,7 +353,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarPedras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getPedras();
                 if (verificador.setPedras(atual + 1)) {
                     numeroPedras.setText(Integer.toString(verificador.getPedras()));
@@ -388,7 +369,6 @@ public class ConfigurarTerreno extends Tela{
         removerPedras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getPedras();
                 if (verificador.setPedras(atual - 1)) {
                     numeroPedras.setText(Integer.toString(verificador.getPedras()));
@@ -413,7 +393,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreCoco.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvCoco();
                 if (verificador.setArvCoco(atual + 1)) {
                     numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
@@ -430,7 +409,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreCoco.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvCoco();
                 if (verificador.setArvCoco(atual - 1)) {
                     numeroArvoresCoco.setText(Integer.toString(verificador.getArvCoco()));
@@ -456,7 +434,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreLaranja.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvLaranja();
                 if (verificador.setArvLaranja(atual + 1)) {
                     numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
@@ -473,7 +450,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreLaranja.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvLaranja();
                 if (verificador.setArvLaranja(atual - 1)) {
                     numeroArvoresLaranja.setText(Integer.toString(verificador.getArvLaranja()));
@@ -498,7 +474,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreAbacate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAbacate();
                 if (verificador.setArvAbacate(atual + 1)) {
                     numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
@@ -515,7 +490,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreAbacate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAbacate();
                 if (verificador.setArvAbacate(atual - 1)) {
                     numeroArvoresAbacate.setText(Integer.toString(verificador.getArvAbacate()));
@@ -540,7 +514,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreAmora.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAmora();
                 if (verificador.setArvAmora(atual + 1)) {
                     numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
@@ -557,7 +530,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreAmora.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAmora();
                 if (verificador.setArvAmora(atual - 1)) {
                     numeroArvoresAmora.setText(Integer.toString(verificador.getArvAmora()));
@@ -582,7 +554,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreAcerola.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAcerola();
                 if (verificador.setArvAcerola(atual + 1)) {
                     numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
@@ -599,7 +570,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreAcerola.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvAcerola();
                 if (verificador.setArvAcerola(atual - 1)) {
                     numeroArvoresAcerola.setText(Integer.toString(verificador.getArvAcerola()));
@@ -624,7 +594,6 @@ public class ConfigurarTerreno extends Tela{
         adicionarArvoreGoiaba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvGoiaba();
                 if (verificador.setArvGoiaba(atual + 1)) {
                     numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
@@ -641,7 +610,6 @@ public class ConfigurarTerreno extends Tela{
         removerArvoreGoiaba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 int atual = verificador.getArvGoiaba();
                 if (verificador.setArvGoiaba(atual - 1)) {
                     numeroArvoresGoiaba.setText(Integer.toString(verificador.getArvGoiaba()));
