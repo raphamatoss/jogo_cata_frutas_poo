@@ -28,7 +28,7 @@ public class ImportarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+//                frame.getReprodutorDeSom().tocarBotao();
                 //frame.setState(frame.getJogo());
             }
         });
@@ -39,7 +39,7 @@ public class ImportarTerreno extends Tela{
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+//                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getMenu());
             }
         });
@@ -54,7 +54,7 @@ public class ImportarTerreno extends Tela{
         botaoSelecionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+//                frame.getReprodutorDeSom().tocarBotao();
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setDialogTitle("Selecione um arquivo de terreno");
                 FileNameExtensionFilter filtroExtensao = new FileNameExtensionFilter(
@@ -80,7 +80,7 @@ public class ImportarTerreno extends Tela{
         botaoPreview.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+//                frame.getReprodutorDeSom().tocarBotao();
                 if (caminho != null) {
                     MapaConfiguracao mapaConfiguracao = new GerenciadorMapaArquivo().importarArquivoTerreno(caminho);
                     if (mapaConfiguracao != null) {

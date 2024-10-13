@@ -19,7 +19,7 @@ public class Start extends Tela {
         botaoStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
+//                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getMenu());
             }
         });
