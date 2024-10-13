@@ -19,7 +19,6 @@ public class Frame{
 
     private Tela atual;
     private JFrame frame;
-
     /**
      * O construtor estabelece a configuração do JFrame e inicializa as telas do jogo, bem como o
      * reprodutor musical.

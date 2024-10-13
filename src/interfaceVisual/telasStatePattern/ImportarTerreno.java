@@ -75,9 +75,9 @@ public class ImportarTerreno extends Tela{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (caminho != null) {
-                    Mapa mapa = new Mapa(new GerenciadorMapaArquivo().importarArquivoTerreno(caminho), 0);
-                    if (mapa != null) {
-                        Preview preview = new Preview(mapa);
+                    MapaConfiguracao mapaConfiguracao = new GerenciadorMapaArquivo().importarArquivoTerreno(caminho);
+                    if (mapaConfiguracao != null) {
+                        Preview preview = new Preview(new Mapa(mapaConfiguracao, 0));
                     }
                     else {
                         JOptionPane.showMessageDialog(null,

@@ -1,7 +1,10 @@
 package modelo.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Esta classe é responsável por acomodar métodos referentes à geração de valores aleatórios.

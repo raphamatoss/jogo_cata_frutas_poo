@@ -1,7 +1,7 @@
 package interfaceVisual.telasStatePattern;
 
 import modelo.arquivo.GerenciadorMapaArquivo;
-import modelo.arquivo.VerificadorMapaArquivo;
+import modelo.arquivo.VerificadorConfiguracao;
 import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
 
@@ -46,7 +46,7 @@ public class ConfigurarTerreno extends Tela{
         ImageIcon bgRemover = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/menos.png"));
         ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/displayContador.png"));
 
-        VerificadorMapaArquivo verificador = new VerificadorMapaArquivo();
+        VerificadorConfiguracao verificador = new VerificadorConfiguracao();
 
         ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/salvar.png"));
         JButton botaoSalvar = new JButton(bgSalvar);
