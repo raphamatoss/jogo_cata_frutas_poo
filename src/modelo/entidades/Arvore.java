@@ -5,9 +5,19 @@ import modelo.utils.Imagem;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * A classe árvore representa o elemento árvore do jogo, e contém os métodos para gerar frutas.
+ */
 public class Arvore extends CelulaTerreno {
 
+    /**
+     * Fruta que define qual será o tipo da árvore.
+     */
     private Fruta frutaDaArvore;
+
+    /**
+     * Característica da árvore que dita em quanto tempo ela gerará uma fruta nova.
+     */
     private int rodadasRestantesParaGerarFruta;
 
 
@@ -53,11 +63,18 @@ public class Arvore extends CelulaTerreno {
         */
     }
 
+    /**
+     * Gera uma string para ser printada no terminal
+     */
     @Override
     public String toString() {
         return this.frutaDaArvore.toString().toUpperCase();
     }
 
+  
+    /**
+     * Gera a imagem correspondente à árvore.
+     */
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
         // Caminhos das imagens
