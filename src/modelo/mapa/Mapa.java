@@ -6,16 +6,47 @@ import modelo.utils.*;
 import java.util.ArrayList;
 import java.util.Map;
 
-
+/**
+ * Essa classe configura e contém a floresta na qual o jogo ocorre.
+ */
 public class Mapa {
 
+    /**
+     * Dimensão do mapa.
+     */
     private final int dimensao;
+
+    /**
+     * Matriz de células de terreno que serão configuradas dentro dos parâmentros do arquivo.
+     */
     private final CelulaTerreno[][] floresta;
+
+    /**
+     * Array que contém as referências para as arvores da floresta.
+     *
+     * @see Mapa#selecionarFrutadasArvores
+     */
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
+
+    /**
+     * Array com as referências para os jogadores.
+     */
     private final ArrayList<Jogador> jogadores = new ArrayList<>();
+
+    /**
+     * Instância de mapaTools que contém a floresta do próprio mapa, para executar algoritimos de mnipulação com o mapa.
+     *
+     * @see utils.MapaTools
+     */
     private MapaTools mapaTools;
 
 
+    /**
+     * Construtor inicializa a dimensao, a floresta, os jogadores, com base nos valores dados pela configuração do mapa.
+     *
+     * @param configuracaoDoMapa Configuração do mapa, já configurada e verificada, contendo as informações necessárias para cirar uma floresta.
+     * @param numeroJogadores Numero de jogadores.
+     */
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
         floresta = new CelulaTerreno[dimensao][dimensao];
@@ -43,6 +74,9 @@ public class Mapa {
 
     // Posicionar Elementos ------------------------------------
 
+    /**
+     * Esse método preenche a floresta com gramas.
+     */
     private void posicionarGramas() {
         for (CelulaTerreno[] line : floresta) {
             for (int i = 0; i < line.length; i++) {
@@ -51,6 +85,11 @@ public class Mapa {
         }
     }
 
+    /**
+     * Dada uma quantidade de pedras, posiciona elas aleatoriamente pelo mapa.
+     *
+     * @param qtdPedras Quantidade de pedras a serem colocadas.
+     */
     private void posicionarPedras(int qtdPedras) {
         for (int i = 0; i < qtdPedras; i++) {
             Coordenada c = mapaTools.gerarCoordenadaValida();
@@ -58,6 +97,9 @@ public class Mapa {
         }
     }
 
+    /**
+     * Posiciona arvores em posições livres.
+     */
     private void posicionarArvores(Map<String, QuantidadeFrutas> FrutaMap) {
         int qtdArvore = quantidadeTotalArvores(FrutaMap);
         for (int i = 0; i < qtdArvore; i++) {
@@ -67,6 +109,12 @@ public class Mapa {
         }
     }
 
+    /**
+     * Posiciona as frutas no chão, conforme um mapa de nomes para quantidades.
+     *
+     * @param FrutaMap Mapa de nomes para quantidades.
+     * @param probabilidadeBichada Porcentagem contendo a chance de que as frutas geradas no chão sejam bichadas. 
+     */
     private void posicionarFrutas(Map<String, QuantidadeFrutas> FrutaMap, int probabilidadeBichada) {
 
         for (Map.Entry<String, QuantidadeFrutas> entry : FrutaMap.entrySet()) {
@@ -80,12 +128,18 @@ public class Mapa {
         }
     }
 
+    /**
+     * Posiciona um jogador.
+     */
     private void posicionarJogador(Jogador jogador) {
         // valores para posicionar o jogador
         Coordenada c = mapaTools.gerarCoordenadaValidaJogador();
         floresta[c.getX()][c.getY()].setJogadorOcupante(jogador);
     }
 
+    /**
+     * Posiciona os jogadores.
+     */
     private void posicionarJogadores(ArrayList<Jogador> jogadores) {
         for (Jogador jogador : jogadores) {
             posicionarJogador(jogador);
@@ -103,6 +157,11 @@ public class Mapa {
         return qtdArvore;
     }
 
+    /**
+     * Seleciona de qual tipo cada árvore da floresta será.
+     *
+     * @param frutasMap Mapa de nomes para quantidades.
+     */
     public void selecionarFrutadasArvores(Map<String, QuantidadeFrutas> frutasMap) {
 
         int arvore = 0;
@@ -118,6 +177,13 @@ public class Mapa {
         }
     }
 
+    /**
+     * Principal método da classe Mapa. Este método é responsável por executar da maneira correta todos os passos anteriores, garantindo a geração de um mapa íntegro e completo conforme as descrições da configuracaoDoMapa.
+     *
+     * @param configuracao MapaConfiguracao que será usado de referênca para a criação deste mapa.
+     *
+     * @see MapaConfiguracao
+     */
     private void carregarTerreno(MapaConfiguracao configuracao) {
 
         posicionarGramas();
@@ -129,10 +195,16 @@ public class Mapa {
 
     }
 
+    /**
+     * vizualiza o terreno atual no terminal.
+     */
     public void visualizarTerreno(){
         mapaTools.visualizarTerreno();
     }
 
+    /**
+     * Gera uma string completa do mapa. Pode ser usada para serialização ou até mesmo para trasnformação em imagens.
+     */
     @Override
     public String toString(){
         return mapaTools.FlorestaToString();
