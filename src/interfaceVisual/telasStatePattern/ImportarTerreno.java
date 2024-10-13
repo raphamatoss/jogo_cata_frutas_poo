@@ -2,6 +2,7 @@ package interfaceVisual.telasStatePattern;
 
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;
+import modelo.mapa.MapaConfiguracao;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
