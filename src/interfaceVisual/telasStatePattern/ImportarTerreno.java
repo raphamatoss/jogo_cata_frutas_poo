@@ -28,7 +28,6 @@ public class ImportarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getReprodutorDeSom().tocarBotao();
                 //frame.setState(frame.getJogo());
             }
         });

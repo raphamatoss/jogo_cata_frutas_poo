@@ -11,42 +11,12 @@ import java.util.Map;
  */
 public class Mapa {
 
-    /**
-     * Dimensão do mapa.
-     */
     private final int dimensao;
-
-    /**
-     * Matriz de células de terreno que serão configuradas dentro dos parâmentros do arquivo.
-     */
     private final CelulaTerreno[][] floresta;
-
-    /**
-     * Array que contém as referências para as arvores da floresta.
-     *
-     * @see Mapa#selecionarFrutadasArvores
-     */
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
-
-    /**
-     * Array com as referências para os jogadores.
-     */
     private final ArrayList<Jogador> jogadores = new ArrayList<>();
-
-    /**
-     * Instância de mapaTools que contém a floresta do próprio mapa, para executar algoritimos de mnipulação com o mapa.
-     *
-     * @see utils.MapaTools
-     */
     private MapaTools mapaTools;
 
-
-    /**
-     * Construtor inicializa a dimensao, a floresta, os jogadores, com base nos valores dados pela configuração do mapa.
-     *
-     * @param configuracaoDoMapa Configuração do mapa, já configurada e verificada, contendo as informações necessárias para cirar uma floresta.
-     * @param numeroJogadores Numero de jogadores.
-     */
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
         floresta = new CelulaTerreno[dimensao][dimensao];
