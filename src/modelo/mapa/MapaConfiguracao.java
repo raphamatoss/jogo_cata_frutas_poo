@@ -6,12 +6,36 @@ import java.util.Map;
 import modelo.arquivo.VerificadorMapaArquivo;
 import modelo.tipos.QuantidadeFrutas;
 
+/**
+ * Essa classe é responsável por conter as informações básicas para a geração de um mapa.
+ */
 public class MapaConfiguracao {
 
+    /**
+     * Dinmensão escolhida.
+     */
     protected int dimensao;
+
+    /**
+     * Quantidade de pedras no mapa
+     */
     protected int qtdPedras;
+
+    /**
+     * Mapa de nomes para quantidades, essencial na geração do mapa.
+     *
+     * @see Mapa
+     */
     public Map<String, QuantidadeFrutas> qntFrutasPorTipo = new HashMap<>();
+
+    /**
+     * Probailidade geral de uma fruta ser bichada. Todas as frutas do mapa respeitam essa propriedade.
+     */
     protected int probabilidadeBichadas;
+
+    /**
+     * Tamanho da mochila máximo do jogador.
+     */
     protected int tamanhoMochila;
 
     public MapaConfiguracao() {}
@@ -49,6 +73,9 @@ public class MapaConfiguracao {
     }
 
     
+    /**
+     * Transformar uma configuração em um mapa. Necessário para exportar um arquivo nas configurações certas.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

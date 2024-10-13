@@ -23,7 +23,7 @@ public class ConfigurarTerreno extends Tela{
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
 
-        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/comecar.png"));
+        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/comecarCinza.png"));
         JButton botaoComecar = new JButton(bgComecar);
         botaoComecar.setBounds(500, 510, 272,49);
         botaoComecar.addActionListener(new ActionListener() {
@@ -31,7 +31,7 @@ public class ConfigurarTerreno extends Tela{
             public void actionPerformed(ActionEvent e) {
                 frame.getReprodutorDeSom().tocarBotao();
 
-                frame.setState(frame.getJogo());
+                //frame.setState(frame.getJogo());
             }
         });
 
