@@ -2,7 +2,9 @@ package modelo.entidades;
 
 // TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
 // Definitivamente não está nem perto de finalizar
-
+/**
+ * Classe que lida com o jogador.
+ */
 public class Jogador extends ElementoDinamico {
 
     private final String nome;

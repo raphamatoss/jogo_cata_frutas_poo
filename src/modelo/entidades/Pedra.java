@@ -13,11 +13,17 @@ public class Pedra extends CelulaTerreno {
     }
 
 
+    /**
+     * Gera o elemento para exibição no terminal.
+     */
     @Override
     public String toString() {
         return "#";
     }
 
+    /**
+     * Gera a imagem para vizualização.
+     */
     @Override
     public ImageIcon toImageIcon(String pacoteTextura) {
         String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
