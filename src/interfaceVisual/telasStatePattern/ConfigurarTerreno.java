@@ -12,8 +12,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/** É a tela onde o usuário pode configurar os parâmetros de mapa da forma que deseja. A tela é
+ * pintada sobre o {@link Frame}.
+ */
 public class ConfigurarTerreno extends Tela{
 
+    /** Construtor recebe uma instância de {@link Frame} e define as particularidades do {@link JPanel}
+     * da tela.
+     * @param frame
+     */
     public ConfigurarTerreno(Frame frame){
         super(frame);
 

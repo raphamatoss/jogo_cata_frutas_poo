@@ -79,6 +79,10 @@ public class GerenciadorMapaArquivo {
 
             if (data.size() != 29)
                 return null;
+            if (!data.get(0).equals("dimensao"))
+                return null;
+            if (!data.get(27).equals("mochila"))
+                return null;
 
             return configMapa;
 

@@ -21,7 +21,7 @@ public class Frame{
     private JFrame frame;
     /**
      * O construtor estabelece a configuração do JFrame e inicializa as telas do jogo, bem como o
-     * reprodutor musical.
+     * reprodutor musical, este último desabilitado temporariamente.
      */
     public Frame(){
         frame = new JFrame("Cata-Frutas");
@@ -51,7 +51,7 @@ public class Frame{
     }
 
     /** Altera a tela do frame pela nova passada como parâmetro.
-     * @param novaTela
+     * @param novaTela Tela a ser pintada no frame.
      */
     public void setState(Tela novaTela){
         frame.remove(atual.getPanel());

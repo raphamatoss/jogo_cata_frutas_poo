@@ -4,7 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** É a tela inicial do programa. A tela é pintada sobre o {@link Frame}.
+ */
 public class Start extends Tela {
+
+    /** Construtor recebe uma instância de {@link Frame} e define as particularidades do {@link JPanel}
+     * da tela.
+     * @param frame
+     */
     public Start(Frame frame){
         super(frame);
 

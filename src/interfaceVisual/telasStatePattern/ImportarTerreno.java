@@ -10,8 +10,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** É a tela onde o usuário pode importar um arquivo de mapa compatível. A tela é
+ * pintada sobre o {@link Frame}.
+ */
 public class ImportarTerreno extends Tela{
     private String caminho;
+    /** Construtor recebe uma instância de {@link Frame} e define as particularidades do {@link JPanel}
+     * da tela.
+     * @param frame
+     */
     public ImportarTerreno(Frame frame) {
         super(frame);
 
