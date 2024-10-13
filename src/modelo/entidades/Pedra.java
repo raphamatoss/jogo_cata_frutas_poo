@@ -1,7 +1,6 @@
 package modelo.entidades;
 
 import modelo.utils.Imagem;
-import modelo.utils.Randomizador;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;

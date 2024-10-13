@@ -46,7 +46,7 @@ public class MapaConfiguracao {
         this.probabilidadeBichadas = verificador.getChanceBichada();
         this.tamanhoMochila = verificador.getTamanhoMochila();
 
-        String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
+        // String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
 
         qntFrutasPorTipo.put("maracuja", new QuantidadeFrutas(verificador.getFrutasOuroASurgir(), verificador.getFrutasOuroChao()));
         qntFrutasPorTipo.put("laranja", new QuantidadeFrutas(verificador.getArvLaranja(), verificador.getLaranja()));

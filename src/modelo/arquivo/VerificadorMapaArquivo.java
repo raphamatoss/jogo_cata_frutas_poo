@@ -1,7 +1,5 @@
 package modelo.arquivo;
 
-import modelo.tipos.QuantidadeFrutas;
-
 import java.util.Random;
 
 /**
@@ -90,7 +88,6 @@ public class VerificadorMapaArquivo {
             return false;
         }
         else {
-            int aux = dimensao*dimensao;
             if (dimensao < this.dimensao) {
                 espacoDisponivel = espacoDisponivel - (this.dimensao*this.dimensao - dimensao*dimensao);
             }
