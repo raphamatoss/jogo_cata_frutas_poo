@@ -4,7 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** É a tela onde o usuário seleciona se deseja importar ou configurar um mapa. A tela é
+ * pintada sobre o {@link Frame}.
+ */
 public class Menu extends Tela{
+    /** Construtor recebe uma instância de {@link Frame} e define as particularidades do {@link JPanel}
+     * da tela.
+     * @param frame
+     */
     public Menu (Frame frame) {
         super(frame);
 
