@@ -1,4 +1,4 @@
-package modelo.utils;
+package modelo.utils.perlin;
 
 public class TestePerlin {
 	public static void main(String[] args) {
