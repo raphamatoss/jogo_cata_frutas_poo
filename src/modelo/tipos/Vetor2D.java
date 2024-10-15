@@ -13,6 +13,11 @@ public class Vetor2D<T extends Number> {
     private T x;
     private T y;
 
+    public Vetor2D(T x, T y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * Método getter para obter o valor da coordenada x.
      *

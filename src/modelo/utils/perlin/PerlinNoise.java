@@ -1,7 +1,17 @@
 package modelo.utils.perlin;
 
+import modelo.tipos.Vetor2D;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/*
+*
+* Fontes:
+* - https://adrianb.io/2014/08/09/perlinnoise.html
+*
+* */
 public class PerlinNoise {
-	
 	// Tabela de hash padrão conforme definida por Ken Perlin. Este é um array
 	// arranjado aleatoriamente com todos os números de 0 a 255, incluídos duas vezes.
 	private static int[] permutation = { 
@@ -29,25 +39,6 @@ public class PerlinNoise {
 		    156, 180
 		};
 	
-	/**
-     * Determina as coordenadas dos 4 cantos do quadrado unitário de um ponto dado
-     * @param x coordenada x do ponto para encontrar o quadrado unitário
-     * @param y coordenada y do ponto para encontrar o quadrado unitário
-     * @return lista de pares de coordenadas no formato {{x0, y0}, {x1, y0}, {x0, y1}, {x1, y1}}
-     *         (ou seja, {{superior esquerdo}, {superior direito}, {inferior esquerdo}, {inferior direito}})
-     */
-    private static int[][] obterCoordenadasDoQuadrado(double x, double y) {
-        int x0, x1, y0, y1;
-        x0 = (int) x;
-        y0 = (int) y;
-        x1 = x0 + 1;
-        y1 = y0 + 1;
-        	
-        // (x0, y0) é o canto superior esquerdo, (x1, y1) é o inferior direito
-        int[][] coordenadas = { {x0, y0}, {x1, y0}, {x0, y1}, {x1, y1} };
-        return coordenadas;
-    }
-	
     /***
      * Função de hashing baseada na função fornecida em
      * https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2,
@@ -65,41 +56,62 @@ public class PerlinNoise {
     /**
      * Para qualquer coordenada (x, y) fornecida, seleciona pseudorandomicamente um vetor de gradiente
      * usando o método de hash.
-     * @param x coordenada inteira x da grade para gerar um vetor de gradiente
-     * @param y coordenada inteira y da grade para gerar um vetor de gradiente
+     * @param canto O vetor que representa as coordenadas de um canto do quadrado unitário.
      * @return O vetor de gradiente para esse ponto, no formato {x, y}, onde
      *         o vetor é medido com sua origem em (0, 0) e sua extremidade em
      *         (x, y).
      */
-    public static int[] selecionarVetorGradiente(int x, int y) {
+    public static Vetor2D<Integer> selecionarVetorGradiente(Vetor2D<Integer> canto) {
         // Vetores de gradiente válidos (quatro direções possíveis)
         final int[][] vetoresGradienteValidos = {{1, 1}, {-1, 1}, {1, -1}, {-1, -1}};
+
         // Retorna um vetor de gradiente com base no valor de hash(x, y) % 4 (usando bitwise & 3 para ser mais rápido)
-        return vetoresGradienteValidos[hash(x, y) & 3]; 
+        int indice = hash(canto.getX(), canto.getY()) & 3;
+
+		return new Vetor2D<>(vetoresGradienteValidos[indice][0], vetoresGradienteValidos[indice][1]);
     }
     
 	public static double perlin(double x, double y) {
-		
-		int[][] coordenadas = obterCoordenadasDoQuadrado(x, y);
+		/* ETAPA 1: Calcular o produto escalar entre o vetor de Distância e Gradiente */
+		/* CALCULANDO O QUADRADO UNITARIO DO PONTO (x, y) */
+		Map<String, Vetor2D<Integer>> quadradoUnitario = new HashMap<>();
 
-		// Produto escalar entre cada (gradiente . vetor distancia) de cada canto.
-		double[] produtoEscalar = new double[4];
+		int x0, x1, y0, y1;
+		x0 = (int) x;
+		y0 = (int) y;
+		x1 = x0 + 1;
+		y1 = y0 + 1;
 
-		for (int i = 0; i < coordenadas.length; i++) {
-			int[] canto = coordenadas[i];
+		quadradoUnitario.put("SuperiorEsquerdo", new Vetor2D<>(x0, y0));
+		quadradoUnitario.put("SuperiorDireito", new Vetor2D<>(x1, y0));
+		quadradoUnitario.put("InferiorEsquerdo", new Vetor2D<>(x0, y1));
+		quadradoUnitario.put("InferiorDireito", new Vetor2D<>(x0, y1));
 
-			double[] vetorDistancia = {x - canto[0], y - canto[1]};
+		// Produto escalar entre cada (distancia . gradiente) de cada canto.
+		Map<String, Double> produtoEscalar = new HashMap<>();
 
-			int[] vetorGradiente = selecionarVetorGradiente(canto[0], canto[1]);
+		System.out.println("Ponto: " + x + ", " + y);
 
-			produtoEscalar[i] = vetorDistancia[0] * vetorGradiente[0] + vetorDistancia[1] * vetorGradiente[1];
+		for (String chave : quadradoUnitario.keySet()) {
+			Vetor2D<Integer> canto = quadradoUnitario.get((chave));
 
+			Vetor2D<Double> vetorDistancia = new Vetor2D<>(x - canto.getX(), y - canto.getY());
 
+			Vetor2D<Integer> vetorGradiente = selecionarVetorGradiente(canto);
+
+			// Calculando o resultado do produto escalar entre (distancia . gradiente)
+			double resultado = vetorDistancia.getX() * vetorGradiente.getX() + vetorDistancia.getY() * vetorGradiente.getY();
+
+			produtoEscalar.put(chave, resultado);
+
+			System.out.println("Canto: " + canto.getX() + ", " + canto.getY());
+			System.out.println("Distancia: " + vetorDistancia.getX() + ", " + vetorDistancia.getY());
+			System.out.println("Gradiente: " + vetorGradiente.getX() + ", " + vetorGradiente.getY());
+			System.out.println("Produto Escalar: " + resultado);
 		}
 
-		
-		
-		
+		/* ETAPA 2: Interpolação Bilinear de Produtos de 4 Pontos para Valor Final */
+
 		return 0.0;
 	}
 
