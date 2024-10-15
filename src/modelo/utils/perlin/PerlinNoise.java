@@ -2,6 +2,7 @@ package modelo.utils.perlin;
 
 import modelo.tipos.Vetor2D;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,9 +13,11 @@ import java.util.Map;
 *
 * */
 public class PerlinNoise {
+	private static final boolean DEBUG = false;
+
 	// Tabela de hash padrão conforme definida por Ken Perlin. Este é um array
 	// arranjado aleatoriamente com todos os números de 0 a 255, incluídos duas vezes.
-	private static int[] permutation = { 
+	private final static int[] permutation = {
 			151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240, 
 		    21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 
 		    237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166, 77, 146, 158, 231, 
@@ -38,7 +41,17 @@ public class PerlinNoise {
 		    50, 45, 127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 
 		    156, 180
 		};
-	
+
+	public static void setSeed(long seed) {
+		// Converter a hash table para uma lista
+		ArrayList<Integer> permutationList = new ArrayList<>();
+
+        for (int p : permutation) {
+            permutationList.add(p);
+        }
+
+	}
+
     /***
      * Função de hashing baseada na função fornecida em
      * https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2,
@@ -61,7 +74,7 @@ public class PerlinNoise {
      *         o vetor é medido com sua origem em (0, 0) e sua extremidade em
      *         (x, y).
      */
-    public static Vetor2D<Integer> selecionarVetorGradiente(Vetor2D<Integer> canto) {
+    private static Vetor2D<Integer> selecionarVetorGradiente(Vetor2D<Integer> canto) {
         // Vetores de gradiente válidos (quatro direções possíveis)
         final int[][] vetoresGradienteValidos = {{1, 1}, {-1, 1}, {1, -1}, {-1, -1}};
 
@@ -70,7 +83,16 @@ public class PerlinNoise {
 
 		return new Vetor2D<>(vetoresGradienteValidos[indice][0], vetoresGradienteValidos[indice][1]);
     }
-    
+
+	private static double fade(double t) {
+		// 6t^5 - 15t^4 + 10t^3
+		return t * t * t * (t * (t * 6 - 15) + 10);
+	}
+
+	private static double linInt(double frac, double a, double b) {
+		return a + (frac * (b - a));
+	}
+
 	public static double perlin(double x, double y) {
 		/* ETAPA 1: Calcular o produto escalar entre o vetor de Distância e Gradiente */
 		/* CALCULANDO O QUADRADO UNITARIO DO PONTO (x, y) */
@@ -90,7 +112,9 @@ public class PerlinNoise {
 		// Produto escalar entre cada (distancia . gradiente) de cada canto.
 		Map<String, Double> produtoEscalar = new HashMap<>();
 
-		System.out.println("Ponto: " + x + ", " + y);
+		if (DEBUG) {
+			System.out.println("Ponto: " + x + ", " + y);
+		}
 
 		for (String chave : quadradoUnitario.keySet()) {
 			Vetor2D<Integer> canto = quadradoUnitario.get((chave));
@@ -104,15 +128,34 @@ public class PerlinNoise {
 
 			produtoEscalar.put(chave, resultado);
 
-			System.out.println("Canto: " + canto.getX() + ", " + canto.getY());
-			System.out.println("Distancia: " + vetorDistancia.getX() + ", " + vetorDistancia.getY());
-			System.out.println("Gradiente: " + vetorGradiente.getX() + ", " + vetorGradiente.getY());
-			System.out.println("Produto Escalar: " + resultado);
+			if (DEBUG) {
+				System.out.println("Canto: " + canto.getX() + ", " + canto.getY());
+				System.out.println("Distancia: " + vetorDistancia.getX() + ", " + vetorDistancia.getY());
+				System.out.println("Gradiente: " + vetorGradiente.getX() + ", " + vetorGradiente.getY());
+				System.out.println("Produto Escalar: " + resultado);
+			}
+
 		}
 
 		/* ETAPA 2: Interpolação Bilinear de Produtos de 4 Pontos para Valor Final */
+		double dx = x - (int) x;
+		double dy = y - (int) y;
 
-		return 0.0;
+		double u = fade(dx);
+		double v = fade(dy);
+
+		double superior = linInt(u, produtoEscalar.get("SuperiorEsquerdo"), produtoEscalar.get("SuperiorDireito"));
+		double inferior = linInt(u, produtoEscalar.get("InferiorEsquerdo"), produtoEscalar.get("InferiorDireito"));
+		double vert = linInt(v, superior, inferior);
+
+		if (DEBUG) {
+			System.out.println("Frac = " + u);
+			System.out.println("Superior = " + superior);
+			System.out.println("Inferior = " + inferior);
+			System.out.println("Vert = " + vert);
+		}
+
+		return (vert + 1) / 2;
 	}
 
 }
