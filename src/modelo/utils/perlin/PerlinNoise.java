@@ -81,8 +81,22 @@ public class PerlinNoise {
 	public static double perlin(double x, double y) {
 		
 		int[][] coordenadas = obterCoordenadasDoQuadrado(x, y);
-		
-		
+
+		// Produto escalar entre cada (gradiente . vetor distancia) de cada canto.
+		double[] produtoEscalar = new double[4];
+
+		for (int i = 0; i < coordenadas.length; i++) {
+			int[] canto = coordenadas[i];
+
+			double[] vetorDistancia = {x - canto[0], y - canto[1]};
+
+			int[] vetorGradiente = selecionarVetorGradiente(canto[0], canto[1]);
+
+			produtoEscalar[i] = vetorDistancia[0] * vetorGradiente[0] + vetorDistancia[1] * vetorGradiente[1];
+
+
+		}
+
 		
 		
 		
