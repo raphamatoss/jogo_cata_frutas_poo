@@ -1,5 +1,6 @@
 package modelo.utils.perlin;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -40,26 +41,30 @@ public class TestePerlin {
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setSize(tamanhoMapa,tamanhoMapa);
+		frame.setSize(tamanhoMapa + 100,tamanhoMapa + 100);
 		frame.setLayout(null);
 		frame.setVisible(true);
 
-		for (int i = 0; i < tamanhoMapa; i++) {
-			for (int j = 0; j < tamanhoMapa; j++) {
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < m; j++) {
 				JButton button = new JButton();
 
-				ImageIcon icon = new ImageIcon("/interfaceVisual/imagens/blocos/verde/grama.png");
+				Image img = ImageIO.read(TestePerlin.class.getResource("/interfaceVisual/imagens/blocos/verde/grama.png"));
 
-				button.setIcon(icon);
+				button.setIcon(new ImageIcon(img));
 
 				int posicaoX = j * 50;
 				int posicaoY = i * 50;
 
+				button.setIcon(img);
+
 				button.setBounds(posicaoX,posicaoY,50,50);
 				button.setMargin(new Insets(0, 0, 0, 0));
 
-
 				frame.add(button);
+
+				frame.revalidate();
+				frame.repaint();
 			}
 		}
 	}
