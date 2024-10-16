@@ -2,9 +2,7 @@ package modelo.utils.perlin;
 
 import modelo.tipos.Vetor2D;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /*
 *
@@ -46,10 +44,15 @@ public class PerlinNoise {
 		// Converter a hash table para uma lista
 		ArrayList<Integer> permutationList = new ArrayList<>();
 
-        for (int p : permutation) {
-            permutationList.add(p);
-        }
+		for (int p : permutation) {
+			permutationList.add(p);
+		}
 
+		Collections.shuffle(permutationList, new Random(seed));
+
+		// overwrite hash table
+		for (int i = 0; i < permutation.length; i++)
+			permutation[i] = permutationList.get(i);
 	}
 
     /***
