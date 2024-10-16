@@ -1,8 +1,11 @@
 package modelo.utils.perlin;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class TestePerlin {
 	public static void main(String[] args) {
-		int m = 3; // Varia entre 3 a 12
+		int m = 12; // Varia entre 5 a 12
 
 		// Cada bloco tem 50x50 pixels
 		int tamanhoMapa = m * 50;
@@ -23,14 +26,41 @@ public class TestePerlin {
 			}
 		}
 
+//		for (int i = 0; i < tamanhoMapa; i++) {
+//			for (int j = 0; j < tamanhoMapa; j++) {
+//				if (ruidoMatriz[i][j] < limiarFlores)
+//					System.out.print(". ");
+//				else
+//					System.out.print("F ");
+//			}
+//			System.out.println();
+//		}
+
+		JFrame frame = new JFrame();
+
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setSize(tamanhoMapa,tamanhoMapa);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
 		for (int i = 0; i < tamanhoMapa; i++) {
 			for (int j = 0; j < tamanhoMapa; j++) {
-				if (ruidoMatriz[i][j] < limiarFlores)
-					System.out.print(". ");
-				else
-					System.out.print("F ");
+				JButton button = new JButton();
+
+				ImageIcon icon = new ImageIcon("/interfaceVisual/imagens/blocos/verde/grama.png");
+
+				button.setIcon(icon);
+
+				int posicaoX = j * 50;
+				int posicaoY = i * 50;
+
+				button.setBounds(posicaoX,posicaoY,50,50);
+				button.setMargin(new Insets(0, 0, 0, 0));
+
+
+				frame.add(button);
 			}
-			System.out.println();
 		}
 	}
 }
