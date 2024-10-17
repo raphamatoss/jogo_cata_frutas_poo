@@ -27,13 +27,20 @@ public class ImportarTerreno extends Tela{
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
 
-        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/comecar2cinza.png"));
+        ImageIcon bgComecar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/comecar2.png"));
         JButton botaoComecar = new JButton(bgComecar);
         botaoComecar.setBounds(324, 510, 321,49);
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.setState(frame.getJogo());
+                if (caminho == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "Selecione um arquivo válido!", "Arquivo inválido", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                    frame.getJogo().inicializarMapa(new Mapa(GerenciadorMapaArquivo.importarArquivoTerreno(caminho), 2));
+                    frame.setState(frame.getJogo());
+                }
             }
         });
 
