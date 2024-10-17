@@ -71,7 +71,8 @@ public class Frame{
     public Tela getConfigurarTerreno() { return configurarTerreno; }
     public Tela getImportarTerreno() { return importarTerreno; }
 
-    public Tela getJogo() {
+    public Jogo getJogo() {
+        Jogo jogo = (Jogo) this.jogo;
         return jogo;
     }
 
