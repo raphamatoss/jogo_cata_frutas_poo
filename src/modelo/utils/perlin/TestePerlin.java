@@ -35,7 +35,14 @@ public class TestePerlin {
 				double ruidoAjustado = (ruido + 1) / 2; // [0, 1]
 
 				ruidoMatriz[i][j] = ruidoAjustado;
+				
+				if (ruidoAjustado < limiarFlores)
+					System.out.print(". ");
+				else
+					System.out.print("F ");
 			}
+			
+			System.out.println();
 		}
 
 		JFrame frame = new JFrame();
