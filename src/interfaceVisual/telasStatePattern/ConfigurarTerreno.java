@@ -35,7 +35,7 @@ public class ConfigurarTerreno extends Tela{
         botaoComecar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //frame.setState(frame.getJogo());
+                frame.setState(frame.getJogo());
             }
         });
 
