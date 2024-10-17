@@ -56,15 +56,21 @@ public class BtnCelulaTerreno extends JButton {
         });
     }
 
+    public void setCelulaIcon(ImageIcon celulaIcon) {
+        this.celulaIcon = celulaIcon;
+
+        setIcon(celulaIcon);
+    }
+
     /**
      * Método para adicionar o ícone de uma flor sobre a célula do terreno na posição especificada.
      * 
      * @param x A coordenada X onde a flor será posicionada.
      * @param y A coordenada Y onde a flor será posicionada.
      */
-    public void posicionarFlor(int x, int y) {
-        String caminhoFlor = "/interfaceVisual/imagens/flores/flor_" + Randomizador.sortearFlor() + ".png";
-        
+    public void posicionarFlor(int x, int y, String cor) {
+        String caminhoFlor = "/interfaceVisual/imagens/flores/flor_" + cor + ".png";
+
         // Carrega a imagem da flor
         ImageIcon florIcon = new ImageIcon(this.getClass().getResource(caminhoFlor));
 
@@ -72,6 +78,6 @@ public class BtnCelulaTerreno extends JButton {
         BufferedImage imagemCombinada = Imagem.combinarImagens(celulaIcon, florIcon, x, y);
 
         // Define a nova imagem combinada como o ícone do botão
-        setIcon(new ImageIcon(imagemCombinada));
+        setCelulaIcon(new ImageIcon(imagemCombinada));
     }
 }

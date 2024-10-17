@@ -11,7 +11,7 @@ public class Imagem {
 
     /**
      * Combina duas imagens, desenhando a imagem sobreposta em uma posição específica ou centralizada na imagem base.
-     * 
+     *
      * <p>Se as coordenadas {@code x} e {@code y} forem fornecidas como -1, a imagem sobreposta será desenhada no centro.
      * Caso contrário, será desenhada nas coordenadas especificadas.</p>
      *
@@ -42,7 +42,7 @@ public class Imagem {
         int larguraSobreposta = imagemSobreposta.getIconWidth();
         int alturaSobreposta = imagemSobreposta.getIconHeight();
 
-        // Calcula a posição da imagem sobreposta
+        // Calcula a posição da imagem sobreposta para que seu centro fique na posição (x, y)
         int posX = (x == -1) ? (largura - larguraSobreposta) / 2 : x;
         int posY = (y == -1) ? (altura - alturaSobreposta) / 2 : y;
 

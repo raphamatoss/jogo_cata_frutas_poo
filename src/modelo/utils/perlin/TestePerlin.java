@@ -5,6 +5,7 @@ import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
+import modelo.utils.Randomizador;
 
 import javax.swing.*;
 
@@ -13,24 +14,22 @@ public class TestePerlin {
 		/* SETUP */
 		MapaConfiguracao mapaConfig = GerenciadorMapaArquivo.importarArquivoTerreno("input.txt");
 
-        assert mapaConfig != null;
-        Mapa mapa = new Mapa(mapaConfig, 2);
+		assert mapaConfig != null;
+		Mapa mapa = new Mapa(mapaConfig, 2);
 
 		CelulaTerreno[][] floresta = mapa.getFloresta();
 
 		int m = mapa.getDimensao(); // Varia entre 5 a 12
 
 		// Cada bloco tem 50x50 pixels
-		int tamanhoMapa = m * 50 + 50;
+		int tamanhoMapa = m * 50;
 
-		double limiarFlores = 0.5;
-		
-		int larguraFlor = 12;
-		int alturaFlor = 10;
-		
+		int larguraFlor = 16;
+		int alturaFlor = 13;
+
 		/* PERLIN NOISE */
-		
-		PerlinNoise perlinNoise = new PerlinNoise(1234);
+
+		PerlinNoise perlinNoise = new PerlinNoise();
 
 		double[][] ruidoMatriz = new double[tamanhoMapa][tamanhoMapa];
 
@@ -38,23 +37,15 @@ public class TestePerlin {
 			for (int j = 0; j < tamanhoMapa; j++) {
 				double ruido = perlinNoise.noise(i, j); // [-1, 1]
 
-				double ruidoAjustado = (ruido + 1) / 2; // [0, 1]
-
-				ruidoMatriz[i][j] = ruidoAjustado;
-				if (ruidoAjustado < limiarFlores)
-					System.out.print(". ");
-				else
-					System.out.print("F ");
+				ruidoMatriz[i][j] = ruido;
 			}
-			
-			System.out.println();
 		}
-		
+
 		JFrame frame = new JFrame();
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setSize(tamanhoMapa,tamanhoMapa);
+		frame.setSize(tamanhoMapa + 100,tamanhoMapa + 100);
 		frame.setLayout(null);
 		frame.setVisible(true);
 
@@ -66,21 +57,20 @@ public class TestePerlin {
 				int posicaoY = i * 50;
 
 				btnCelulaTerreno.setBounds(posicaoX, posicaoY, 50, 50);
-				
+
 				// Adicionando flores ao bloco
 				for (int florX = 0; florX < 50; florX += larguraFlor) {
 					for (int florY = 0; florY < 50; florY += alturaFlor) {
-						
+
 						double ruidoFlor = ruidoMatriz[posicaoX + florX][posicaoY + florY];
-						
-						if (ruidoFlor >= limiarFlores) {
-							btnCelulaTerreno.posicionarFlor(posicaoX + florX, posicaoY + florY);
+						if ((ruidoFlor >= -1 && ruidoFlor <= -0.33) || (ruidoFlor > 0.33 && ruidoFlor <= 1)) {
+							if (florX + larguraFlor <= 50 && florY + alturaFlor <= 50) {
+								btnCelulaTerreno.posicionarFlor(florX, florY, Randomizador.sortearFlor());
+							}
 						}
 					}
 				}
-				
-				btnCelulaTerreno.posicionarFlor(posicaoX, posicaoY);
-				
+
 				frame.add(btnCelulaTerreno);
 
 				frame.revalidate();
