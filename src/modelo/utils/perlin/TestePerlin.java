@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class TestePerlin {
 	public static void main(String[] args) {
+		/* SETUP */
 		MapaConfiguracao mapaConfig = GerenciadorMapaArquivo.importarArquivoTerreno("input.txt");
 
         assert mapaConfig != null;
@@ -23,8 +24,13 @@ public class TestePerlin {
 		int tamanhoMapa = m * 50 + 50;
 
 		double limiarFlores = 0.5;
-
-		PerlinNoise perlinNoise = new PerlinNoise();
+		
+		int larguraFlor = 12;
+		int alturaFlor = 10;
+		
+		/* PERLIN NOISE */
+		
+		PerlinNoise perlinNoise = new PerlinNoise(1234);
 
 		double[][] ruidoMatriz = new double[tamanhoMapa][tamanhoMapa];
 
@@ -35,7 +41,6 @@ public class TestePerlin {
 				double ruidoAjustado = (ruido + 1) / 2; // [0, 1]
 
 				ruidoMatriz[i][j] = ruidoAjustado;
-				
 				if (ruidoAjustado < limiarFlores)
 					System.out.print(". ");
 				else
@@ -44,7 +49,7 @@ public class TestePerlin {
 			
 			System.out.println();
 		}
-
+		
 		JFrame frame = new JFrame();
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -61,7 +66,21 @@ public class TestePerlin {
 				int posicaoY = i * 50;
 
 				btnCelulaTerreno.setBounds(posicaoX, posicaoY, 50, 50);
-
+				
+				// Adicionando flores ao bloco
+				for (int florX = 0; florX < 50; florX += larguraFlor) {
+					for (int florY = 0; florY < 50; florY += alturaFlor) {
+						
+						double ruidoFlor = ruidoMatriz[posicaoX + florX][posicaoY + florY];
+						
+						if (ruidoFlor >= limiarFlores) {
+							btnCelulaTerreno.posicionarFlor(posicaoX + florX, posicaoY + florY);
+						}
+					}
+				}
+				
+				btnCelulaTerreno.posicionarFlor(posicaoX, posicaoY);
+				
 				frame.add(btnCelulaTerreno);
 
 				frame.revalidate();

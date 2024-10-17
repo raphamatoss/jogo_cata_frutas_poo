@@ -1,12 +1,14 @@
 package interfaceVisual.componentes;
 
 import modelo.entidades.CelulaTerreno;
-import modelo.entidades.Grama;
+import modelo.utils.Imagem;
+import modelo.utils.Randomizador;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 /**
  * A classe {@code BtnCelulaTerreno} estende {@link JButton} e é utilizada para criar botões que representam
@@ -14,6 +16,8 @@ import java.awt.event.MouseEvent;
  * visual do botão quando o mouse interage com ele.
  */
 public class BtnCelulaTerreno extends JButton {
+
+    private ImageIcon celulaIcon; // Armazena o ícone da célula
 
     /**
      * Construtor que cria um botão personalizado para representar uma célula de terreno no mapa.
@@ -27,8 +31,8 @@ public class BtnCelulaTerreno extends JButton {
         super();
 
         // Define o ícone do botão com base na célula do terreno e no pacote de texturas fornecido
-        ImageIcon icon = celulaTerreno.toImageIcon(pacoteTextura);
-        setIcon(icon);
+        this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
+        setIcon(celulaIcon);
 
         // Remove margens do botão para ajustar ao tamanho da célula
         setMargin(new Insets(0, 0, 0, 0));
@@ -50,5 +54,24 @@ public class BtnCelulaTerreno extends JButton {
                 setBorder(BorderFactory.createEmptyBorder());
             }
         });
+    }
+
+    /**
+     * Método para adicionar o ícone de uma flor sobre a célula do terreno na posição especificada.
+     * 
+     * @param x A coordenada X onde a flor será posicionada.
+     * @param y A coordenada Y onde a flor será posicionada.
+     */
+    public void posicionarFlor(int x, int y) {
+        String caminhoFlor = "/interfaceVisual/imagens/flores/flor_" + Randomizador.sortearFlor() + ".png";
+        
+        // Carrega a imagem da flor
+        ImageIcon florIcon = new ImageIcon(this.getClass().getResource(caminhoFlor));
+
+        // Utiliza o método combinarImagens da classe Imagem para combinar a célula e a flor na posição especificada
+        BufferedImage imagemCombinada = Imagem.combinarImagens(celulaIcon, florIcon, x, y);
+
+        // Define a nova imagem combinada como o ícone do botão
+        setIcon(new ImageIcon(imagemCombinada));
     }
 }
