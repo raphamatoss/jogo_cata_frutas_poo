@@ -25,6 +25,6 @@ public class Teste {
             grafo.printMatriz();
 
             Preview preview = new Preview(mapa);
-            preview.getPainelMapa().mostrarPesos(grafo.getMatrizCaminhos());
+            //preview.getPainelMapa().mostrarPesos(grafo.getMatrizCaminhos());
         }
 }

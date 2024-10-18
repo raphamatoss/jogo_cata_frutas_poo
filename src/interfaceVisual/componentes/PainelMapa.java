@@ -45,6 +45,8 @@ public class PainelMapa extends JPanel {
         this.mapa = mapa;
     }
 
+    public Mapa getMapa() { return mapa; }
+
     /**
      * Atualiza a renderização do mapa no painel.
      * Esse método cria e posiciona os botões que representam as células do terreno,

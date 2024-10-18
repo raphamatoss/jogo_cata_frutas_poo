@@ -50,20 +50,25 @@ public class BtnCelulaTerreno extends JButton {
             public void mouseEntered(MouseEvent e) {
                 // Define uma borda preta fina quando o mouse está sobre o botão
                 setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+                if (celulaTerreno.getJogadorOcupante() != null) {
+                    GrafoJogador grafoJogador = new GrafoJogador(painel.getMapa());
+                    grafoJogador.preencherMatriz(painel.getMapa(), celulaTerreno.getJogadorOcupante().getCoordenada());
+                    painel.mostrarPesos(grafoJogador.getMatrizCaminhos());
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 // Remove a borda quando o mouse sai do botão
                 setBorder(BorderFactory.createEmptyBorder());
+                if (celulaTerreno.getJogadorOcupante() != null) {
+                    painel.removerPesos();
+                }
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (celulaTerreno.getJogadorOcupante() != null) {
-
-                }
             }
         });
     }

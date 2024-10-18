@@ -22,7 +22,7 @@ public class Mapa {
         floresta = new CelulaTerreno[dimensao][dimensao];
         this.mapaTools = new MapaTools(floresta, dimensao);
         for (int i = 0; i < numeroJogadores; i++)
-            this.jogadores.add(new Jogador("" + (i+1), Coordenada.origem()));
+            this.jogadores.add(new Jogador("J" + (i+1), Coordenada.origem()));
         carregarTerreno(configuracaoDoMapa);
     }
 
