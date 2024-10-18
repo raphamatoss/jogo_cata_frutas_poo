@@ -18,7 +18,6 @@ public class Jogo extends Tela {
 
         painelInterfaceJogador = new PainelInterfaceJogador();
 
-        panel.add(painelMapa);
         panel.add(painelInterfaceJogador);
     }
 
@@ -26,6 +25,8 @@ public class Jogo extends Tela {
         if (mapa != null) {
             System.out.println("[Java Swing] - Há um mapa carregado.");
             painelMapa = new PainelMapa(mapa);
+
+            panel.add(painelMapa);
 
             painelMapa.atualizarMapa();
         } else {
