@@ -26,7 +26,7 @@ public class ListaAdjacencia {
         for (int i = 0; i < dimensaoDaFloresta; i++){
             for (int j = 0; j < dimensaoDaFloresta; j++){
                 Coordenada celulaAtual = new Coordenada(j, i);
-                LinkedList<RelacaoPeso> chaves = chavesValidas(celulaAtual, mapa, dimensaoDaFloresta);
+                LinkedList<RelacaoPeso> chaves = chavesValidas(celulaAtual, mapa);
                 for (RelacaoPeso relacao : chaves){
                     this.listaDoGrafo.add(relacao);
                 }
@@ -34,7 +34,7 @@ public class ListaAdjacencia {
         }
     }
 
-    private LinkedList<RelacaoPeso> chavesValidas(Coordenada coordenadaAtual, Mapa mapa, int dimensaoDaFloresta){
+    private LinkedList<RelacaoPeso> chavesValidas(Coordenada coordenadaAtual, Mapa mapa){
 
         LinkedList<RelacaoPeso> vizinhos = new LinkedList<>();
         int i = coordenadaAtual.getY();
@@ -45,7 +45,7 @@ public class ListaAdjacencia {
             Coordenada vizinho = new Coordenada(j, i-1);
             vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
         }
-        if (i+1 < dimensaoDaFloresta){
+        if (i+1 < mapa.getDimensao()){
             Coordenada vizinho = new Coordenada(j, i+1);
             vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
         }
@@ -53,7 +53,7 @@ public class ListaAdjacencia {
             Coordenada vizinho = new Coordenada(j-1, i);
             vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
         }
-        if (j+1 < dimensaoDaFloresta){
+        if (j+1 < mapa.getDimensao()){
             Coordenada vizinho = new Coordenada(j+1, i);
             vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
         }
