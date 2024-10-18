@@ -25,7 +25,7 @@ public class PainelMapa extends JPanel {
         setLayout(null);
 
         // Define uma cor de fundo temporária
-        setBackground(Color.LIGHT_GRAY);  // Cor de fundo para visualizar a área reservada
+        setBackground(Color.decode("#b90826"));  // Cor de fundo para visualizar a área reservada
 
         // Define o tamanho e posição do painel
         setBounds(0, 0, 624, 624);
