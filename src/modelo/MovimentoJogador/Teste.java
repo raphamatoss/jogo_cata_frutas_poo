@@ -1,5 +1,6 @@
 package modelo.MovimentoJogador;
 
+import interfaceVisual.telasStatePattern.Preview;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
@@ -22,5 +23,8 @@ public class Teste {
             GrafoJogador grafo = new GrafoJogador(mapa);
             grafo.preencherMatriz(mapa, cTeste);
             grafo.printMatriz();
+
+            Preview preview = new Preview(mapa);
+            preview.getPainelMapa().mostrarPesos(grafo.getMatrizCaminhos());
         }
 }

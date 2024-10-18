@@ -1,12 +1,15 @@
 package interfaceVisual.componentes;
 
+import modelo.MovimentoJogador.GrafoJogador;
 import modelo.entidades.CelulaTerreno;
 import modelo.entidades.Grama;
+import modelo.utils.Imagem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 /**
  * A classe {@code BtnCelulaTerreno} estende {@link JButton} e é utilizada para criar botões que representam
@@ -22,12 +25,17 @@ public class BtnCelulaTerreno extends JButton {
      * @param celulaTerreno  A instância de {@link CelulaTerreno} que contém as informações da célula que será
      *                       representada pelo botão.
      * @param pacoteTextura  O caminho para o pacote de texturas que contém a imagem a ser usada como ícone do botão.
+     * @param painel
      */
-    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura) {
+    private ImageIcon icon;
+    private PainelMapa painelMapa;
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, PainelMapa painel) {
         super();
 
+        painelMapa = painel;
+
         // Define o ícone do botão com base na célula do terreno e no pacote de texturas fornecido
-        ImageIcon icon = celulaTerreno.toImageIcon(pacoteTextura);
+        icon = celulaTerreno.toImageIcon(pacoteTextura);
         setIcon(icon);
 
         // Remove margens do botão para ajustar ao tamanho da célula
@@ -49,6 +57,40 @@ public class BtnCelulaTerreno extends JButton {
                 // Remove a borda quando o mouse sai do botão
                 setBorder(BorderFactory.createEmptyBorder());
             }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (celulaTerreno.getJogadorOcupante() != null) {
+
+                }
+            }
         });
     }
+
+    public void atualizarPeso(int peso) {
+        if (peso > 0) {
+            try {
+                String caminhoPeso = "/interfaceVisual/imagens/blocos/pesos/peso" + peso + ".png";
+                ImageIcon iconPeso = new ImageIcon(this.getClass().getResource(caminhoPeso));
+                BufferedImage imagemCombinada = Imagem.combinarImagens(icon, iconPeso);
+                this.setIcon(new ImageIcon(imagemCombinada));
+                this.setText(Integer.toString(peso));
+                this.setForeground(Color.white);
+                this.setHorizontalTextPosition(JButton.RIGHT);
+                this.setVerticalTextPosition(JButton.TOP);
+                this.setIconTextGap(-50);
+            }
+            catch (Exception e) {
+                e.getMessage();
+            }
+        }
+    }
+
+    public void removerPeso() {
+        this.setIcon(icon);
+        this.setText("");
+    }
+
+
 }

@@ -10,8 +10,9 @@ import java.awt.*;
  * um pré-visualização e um mapa de jogo selecionado.
  */
 public class Preview {
-    JFrame frame;
-    JPanel panel;
+    private JFrame frame;
+    private JPanel panel;
+    private PainelMapa painelMapa;
 
     /** Construtor recebe uma instância de {@link Mapa} e configura o {@link JFrame} da classe.
      * A instância de mapa é pintada sobre o {@link JPanel} a partir da classe {@link PainelMapa}.
@@ -20,7 +21,7 @@ public class Preview {
     public Preview(Mapa mapa) {
         frame = new JFrame("Preview");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/previewIcon.png")));
-        frame.setSize(624,624);
+        frame.setSize(624+16,624+39);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -31,7 +32,7 @@ public class Preview {
         panel.setLayout(null);
         panel.setBounds(0, 0, 624, 624);
 
-        PainelMapa painelMapa = new PainelMapa();
+        painelMapa = new PainelMapa();
         painelMapa.setMapa(mapa);
         painelMapa.atualizarMapa();
 
@@ -40,4 +41,8 @@ public class Preview {
         frame.add(panel);
         frame.setVisible(true);
     }
-}
+
+    public PainelMapa getPainelMapa() {
+        return painelMapa;
+    }
+ }

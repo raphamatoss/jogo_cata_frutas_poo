@@ -2,6 +2,7 @@ package interfaceVisual.componentes;
 
 import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
+import modelo.tipos.Coordenada;
 import modelo.utils.Randomizador;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class PainelMapa extends JPanel {
 
     private Mapa mapa;               // Mapa que contém a estrutura das células do terreno
     private String pacoteTextura;    // Pacote de texturas a ser usado para os ícones das células
+    private BtnCelulaTerreno[][] matrizBotoes;
 
     /**
      * Construtor padrão que inicializa o painel do mapa com um layout nulo e uma cor de fundo.
@@ -54,6 +56,7 @@ public class PainelMapa extends JPanel {
 
         // Obtém a matriz de células do mapa
         CelulaTerreno[][] floresta = mapa.getFloresta();
+        matrizBotoes = new BtnCelulaTerreno[dimensao][dimensao];
 
         // Define o tamanho de cada botão de célula de terreno
         int tamanhoBtnCelulaTerreno = 50;
@@ -73,7 +76,8 @@ public class PainelMapa extends JPanel {
         for (int i = 0; i < dimensao; i++) {
             for (int j = 0; j < dimensao; j++) {
                 // Cria o botão para a célula de terreno e define o pacote de texturas
-                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], this.pacoteTextura);
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], this.pacoteTextura, this);
+                matrizBotoes[i][j] = btnCelulaTerreno;
 
                 // Calcula a posição do botão no grid
                 int posicaoX = startX + j * tamanhoBtnCelulaTerreno;
@@ -90,5 +94,25 @@ public class PainelMapa extends JPanel {
         // Atualiza o layout e repinta o painel após adicionar os componentes
         this.revalidate();
         this.repaint();
+    }
+
+    /** Mostra no mapa o esquema de cores da distância de um jogador em um determinado
+     * quadrado do mapa a todos os outros alcançaveis.
+     * @param matrizCaminhos matriz com a quantidade de pontos de movimento necessários para o jogador se mover
+     */
+    public void mostrarPesos(Integer[][] matrizCaminhos) {
+        for (int i = 0; i < matrizCaminhos.length; i++) {
+            for (int j = 0; j < matrizCaminhos.length; j++) {
+                matrizBotoes[i][j].atualizarPeso(matrizCaminhos[i][j]);
+            }
+        }
+    }
+
+    public void removerPesos() {
+        for (int i = 0; i < mapa.getDimensao(); i++) {
+            for (int j = 0; j < mapa.getDimensao(); j++) {
+                matrizBotoes[i][j].removerPeso();
+            }
+        }
     }
 }

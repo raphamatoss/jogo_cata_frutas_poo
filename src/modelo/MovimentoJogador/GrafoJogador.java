@@ -26,6 +26,10 @@ public class GrafoJogador {
         this.MatrizCaminhos = new Integer[mapa.getDimensao()][mapa.getDimensao()];
     }
 
+    public Integer[][] getMatrizCaminhos() {
+        return MatrizCaminhos;
+    }
+
     public void preencherMatriz(Mapa mapa, Coordenada coordenadaAtual) {
         // Inicializa a matriz com -1, indicando que ainda não foi visitada
         preencherMenosUm(this.MatrizCaminhos);
