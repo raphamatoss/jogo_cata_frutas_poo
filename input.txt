@@ -1,4 +1,4 @@
-dimensao 8
+dimensao 12
 pedras 7
 maracuja 3 1
 laranja 2 1

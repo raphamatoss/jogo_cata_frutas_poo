@@ -7,7 +7,13 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 public class GeradorRuidoFlores {
-    private static double[][] gerarMatriz(int dimensao, int tamanhoBloco) {
+    private final double[][] ruidoMatriz;
+
+    public GeradorRuidoFlores(int dimensao) {
+        this.ruidoMatriz = gerarMatriz(dimensao, 50);
+    }
+
+    private double[][] gerarMatriz(int dimensao, int tamanhoBloco) {
         int tamanhoMapa = dimensao * tamanhoBloco;
 
         PerlinNoise perlinNoise = new PerlinNoise();
@@ -25,10 +31,8 @@ public class GeradorRuidoFlores {
         return ruidoMatriz;
     }
 
-    public void posicionarFloresBloco(BtnCelulaTerreno btnCelulaTerreno, int dimensao) {
-        if (btnCelulaTerreno.getCelulaTerreno() instanceof Grama) {
-            double[][] ruidoMatriz = gerarMatriz(dimensao, btnCelulaTerreno.getTamanhoBloco());
-
+    public void posicionarFloresBloco(BtnCelulaTerreno btnCelulaTerreno) {
+        if (btnCelulaTerreno.getCelulaTerreno() instanceof Grama grama) {
             int larguraFlor = 16, alturaFlor = 13;
 
             int posicaoX = btnCelulaTerreno.getPosicaoX();
@@ -45,15 +49,14 @@ public class GeradorRuidoFlores {
                 }
             }
 
-            Grama grama = ((Grama) btnCelulaTerreno.getCelulaTerreno());
-
             if (grama.getFrutaOcupante() != null) {
                 // Caso haja uma fruta naquela célula -> Combinar o sprite da fruta com o da grama.
                 String nomeFruta = grama.getFrutaOcupante().getClass().getSimpleName().toLowerCase();
-                System.out.println(nomeFruta);
+
                 String caminhoFruta = "/interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
-                System.out.println(caminhoFruta);
+
                 ImageIcon iconFruta = new ImageIcon(this.getClass().getResource(caminhoFruta));
+
                 ImageIcon iconGrama = btnCelulaTerreno.getCelulaIcon();
 
                 BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconFruta);
