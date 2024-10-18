@@ -15,7 +15,7 @@ public class Mapa {
     private final CelulaTerreno[][] floresta;
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
     private final ArrayList<Jogador> jogadores = new ArrayList<>();
-    private MapaTools mapaTools;
+    public MapaTools mapaTools;
 
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
