@@ -16,8 +16,12 @@ import java.awt.image.BufferedImage;
  * visual do botão quando o mouse interage com ele.
  */
 public class BtnCelulaTerreno extends JButton {
-
+    private final int posicaoX;
+    private final int posicaoY;
+    private final CelulaTerreno celulaTerreno;
     private ImageIcon celulaIcon; // Armazena o ícone da célula
+    private final int tamanhoBloco = 50;
+
 
     /**
      * Construtor que cria um botão personalizado para representar uma célula de terreno no mapa.
@@ -27,11 +31,16 @@ public class BtnCelulaTerreno extends JButton {
      *                       representada pelo botão.
      * @param pacoteTextura  O caminho para o pacote de texturas que contém a imagem a ser usada como ícone do botão.
      */
-    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura) {
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, int posicaoX, int posicaoY) {
         super();
 
-        // Define o ícone do botão com base na célula do terreno e no pacote de texturas fornecido
+        this.posicaoX = posicaoX;
+        this.posicaoY = posicaoY;
+        this.celulaTerreno = celulaTerreno;
         this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
+
+        this.setBounds(posicaoX, posicaoY, tamanhoBloco, tamanhoBloco);
+
         setIcon(celulaIcon);
 
         // Remove margens do botão para ajustar ao tamanho da célula
@@ -56,10 +65,30 @@ public class BtnCelulaTerreno extends JButton {
         });
     }
 
+    public int getPosicaoX() {
+        return posicaoX;
+    }
+
+    public int getPosicaoY() {
+        return posicaoY;
+    }
+
+    public CelulaTerreno getCelulaTerreno() {
+        return celulaTerreno;
+    }
+
+    public ImageIcon getCelulaIcon() {
+        return celulaIcon;
+    }
+
     public void setCelulaIcon(ImageIcon celulaIcon) {
         this.celulaIcon = celulaIcon;
 
         setIcon(celulaIcon);
+    }
+
+    public int getTamanhoBloco() {
+        return tamanhoBloco;
     }
 
     /**

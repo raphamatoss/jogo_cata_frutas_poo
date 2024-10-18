@@ -31,8 +31,7 @@ public class Preview {
         panel.setLayout(null);
         panel.setBounds(0, 0, 624, 624);
 
-        PainelMapa painelMapa = new PainelMapa();
-        painelMapa.setMapa(mapa);
+        PainelMapa painelMapa = new PainelMapa(mapa);
         painelMapa.atualizarMapa();
 
         panel.add(painelMapa);

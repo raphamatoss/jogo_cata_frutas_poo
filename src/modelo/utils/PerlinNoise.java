@@ -1,6 +1,4 @@
-package modelo.utils.perlin;
-
-import modelo.tipos.Vetor2D;
+package modelo.utils;
 
 import java.util.*;
 
