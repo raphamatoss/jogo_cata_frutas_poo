@@ -43,8 +43,8 @@ public class MapaTools {
      * @see modelo.tipos.Coordenada
      */
     public CelulaTerreno celulaEm(Coordenada c) {
-        CelulaTerreno[] linha = floresta[c.getX()];
-        return linha[c.getY()];
+        CelulaTerreno[] linha = floresta[c.getI()];
+        return linha[c.getJ()];
     }
 
     // GerarCoordenadas ----------------------------------------------------
@@ -57,10 +57,10 @@ public class MapaTools {
      */
     public Coordenada gerarCoordenada(){
         Random r = new Random();
-        int x, y;
-        x = r.nextInt(dimensao);
-        y = r.nextInt(dimensao);
-        return new Coordenada(x, y);
+        int i, j;
+        i = r.nextInt(dimensao);
+        j = r.nextInt(dimensao);
+        return new Coordenada(i, j);
     }
 
   

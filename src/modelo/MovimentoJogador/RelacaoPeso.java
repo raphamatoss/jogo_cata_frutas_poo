@@ -2,7 +2,7 @@ package modelo.MovimentoJogador;
 
 import modelo.tipos.Coordenada;
 
-public class RelacaoPeso {
+public class RelacaoPeso implements Comparable{
     private Coordenada coordenada;
     private int peso;
 
@@ -24,4 +24,10 @@ public class RelacaoPeso {
         this.coordenada = destino;
     }
 
+
+    @Override
+    public int compareTo(Object outraRelacao) {
+        // Compara o peso atual com o peso da outra relação
+        return Integer.compare(this.peso,((RelacaoPeso) outraRelacao).getPeso());
+    }
 }

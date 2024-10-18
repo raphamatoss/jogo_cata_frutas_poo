@@ -6,52 +6,43 @@ package modelo.tipos;
 public class Coordenada {
     
     /**
-     * Componente x.
+     * Linha i.
      */
-    private int x;
+    private int i;
 
     /**
-     * Componente y.
+     * Coluna j.
      */
-    private int y;
+    private int j;
 
     /**
-     * O construtor recebe as coordenadas x e y.
+     * O construtor recebe a linha e a coluna.
      *
-     * @param x Componente x.
-     * @param y Componente y.
+     * @param i Linha.
+     * @param j Coluna.
      */
-    public Coordenada(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Coordenada(int i, int j) {
+        this.i = i;
+        this.j = j;
     }
 
-    public int getX() {
-        return x;
+    public int getI() {
+        return i;
     }
     
-    public void setX(int x) {
-        this.x = x;
+    public void setI(int i) {
+        this.i = i;
     }
     
-    public int getY() {
-        return y;
+    public int getJ() {
+        return j;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setJ(int y) {
+        this.j = j;
     }
-    
-    /**
-     * Mover é o método que é utilizado para modificar as coordenadas dinamicamente.
-     *
-     * @param dx Variação em dx.
-     * @param dy Variação em dy.
-     */
-    public void mover(int dx, int dy) {
-        this.x += dx;
-        this.y += dy;
-    }
+
+
     public static Coordenada origem(){
         return new Coordenada(0,0);
     }

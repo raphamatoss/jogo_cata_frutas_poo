@@ -67,7 +67,7 @@ public class Mapa {
     private void posicionarPedras(int qtdPedras) {
         for (int i = 0; i < qtdPedras; i++) {
             Coordenada c = mapaTools.gerarCoordenadaValida();
-            floresta[c.getX()][c.getY()] = new Pedra();
+            floresta[c.getI()][c.getJ()] = new Pedra();
         }
     }
 
@@ -78,8 +78,8 @@ public class Mapa {
         int qtdArvore = quantidadeTotalArvores(FrutaMap);
         for (int i = 0; i < qtdArvore; i++) {
             Coordenada c = mapaTools.gerarCoordenadaValida();
-            floresta[c.getX()][c.getY()] = new Arvore();
-            arvoresFloresta.add((Arvore) floresta[c.getX()][c.getY()]);
+            floresta[c.getI()][c.getJ()] = new Arvore();
+            arvoresFloresta.add((Arvore) floresta[c.getI()][c.getJ()]);
         }
     }
 
@@ -109,7 +109,7 @@ public class Mapa {
         // valores para posicionar o jogador
         Coordenada c = mapaTools.gerarCoordenadaValidaJogador();
         jogador.setCoordenada(c);
-        floresta[c.getX()][c.getY()].setJogadorOcupante(jogador);
+        floresta[c.getI()][c.getJ()].setJogadorOcupante(jogador);
     }
 
     /**

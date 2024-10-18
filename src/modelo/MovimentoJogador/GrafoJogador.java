@@ -8,6 +8,7 @@ import modelo.tipos.Coordenada;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  * Essa classe é responsável por lidar com a matriz de adjacência para movimentação do player.
@@ -30,7 +31,7 @@ public class GrafoJogador {
         preencherMenosUm(this.MatrizCaminhos);
 
         // Lista de nós não visitados, contendo inicialmente a coordenada atual com peso 0
-        LinkedList<RelacaoPeso> nosnaoVisitados = new LinkedList<>();
+        PriorityQueue<RelacaoPeso> nosnaoVisitados = new PriorityQueue<>();
         nosnaoVisitados.add(new RelacaoPeso(coordenadaAtual, 0));
 
         // Enquanto houver nós não visitados
@@ -38,8 +39,8 @@ public class GrafoJogador {
             // Remove o primeiro nó da fila (FIFO)
             RelacaoPeso noAtual = nosnaoVisitados.poll();
             Coordenada coordenadaRelacao = noAtual.getCoordenada();
-            int linha = coordenadaRelacao.getY();  // Pega a linha da coordenada atual
-            int coluna = coordenadaRelacao.getX(); // Pega a coluna da coordenada atual
+            int linha = coordenadaRelacao.getI();
+            int coluna = coordenadaRelacao.getJ();
             int pesoAtual = noAtual.getPeso();     // Número de passos até este nó
 
             // Verifica se a posição na matriz pode ser atualizada
@@ -61,8 +62,7 @@ public class GrafoJogador {
 
         for (int i = 0; i < dimensaoDaFloresta; i++){
             for (int j = 0; j < dimensaoDaFloresta; j++){
-
-                Coordenada coordenadaAtual = new Coordenada(j, i);
+                Coordenada coordenadaAtual = new Coordenada(i, j);
                 LinkedList<RelacaoPeso> chaves = chavesValidas(coordenadaAtual, mapa);
                 MapaDoGrafo.put(coordenadaAtual, chaves);
             }
@@ -73,23 +73,23 @@ public class GrafoJogador {
     private LinkedList<RelacaoPeso> chavesValidas(Coordenada coordenadaAtual, Mapa mapa){
 
         LinkedList<RelacaoPeso> vizinhos = new LinkedList<>();
-        int i = coordenadaAtual.getY();
-        int j = coordenadaAtual.getX();
+        int i = coordenadaAtual.getI();
+        int j = coordenadaAtual.getJ();
 
         if (i > 0){
-            Coordenada vizinho = new Coordenada(j, i-1);
+            Coordenada vizinho = new Coordenada(i-1, j);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (i < mapa.getDimensao()-1){
-            Coordenada vizinho = new Coordenada(j, i+1);
+            Coordenada vizinho = new Coordenada(i+1, j );
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (j > 0){
-            Coordenada vizinho = new Coordenada(j-1, i);
+            Coordenada vizinho = new Coordenada(i, j-1);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (j < mapa.getDimensao()-1){
-            Coordenada vizinho = new Coordenada(j+1, i);
+            Coordenada vizinho = new Coordenada(i, j+1);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         return vizinhos;

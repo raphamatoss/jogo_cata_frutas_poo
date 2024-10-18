@@ -18,7 +18,7 @@ public class Teste {
             //a dimensão do imput é 12.
             //Coordenada coordenadaTeste = new Coordenada(5, 5);
             Coordenada coordenadaTeste = mapa.getJogador(0).getCoordenada();
-            Coordenada cTeste = new Coordenada(coordenadaTeste.getY(), coordenadaTeste.getX());
+            Coordenada cTeste = new Coordenada(coordenadaTeste.getI(), coordenadaTeste.getJ());
             GrafoJogador grafo = new GrafoJogador(mapa);
             grafo.preencherMatriz(mapa, cTeste);
             grafo.printMatriz();
