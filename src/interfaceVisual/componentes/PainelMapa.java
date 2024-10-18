@@ -19,28 +19,35 @@ public class PainelMapa extends JPanel {
     /**
      * Construtor padrão que inicializa o painel do mapa com um layout nulo e uma cor de fundo.
      * O construtor também define o pacote de textura aleatoriamente utilizando o {@link Randomizador}.
-     */
-    public PainelMapa() {
-        // Define o layout absoluto (null layout)
-        setLayout(null);
-
-        // Define uma cor de fundo temporária
-        setBackground(Color.LIGHT_GRAY);  // Cor de fundo para visualizar a área reservada
-
-        // Define o tamanho e posição do painel
-        setBounds(0, 0, 624, 624);
-
-        // Sorteia um pacote de textura para ser usado no mapa
-        this.pacoteTextura = Randomizador.sortearPacoteTextura();
-    }
-
-    /**
-     * Define o mapa que será renderizado no painel.
      *
      * @param mapa O objeto {@link Mapa} que contém as células do terreno.
      */
-    public void setMapa(Mapa mapa) {
+    public PainelMapa(Mapa mapa) {
+        setLayout(null);
+
+        setBackground(Color.LIGHT_GRAY); // Temporário
+
+        setBounds(0, 0, 624, 624);
+
+        this.pacoteTextura = Randomizador.sortearPacoteTextura();
+
         this.mapa = mapa;
+    }
+
+    public Mapa getMapa() {
+        return mapa;
+    }
+
+    public String getPacoteTextura() {
+        return pacoteTextura;
+    }
+
+    public void inicializarMapa() {
+        int dimensao = mapa.getDimensao();
+
+        CelulaTerreno[][] floresta = mapa.getFloresta();
+
+
     }
 
     /**
@@ -72,15 +79,14 @@ public class PainelMapa extends JPanel {
         // Cria e posiciona os botões que representam as células do terreno
         for (int i = 0; i < dimensao; i++) {
             for (int j = 0; j < dimensao; j++) {
-                // Cria o botão para a célula de terreno e define o pacote de texturas
-                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], this.pacoteTextura);
-
                 // Calcula a posição do botão no grid
                 int posicaoX = startX + j * tamanhoBtnCelulaTerreno;
                 int posicaoY = startY + i * tamanhoBtnCelulaTerreno;
 
-                // Define o tamanho e posição do botão no painel
-                btnCelulaTerreno.setBounds(posicaoX, posicaoY, tamanhoBtnCelulaTerreno, tamanhoBtnCelulaTerreno);
+                // Cria o botão para a célula de terreno e define o pacote de texturas
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(
+                        floresta[i][j], this.pacoteTextura, posicaoX, posicaoY
+                );
 
                 // Adiciona o botão ao painel
                 this.add(btnCelulaTerreno);
