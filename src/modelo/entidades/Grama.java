@@ -13,7 +13,7 @@ public class Grama extends CelulaTerreno {
     /**
      * Fruta ocupante da posição da grama.
      */
-    public Fruta frutaOcupante;
+    private Fruta frutaOcupante;
 
     public Grama() {
         super();
@@ -50,18 +50,6 @@ public class Grama extends CelulaTerreno {
     public ImageIcon toImageIcon(String pacoteTextura) {
         String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
         ImageIcon iconGrama = new ImageIcon(this.getClass().getResource(caminhoGrama));
-
-        if (this.frutaOcupante != null) {
-            // Caso haja uma fruta naquela célula -> Combinar o sprite da fruta com o da grama.
-            String nomeFruta = this.getFrutaOcupante().getClass().getSimpleName().toLowerCase();
-            String caminhoFruta = "/interfaceVisual/imagens/frutas/" + nomeFruta + ".png";
-
-            ImageIcon iconFruta = new ImageIcon(this.getClass().getResource(caminhoFruta));
-
-            BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconFruta);
-
-            return new ImageIcon(imagemCombinada);
-        }
 
         return iconGrama;
     }

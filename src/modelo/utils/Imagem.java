@@ -10,17 +10,19 @@ import java.awt.image.BufferedImage;
 public class Imagem {
 
     /**
-     * Combina duas imagens, desenhando a imagem sobreposta no centro da imagem base.
-     * 
-     * <p>Este método recebe duas imagens do tipo {@link ImageIcon}, sendo que a imagem sobreposta
-     * será desenhada sobre a imagem base. A imagem final será retornada como um {@link BufferedImage}.</p>
+     * Combina duas imagens, desenhando a imagem sobreposta em uma posição específica ou centralizada na imagem base.
+     *
+     * <p>Se as coordenadas {@code x} e {@code y} forem fornecidas como -1, a imagem sobreposta será desenhada no centro.
+     * Caso contrário, será desenhada nas coordenadas especificadas.</p>
      *
      * @param imagemBase       A imagem de fundo sobre a qual a segunda imagem será desenhada.
-     * @param imagemSobreposta A imagem que será desenhada no centro da imagem base.
-     * @return Um {@link BufferedImage} contendo a imagem base com a imagem sobreposta desenhada no centro.
+     * @param imagemSobreposta A imagem que será desenhada sobre a imagem base.
+     * @param x                A coordenada X onde a imagem sobreposta será posicionada. Se for -1, centraliza horizontalmente.
+     * @param y                A coordenada Y onde a imagem sobreposta será posicionada. Se for -1, centraliza verticalmente.
+     * @return Um {@link BufferedImage} contendo a imagem base com a imagem sobreposta desenhada.
      * @throws IllegalArgumentException Se uma ou ambas as imagens forem inválidas (nulas).
      */
-    public static BufferedImage combinarImagens(ImageIcon imagemBase, ImageIcon imagemSobreposta) {
+    public static BufferedImage combinarImagens(ImageIcon imagemBase, ImageIcon imagemSobreposta, int x, int y) {
         if (imagemBase.getImage() == null || imagemSobreposta.getImage() == null) {
             throw new IllegalArgumentException("Uma ou ambas as imagens são inválidas.");
         }
@@ -40,11 +42,11 @@ public class Imagem {
         int larguraSobreposta = imagemSobreposta.getIconWidth();
         int alturaSobreposta = imagemSobreposta.getIconHeight();
 
-        // Calcula a posição da imagem sobreposta para centralizá-la
-        int posX = (largura - larguraSobreposta) / 2;
-        int posY = (altura - alturaSobreposta) / 2;
+        // Calcula a posição da imagem sobreposta para que seu centro fique na posição (x, y)
+        int posX = (x == -1) ? (largura - larguraSobreposta) / 2 : x;
+        int posY = (y == -1) ? (altura - alturaSobreposta) / 2 : y;
 
-        // Desenha a imagem sobreposta no centro da imagem base com o tamanho original
+        // Desenha a imagem sobreposta na posição calculada
         g2d.drawImage(imagemSobreposta.getImage(), posX, posY, larguraSobreposta, alturaSobreposta, null);
 
         // Libera os recursos gráficos
@@ -52,5 +54,16 @@ public class Imagem {
 
         // Retorna a imagem combinada
         return imagemCombinada;
+    }
+
+    /**
+     * Sobrecarga do método {@code combinarImagens} para centralizar a imagem sobreposta.
+     *
+     * @param imagemBase       A imagem de fundo.
+     * @param imagemSobreposta A imagem que será desenhada no centro.
+     * @return Um {@link BufferedImage} com a imagem sobreposta no centro.
+     */
+    public static BufferedImage combinarImagens(ImageIcon imagemBase, ImageIcon imagemSobreposta) {
+        return combinarImagens(imagemBase, imagemSobreposta, -1, -1);
     }
 }
