@@ -20,11 +20,12 @@ public class GrafoJogador {
     private static HashMap<Coordenada, LinkedList<RelacaoPeso>> MapaDoGrafo = new HashMap<>();
     private Integer MatrizCaminhos[][];
 
-    public GrafoJogador(Mapa mapa, Coordenada coordenadaAtual){
+    public GrafoJogador(Mapa mapa){
         if (!grafoPreenchido) preencherGrafo(mapa);
+        this.MatrizCaminhos = new Integer[mapa.getDimensao()][mapa.getDimensao()];
     }
 
-    private void preencherMatriz(Mapa mapa, Coordenada coordenadaAtual) {
+    public void preencherMatriz(Mapa mapa, Coordenada coordenadaAtual) {
         // Inicializa a matriz com -1, indicando que ainda não foi visitada
         preencherMenosUm(this.MatrizCaminhos);
 
@@ -75,19 +76,19 @@ public class GrafoJogador {
         int i = coordenadaAtual.getY();
         int j = coordenadaAtual.getX();
 
-        if (i-1 > 0){
+        if (i > 0){
             Coordenada vizinho = new Coordenada(j, i-1);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
-        if (i+1 < mapa.getDimensao()){
+        if (i < mapa.getDimensao()-1){
             Coordenada vizinho = new Coordenada(j, i+1);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
-        if (j-1 > 0){
+        if (j > 0){
             Coordenada vizinho = new Coordenada(j-1, i);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
-        if (j+1 < mapa.getDimensao()){
+        if (j < mapa.getDimensao()-1){
             Coordenada vizinho = new Coordenada(j+1, i);
             vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
@@ -107,6 +108,16 @@ public class GrafoJogador {
 
     private int calcularPeso (CelulaTerreno celula){
         if (celula instanceof Pedra) return 2;
-        return 1;
+        else return 1;
+
+    }
+
+    public void printMatriz(){
+        for (Integer[] linha : this.MatrizCaminhos){
+            for (Integer distancia : linha){
+                System.out.printf("| %3d ", distancia);
+            }
+            System.out.println("");
+        }
     }
 }

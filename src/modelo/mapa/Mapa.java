@@ -22,7 +22,7 @@ public class Mapa {
         floresta = new CelulaTerreno[dimensao][dimensao];
         this.mapaTools = new MapaTools(floresta, dimensao);
         for (int i = 0; i < numeroJogadores; i++)
-            this.jogadores.add(new Jogador("" + (i+1)));
+            this.jogadores.add(new Jogador("" + (i+1), Coordenada.origem()));
         carregarTerreno(configuracaoDoMapa);
     }
 
@@ -30,6 +30,10 @@ public class Mapa {
     // getters -----------------------------------------
     public int getDimensao() {
         return dimensao;
+    }
+
+    public Jogador getJogador(int i){
+        return jogadores.get(i);
     }
 
     public CelulaTerreno[][] getFloresta() {
@@ -104,6 +108,7 @@ public class Mapa {
     private void posicionarJogador(Jogador jogador) {
         // valores para posicionar o jogador
         Coordenada c = mapaTools.gerarCoordenadaValidaJogador();
+        jogador.setCoordenada(c);
         floresta[c.getX()][c.getY()].setJogadorOcupante(jogador);
     }
 

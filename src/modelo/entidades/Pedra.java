@@ -16,11 +16,16 @@ public class Pedra extends CelulaTerreno {
     /**
      * Gera o elemento para exibição no terminal.
      */
+    /**
+     * Responsável por gerar o modelo para exibição no terminal
+     */
     @Override
     public String toString() {
-        return "#";
+        //Corrigir, fiz na pressa.
+        if (this.getJogadorOcupante() != null) {
+            return getJogadorOcupante().toString() + "/#";
+        } else return "#";
     }
-
     /**
      * Gera a imagem para vizualização.
      */

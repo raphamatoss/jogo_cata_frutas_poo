@@ -52,4 +52,7 @@ public class Coordenada {
         this.x += dx;
         this.y += dy;
     }
+    public static Coordenada origem(){
+        return new Coordenada(0,0);
+    }
 }

@@ -5,15 +5,17 @@ import modelo.tipos.Coordenada;
  * Essa classe serve de molde para o jogador e possivelmente para outros elementos que se movam.
  */
 public abstract class ElementoDinamico {
-    private final Coordenada posicao;
+    private Coordenada posicao;
 
-    public ElementoDinamico(int x, int y) {
-        posicao = new Coordenada(x, y);
+    public ElementoDinamico(Coordenada coordenada) {
+        posicao = coordenada;
     }
 
     // getters & setters --------------------------------
     // neste caso não existem setters pois quando instanciado
     // o objeto não muda a não ser que ele se mova.
+    public Coordenada getCoordenada(){return this.posicao;}
+    public void setCoordenada(Coordenada coordenada){this.posicao = coordenada;}
     public int getPosicaoX() {
         return posicao.getX();
     }

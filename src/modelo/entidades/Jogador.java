@@ -2,6 +2,9 @@ package modelo.entidades;
 
 // TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
 // Definitivamente não está nem perto de finalizar
+
+import modelo.tipos.Coordenada;
+
 /**
  * Classe que lida com o jogador.
  */
@@ -11,9 +14,8 @@ public class Jogador extends ElementoDinamico {
     private final Mochila mochila = new Mochila();
     private int ptsMovimento;
 
-    public Jogador(String nome) {
-
-        super(0, 0);
+    public Jogador(String nome, Coordenada coordenada) {
+        super(coordenada);
         this.nome = nome;
 
     }
