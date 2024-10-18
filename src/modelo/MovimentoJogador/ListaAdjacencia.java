@@ -5,6 +5,7 @@ import modelo.entidades.Pedra;
 import modelo.mapa.Mapa;
 import modelo.tipos.Coordenada;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -14,7 +15,7 @@ public class ListaAdjacencia {
     /**
      * Guarda as informações do grafo. É estático pois como o mapa é único todas as instâncias devem conter a mesma lista.
      */
-    private static LinkedList<RelacaoPeso> listaDoGrafo = new LinkedList<>();
+    private static HashMap<Coordenada, LinkedList<RelacaoPeso>> MapaDoGrafo = new HashMap<>();
 
     public ListaAdjacencia(Mapa mapa){
         preencherGrafo(mapa);
@@ -25,11 +26,10 @@ public class ListaAdjacencia {
 
         for (int i = 0; i < dimensaoDaFloresta; i++){
             for (int j = 0; j < dimensaoDaFloresta; j++){
-                Coordenada celulaAtual = new Coordenada(j, i);
-                LinkedList<RelacaoPeso> chaves = chavesValidas(celulaAtual, mapa);
-                for (RelacaoPeso relacao : chaves){
-                    this.listaDoGrafo.add(relacao);
-                }
+
+                Coordenada coordenadaAtual = new Coordenada(j, i);
+                LinkedList<RelacaoPeso> chaves = chavesValidas(coordenadaAtual, mapa);
+                MapaDoGrafo.put(coordenadaAtual, chaves);
             }
         }
     }
@@ -40,31 +40,30 @@ public class ListaAdjacencia {
         int i = coordenadaAtual.getY();
         int j = coordenadaAtual.getX();
 
-
         if (i-1 > 0){
             Coordenada vizinho = new Coordenada(j, i-1);
-            vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
+            vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (i+1 < mapa.getDimensao()){
             Coordenada vizinho = new Coordenada(j, i+1);
-            vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
+            vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (j-1 > 0){
             Coordenada vizinho = new Coordenada(j-1, i);
-            vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
+            vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
         if (j+1 < mapa.getDimensao()){
             Coordenada vizinho = new Coordenada(j+1, i);
-            vizinhos.add(gerarRelacaoPeso(coordenadaAtual, vizinho, mapa));
+            vizinhos.add(gerarRelacaoPeso(vizinho, mapa));
         }
 
         return vizinhos;
     }
 
 
-    private RelacaoPeso gerarRelacaoPeso(Coordenada coordenadaAtual, Coordenada vizinho, Mapa mapa){
+    private RelacaoPeso gerarRelacaoPeso(Coordenada vizinho, Mapa mapa){
         int peso = calcularPeso(mapa.mapaTools.celulaEm(vizinho));
-        return new RelacaoPeso(coordenadaAtual, vizinho, peso);
+        return new RelacaoPeso(vizinho, peso);
     }
 
     private int calcularPeso (CelulaTerreno celula){
