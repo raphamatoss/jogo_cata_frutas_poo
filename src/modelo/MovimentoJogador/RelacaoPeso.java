@@ -3,11 +3,11 @@ package modelo.MovimentoJogador;
 import modelo.tipos.Coordenada;
 
 public class RelacaoPeso {
-    private Coordenada destino;
+    private Coordenada coordenada;
     private int peso;
 
-    public RelacaoPeso(Coordenada destino, int peso){
-        this.destino = destino;
+    public RelacaoPeso(Coordenada coordenada, int peso){
+        this.coordenada = coordenada;
         this.peso = peso;
     }
 
@@ -17,11 +17,11 @@ public class RelacaoPeso {
     public void setPeso(int peso) {
         this.peso = peso;
     }
-    public Coordenada getDestino() {
-        return destino;
+    public Coordenada getCoordenada() {
+        return coordenada;
     }
-    public void setDestino(Coordenada destino) {
-        this.destino = destino;
+    public void setCoordenada(Coordenada destino) {
+        this.coordenada = destino;
     }
 
 }
