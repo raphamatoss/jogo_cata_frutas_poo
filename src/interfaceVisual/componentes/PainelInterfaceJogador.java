@@ -89,10 +89,94 @@ public class PainelInterfaceJogador extends JPanel {
         efeitoForca.setOpaque(true);
         this.add(efeitoForca);
 
-        //botão consumir fruta
+        // botão consumir abacate
+        ImageIcon consomeAbacate = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeAbacate.png"));
+        JButton consumirAbacate = new JButton(consomeAbacate);
+        consumirAbacate.setBounds(17, 239, 52, 55);
+        consumirAbacate.setBorderPainted(false);
+        consumirAbacate.setFocusPainted(false);
+        consumirAbacate.setContentAreaFilled(false);
+        this.add(consumirAbacate);
+        consumirAbacate.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir acerola
+        ImageIcon consomeAcerola = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeAcerola.png"));
+        JButton consumirAcerola = new JButton(consomeAcerola);
+        consumirAcerola.setBounds(69, 239, 52, 55); // Posição e tamanho do botão
+        consumirAcerola.setBorderPainted(false);
+        consumirAcerola.setFocusPainted(false);
+        consumirAcerola.setContentAreaFilled(false);
+        this.add(consumirAcerola);
+        consumirAcerola.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir amora
+        ImageIcon consomeAmora = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeAmora.png"));
+        JButton consumirAmora = new JButton(consomeAmora);
+        consumirAmora.setBounds(121, 239, 52, 55);
+        consumirAmora.setBorderPainted(false);
+        consumirAmora.setFocusPainted(false);
+        consumirAmora.setContentAreaFilled(false);
+        this.add(consumirAmora);
+        consumirAmora.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir coco
+        ImageIcon consomeCoco = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeCoco.png"));
+        JButton consumirCoco = new JButton(consomeCoco);
+        consumirCoco.setBounds(173, 239, 52, 55);
+        consumirCoco.setBorderPainted(false);
+        consumirCoco.setFocusPainted(false);
+        consumirCoco.setContentAreaFilled(false);
+        this.add(consumirCoco);
+        consumirCoco.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir goiaba
+        ImageIcon consomeGoiaba = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeGoiaba.png"));
+        JButton consumirGoiaba = new JButton(consomeGoiaba);
+        consumirGoiaba.setBounds(225, 239, 52, 55);
+        consumirGoiaba.setBorderPainted(false);
+        consumirGoiaba.setFocusPainted(false);
+        consumirGoiaba.setContentAreaFilled(false);
+        this.add(consumirGoiaba);
+        consumirGoiaba.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir laranja
+        ImageIcon consomeLaranja = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeLaranja.png"));
+        JButton consumirLaranja = new JButton(consomeLaranja);
+        consumirLaranja.setBounds(277, 239, 52, 55);
+        consumirLaranja.setBorderPainted(false);
+        consumirLaranja.setFocusPainted(false);
+        consumirLaranja.setContentAreaFilled(false);
+        this.add(consumirLaranja);
+        consumirLaranja.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir maracujá
+        ImageIcon consomeMaracuja = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeMaracuja.png"));
+        JButton consumirMaracuja = new JButton(consomeMaracuja);
+        consumirMaracuja.setBounds(329, 239, 52, 55);
+        consumirMaracuja.setBorderPainted(false);
+        consumirMaracuja.setFocusPainted(false);
+        consumirMaracuja.setContentAreaFilled(false);
+        this.add(consumirMaracuja);
+        consumirMaracuja.addActionListener(e -> {
+            // Ação a ser executada quando o botão for clicado
+        });
+
+        // botão consumir fruta
         ImageIcon consumir = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consumir.png"));
         JButton consumirFruta = new JButton(consumir);
-        consumirFruta.setBounds(17, 295, 354, 46);
+        consumirFruta.setBounds(17, 305, 354, 46);
         consumirFruta.setBorderPainted(false);
         consumirFruta.setFocusPainted(false);
         consumirFruta.setContentAreaFilled(false);
@@ -101,7 +185,7 @@ public class PainelInterfaceJogador extends JPanel {
             // Ação a ser executada quando o botão for clicado
         });
 
-        //botão jogarDados
+        // botão jogarDados
         ImageIcon dados = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/dados.png"));
         JButton jogarDados = new JButton(dados);
         jogarDados.setBounds(17, 384, 127, 76);
