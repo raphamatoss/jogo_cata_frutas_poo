@@ -4,9 +4,6 @@ import interfaceVisual.componentes.PainelInterfaceJogador;
 import interfaceVisual.componentes.PainelMapa;
 import modelo.mapa.Mapa;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Jogo extends Tela {
     PainelMapa painelMapa;
     PainelInterfaceJogador painelInterfaceJogador;
@@ -24,10 +21,9 @@ public class Jogo extends Tela {
 
     public void inicializarMapa(Mapa mapa) {
         if (mapa != null) {
-            System.out.println("[Java Swing] - Há um mapa carregado.");
             painelMapa.setMapa(mapa);
 
-            painelMapa.atualizarMapa();
+            painelMapa.inicializarMapa();
         } else {
             System.out.println("[Java Swing] - Não há um mapa carregado.");
         }

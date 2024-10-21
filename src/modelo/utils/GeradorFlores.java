@@ -1,7 +1,6 @@
 package modelo.utils;
 
 import interfaceVisual.componentes.BtnCelulaTerreno;
-import modelo.entidades.Grama;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class GeradorFlores {
     public GeradorFlores(int dimensao) {
         int[][] matrizFlores = gerarMatrizFlores(dimensao);
 
-        this.matrizFloresRotularizada = Grafos.rotularizarComponentesConexosVizinhanca4(matrizFlores);
+        matrizFloresRotularizada = Grafos.rotularizarComponentesConexosVizinhanca4(matrizFlores);
 
         this.rotuloParaFlor = new HashMap<>();
 
@@ -82,7 +81,7 @@ public class GeradorFlores {
 
                         // Posicionar a flor da cor associada ao rótulo
                         String corFlor = rotuloParaFlor.get(rotulo);
-                        // btnCelulaTerreno.posicionarFlor(j * 10, i * 10, corFlor);
+                        btnCelulaTerreno.posicionarFlor(j * 10, i * 10, corFlor);
                     }
                 }
             }

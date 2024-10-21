@@ -2,7 +2,7 @@ package interfaceVisual.componentes;
 
 import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
-import modelo.tipos.Coordenada;
+import modelo.utils.GeradorFlores;
 import modelo.utils.Randomizador;
 
 import javax.swing.*;
@@ -37,35 +37,22 @@ public class PainelMapa extends JPanel {
     }
 
     /**
-     * Define o mapa que será renderizado no painel.
-     *
-     * @param mapa O objeto {@link Mapa} que contém as células do terreno.
-     */
-    public void setMapa(Mapa mapa) {
-        this.mapa = mapa;
-    }
-
-    public Mapa getMapa() { return mapa; }
-
-    /**
      * Atualiza a renderização do mapa no painel.
      * Esse método cria e posiciona os botões que representam as células do terreno,
      * centralizando o grid no painel.
      */
-    public void atualizarMapa() {
-        // Define a dimensão máxima para o grid, com limite de 12x12 células
-        int dimensao = Math.min(mapa.getDimensao(), 12);
+    public void inicializarMapa() {
+        int dimensao = mapa.getDimensao();
+
+        GeradorFlores geradorFlores = new GeradorFlores(dimensao);
 
         // Obtém a matriz de células do mapa
         CelulaTerreno[][] floresta = mapa.getFloresta();
         matrizBotoes = new BtnCelulaTerreno[dimensao][dimensao];
 
-        // Define o tamanho de cada botão de célula de terreno
-        int tamanhoBtnCelulaTerreno = 50;
-
         // Calcula as dimensões totais do grid
-        int larguraGrid = dimensao * tamanhoBtnCelulaTerreno;
-        int alturaGrid = dimensao * tamanhoBtnCelulaTerreno;
+        int larguraGrid = dimensao * 50;
+        int alturaGrid = dimensao * 50;
 
         // Calcula a posição inicial para centralizar o grid dentro do painel de 624x624
         int startX = (this.getWidth() - larguraGrid) / 2;
@@ -77,16 +64,19 @@ public class PainelMapa extends JPanel {
         // Cria e posiciona os botões que representam as células do terreno
         for (int i = 0; i < dimensao; i++) {
             for (int j = 0; j < dimensao; j++) {
-                // Cria o botão para a célula de terreno e define o pacote de texturas
-                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(floresta[i][j], this.pacoteTextura, this);
-                matrizBotoes[i][j] = btnCelulaTerreno;
-
                 // Calcula a posição do botão no grid
-                int posicaoX = startX + j * tamanhoBtnCelulaTerreno;
-                int posicaoY = startY + i * tamanhoBtnCelulaTerreno;
+                int posicaoX = startX + j * 50;
+                int posicaoY = startY + i * 50;
 
-                // Define o tamanho e posição do botão no painel
-                btnCelulaTerreno.setBounds(posicaoX, posicaoY, tamanhoBtnCelulaTerreno, tamanhoBtnCelulaTerreno);
+                // Cria o botão para a célula de terreno e define o pacote de texturas
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(
+                        floresta[i][j], this.pacoteTextura, this, posicaoX, posicaoY
+                );
+
+                // TODO: Refatorar toda essa parte de imagens
+                // geradorFlores.posicionarFloresBloco(btnCelulaTerreno, i, j);
+
+                matrizBotoes[i][j] = btnCelulaTerreno;
 
                 // Adiciona o botão ao painel
                 this.add(btnCelulaTerreno);
@@ -116,5 +106,13 @@ public class PainelMapa extends JPanel {
                 matrizBotoes[i][j].removerPeso();
             }
         }
+    }
+
+    public void setMapa(Mapa mapa) {
+        this.mapa = mapa;
+    }
+
+    public Mapa getMapa() {
+        return mapa;
     }
 }

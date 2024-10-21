@@ -33,7 +33,7 @@ public class Preview {
 
         painelMapa = new PainelMapa();
         painelMapa.setMapa(mapa);
-        painelMapa.atualizarMapa();
+        painelMapa.inicializarMapa();
 
         panel.add(painelMapa);
 
