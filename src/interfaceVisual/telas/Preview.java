@@ -6,6 +6,8 @@ import modelo.mapa.Mapa;
 import javax.swing.*;
 import java.awt.*;
 
+// TODO: Estou pensando um botão transparente com um dado para ir aleatorizando
+
 /** É uma classe que utiliza de um {@link JFrame} e um {@link JPanel} para mostrar ao usuário
  * um pré-visualização e um mapa de jogo selecionado.
  */
