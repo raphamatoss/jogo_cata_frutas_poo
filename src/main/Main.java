@@ -1,6 +1,6 @@
 package main;
 
-import interfaceVisual.telasStatePattern.Frame;
+import interfaceVisual.telas.Frame;
 
 public class Main {
 

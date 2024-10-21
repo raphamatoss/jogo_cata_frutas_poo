@@ -22,18 +22,24 @@ public class PainelMapa extends JPanel {
      * Construtor padrão que inicializa o painel do mapa com um layout nulo e uma cor de fundo.
      * O construtor também define o pacote de textura aleatoriamente utilizando o {@link Randomizador}.
      */
-    public PainelMapa() {
-        // Define o layout absoluto (null layout)
+    public PainelMapa(Mapa mapa) {
+        this.mapa = mapa;
+    	
+    	// Define o layout absoluto (null layout)
         setLayout(null);
-
+        
+        System.out.println(mapa == null);
+        
         // Define uma cor de fundo temporária
         setBackground(Color.LIGHT_GRAY);  // Cor de fundo para visualizar a área reservada
 
         // Define o tamanho e posição do painel
-        setBounds(0, 0, 624, 624);
+        setBounds(0, 0, mapa.getDimensao() * 50, mapa.getDimensao() * 50);
 
         // Sorteia um pacote de textura para ser usado no mapa
         this.pacoteTextura = Randomizador.sortearPacoteTextura();
+        
+        this.inicializarMapa();
     }
 
     /**
@@ -41,13 +47,13 @@ public class PainelMapa extends JPanel {
      * Esse método cria e posiciona os botões que representam as células do terreno,
      * centralizando o grid no painel.
      */
-    public void inicializarMapa() {
-        int dimensao = mapa.getDimensao();
-
+    private void inicializarMapa() {
+    	int dimensao = this.mapa.getDimensao();
+    	CelulaTerreno[][] floresta = this.mapa.getFloresta();
+    	
         GeradorFlores geradorFlores = new GeradorFlores(dimensao);
 
         // Obtém a matriz de células do mapa
-        CelulaTerreno[][] floresta = mapa.getFloresta();
         matrizBotoes = new BtnCelulaTerreno[dimensao][dimensao];
 
         // Calcula as dimensões totais do grid

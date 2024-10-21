@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.arquivo.VerificadorConfiguracao;
@@ -35,9 +35,15 @@ public class ConfigurarTerreno extends Tela{
         JButton botaoComecar = new JButton(bgComecar);
         botaoComecar.setBounds(500, 510, 272,49);
         botaoComecar.addActionListener(new ActionListener() {
+        	/*
+        	 * @Override
+            public void actionPerformed(ActionEvent e) {
+                Preview preview = new Preview(new Mapa(new MapaConfiguracao(verificador), 0));
+            }
+        	 */
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getJogo().inicializarMapa(new Mapa(new MapaConfiguracao(verificador), 2));
+            	frame.setJogo(new Mapa(new MapaConfiguracao(verificador), 2));
                 frame.setState(frame.getJogo());
             }
         });

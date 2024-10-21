@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;

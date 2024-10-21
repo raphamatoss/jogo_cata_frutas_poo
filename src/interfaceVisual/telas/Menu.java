@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import interfaceVisual.componentes.PainelMapa;
 import modelo.mapa.Mapa;
@@ -21,7 +21,7 @@ public class Preview {
     public Preview(Mapa mapa) {
         frame = new JFrame("Preview");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/icones/previewIcon.png")));
-        frame.setSize(624+16,624+39);
+        frame.setSize(mapa.getDimensao() * 50, mapa.getDimensao() * 50);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -29,11 +29,9 @@ public class Preview {
 
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(0, 0, 624, 624);
+        panel.setBounds(0, 0, mapa.getDimensao() * 50, mapa.getDimensao() * 50);
 
-        painelMapa = new PainelMapa();
-        painelMapa.setMapa(mapa);
-        painelMapa.inicializarMapa();
+        painelMapa = new PainelMapa(mapa);
 
         panel.add(painelMapa);
 

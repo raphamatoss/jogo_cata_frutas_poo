@@ -1,6 +1,6 @@
 package modelo.MovimentoJogador;
 
-import interfaceVisual.telasStatePattern.Preview;
+import interfaceVisual.telas.Preview;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
