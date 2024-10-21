@@ -1,5 +1,6 @@
 package modelo.entidades;
 
+import modelo.utils.FrutaTools;
 import modelo.utils.Imagem;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class Arvore extends CelulaTerreno {
      * Característica da árvore que dita em quanto tempo ela gerará uma fruta nova.
      */
     private int rodadasRestantesParaGerarFruta;
-
+    public static int probabilidadeBichada;
 
     public Arvore() {
         super();
@@ -35,20 +36,17 @@ public class Arvore extends CelulaTerreno {
     public void setRodadasRestantesParaGerarFruta(int rodadasRestantesParaGerarFruta) {
         this.rodadasRestantesParaGerarFruta = rodadasRestantesParaGerarFruta;
     }
-
+    public Fruta getFrutaDaArvore() {
+        return this.frutaDaArvore;
+    }
     public void setFrutaDaArvore(Fruta fruta) {
         this.frutaDaArvore = fruta;
     }
     // ------------------------------------------------------------------
 
 
-    public void gerarFrutaArvore() {
-        /* TODO: Será que transformamos essa função em abstract ou será que podemos usar algo chamado reflection
-        A ideia que eu tive aqui foi a seguinte:
-        - Essa função acessa o jogadorOcupante.mochila
-        - Precisamos analisar a lógica da contagem das rodadas
-        - Algumas verificações precisam ser feitas... Caso não haja espaço na mochila o que deve ocorrer?
-        */
+    private Fruta gerarFrutaArvore() {
+        return FrutaTools.clonarFruta(this,this.probabilidadeBichada);
     }
 
     public void gerarMaracuja() {

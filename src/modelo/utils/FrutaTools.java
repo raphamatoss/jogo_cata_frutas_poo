@@ -1,5 +1,6 @@
 package modelo.utils;
 
+import modelo.entidades.Arvore;
 import modelo.entidades.Fruta;
 import modelo.frutas.*;
 /**
@@ -44,6 +45,14 @@ public class FrutaTools {
         }
         return null;
     }
+
+    public static Fruta clonarFruta(Arvore arvore, int probabilidadeBichada){
+        String nomeFruta = arvore.getFrutaDaArvore().getClass().getSimpleName().toLowerCase();
+        return gerarFruta(nomeFruta, decidirBichada(probabilidadeBichada));
+    }
+
+
+
     /**
      * Esse método recebe a probabilidade de uma fruta ser bichada e dentro das
      * chances decide a qualidade da fruta.
