@@ -46,4 +46,8 @@ public class Coordenada {
     public static Coordenada origem(){
         return new Coordenada(0,0);
     }
+
+    public static void printCoordenada(Coordenada c){
+        System.out.printf("(%2d, %2d)", c.getI(), c.getJ());
+    }
 }

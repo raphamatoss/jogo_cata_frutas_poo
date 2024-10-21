@@ -2,10 +2,24 @@ package modelo.MovimentoJogador;
 
 import modelo.tipos.Coordenada;
 
+/**
+ * Essa classe é responsável por abstrair os elementos do grafo do jogador.
+ */
 public class RelacaoPeso implements Comparable{
+    /**
+     * Coordenada correspondente ao peso.
+     */
     private Coordenada coordenada;
+    /**
+     * Peso correspondente à coordenada.
+     */
     private int peso;
 
+    /**
+     * O construtor recebe a coordenada e o peso e faz a atribuição.
+     * @param coordenada Coordenada.
+     * @param peso Peso.
+     */
     public RelacaoPeso(Coordenada coordenada, int peso){
         this.coordenada = coordenada;
         this.peso = peso;
@@ -24,7 +38,11 @@ public class RelacaoPeso implements Comparable{
         this.coordenada = destino;
     }
 
-
+    /**
+     * A classe Relação peso implementa a interface Comparable. Portanto, exige o método compareTo.
+     *
+     * @param outraRelacao A relação a ser comparada.
+     */
     @Override
     public int compareTo(Object outraRelacao) {
         // Compara o peso atual com o peso da outra relação

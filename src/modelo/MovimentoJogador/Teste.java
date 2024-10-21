@@ -6,6 +6,8 @@ import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
 import modelo.tipos.Coordenada;
 
+import java.util.Stack;
+
 public class Teste {
         public static void main(String[] args) {
 
@@ -15,16 +17,23 @@ public class Teste {
             Mapa mapa = new Mapa(configuracaoDoMapa, 2);
             mapa.visualizarTerreno();
 
-            // Acabei de descobrir que as coordenadas estão com a interpretação invertida.
             //a dimensão do imput é 12.
-            //Coordenada coordenadaTeste = new Coordenada(5, 5);
-            Coordenada coordenadaTeste = mapa.getJogador(0).getCoordenada();
-            Coordenada cTeste = new Coordenada(coordenadaTeste.getI(), coordenadaTeste.getJ());
+            Coordenada coordenadaTeste = new Coordenada(9, 5);
+            //Coordenada coordenadaTeste = mapa.getJogador(0).getCoordenada();
+            Coordenada cTeste = mapa.getJogador(0).getCoordenada();
             GrafoJogador grafo = new GrafoJogador(mapa);
             grafo.preencherMatriz(mapa, cTeste);
+            System.out.println("");
             grafo.printMatriz();
+
 
             Preview preview = new Preview(mapa);
             //preview.getPainelMapa().mostrarPesos(grafo.getMatrizCaminhos());
+
+            System.out.println("");
+            Stack<Coordenada> passos = grafo.passosAtePosicao(coordenadaTeste);
+            while(!passos.isEmpty()){
+                Coordenada.printCoordenada(passos.pop());
+            }
         }
 }
