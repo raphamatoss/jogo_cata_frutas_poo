@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;
@@ -9,6 +9,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+// TODO: Adicionar Preview nessa seção
+// TODO: Adicionar Verificação de arquivo
 
 /** É a tela onde o usuário pode importar um arquivo de mapa compatível. A tela é
  * pintada sobre o {@link Frame}.
@@ -22,7 +25,7 @@ public class ImportarTerreno extends Tela{
     public ImportarTerreno(Frame frame) {
         super(frame);
 
-        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuImportarTerreno.png"));
+        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/telas/menuImportarTerreno.png"));
         JLabel background = new JLabel(bgImage);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
@@ -38,7 +41,7 @@ public class ImportarTerreno extends Tela{
                             "Selecione um arquivo válido!", "Arquivo inválido", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
-                    frame.getJogo().inicializarMapa(new Mapa(GerenciadorMapaArquivo.importarArquivoTerreno(caminho), 2));
+                	frame.setJogo(new Mapa(GerenciadorMapaArquivo.importarArquivoTerreno(caminho), 2));
                     frame.setState(frame.getJogo());
                 }
             }
@@ -54,7 +57,7 @@ public class ImportarTerreno extends Tela{
             }
         });
 
-        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/displayPath.png"));
+        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/icones/displayPath.png"));
         JLabel displayPath = new JLabel(bgDisplay);
         displayPath.setBounds(333, 450, 357,49);
 

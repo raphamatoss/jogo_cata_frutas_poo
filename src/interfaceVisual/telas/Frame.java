@@ -1,6 +1,9 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 import javax.swing.*;
+
+import modelo.mapa.Mapa;
+
 import java.awt.*;
 
 /** Define a janela principal da interface gráfica do jogo.
@@ -11,11 +14,7 @@ public class Frame{
     private Tela configurarTerreno;
     private Tela importarTerreno;
     private Tela jogo;
-    private Tela geradorTerreno;
     private Tela creditos;
-
-    private boolean temTerreno;
-    private boolean comecouPartida;
 
     private Tela atual;
     private JFrame frame;
@@ -30,16 +29,16 @@ public class Frame{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/gameIcon.png")));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/icones/gameIcon.png")));
 
         this.start = new Start(this);
         this.menu = new Menu(this);
         this.configurarTerreno = new ConfigurarTerreno(this);
         this.importarTerreno = new ImportarTerreno(this);
-        this.jogo = new Jogo(this);
-        this.geradorTerreno = new GeradorTerreno(this);
         this.creditos = new Creditos(this);
         this.atual = this.start;
+
+        this.jogo = null; // Essa tela é especial e deve ser criada apenas quando um mapa é feito
 
         frame.add(atual.getPanel());
       
@@ -68,32 +67,24 @@ public class Frame{
         return menu;
     }
 
-    public Tela getConfigurarTerreno() { return configurarTerreno; }
-    public Tela getImportarTerreno() { return importarTerreno; }
+    public Tela getConfigurarTerreno() { 
+    	return configurarTerreno; 
+    }
+    
+    public Tela getImportarTerreno() { 
+    	return importarTerreno; 
+    }
 
     public Jogo getJogo() {
         Jogo jogo = (Jogo) this.jogo;
         return jogo;
     }
-
+    
+    public void setJogo(Mapa mapa) {
+    	this.jogo = new Jogo(this, mapa);
+    }
+    
     public Tela getCreditos() {
         return creditos;
     }
-
-    public boolean getTerrenoCarregado(){
-        return  this.temTerreno;
-    }
-
-    public void setTerrenoCarregado(Boolean b){
-        this.temTerreno = b;
-    }
-
-    public boolean getTemPartida(){
-        return  this.comecouPartida;
-    }
-
-    public void setTemPartida(Boolean b){
-        this.comecouPartida = b;
-    }
-
 }

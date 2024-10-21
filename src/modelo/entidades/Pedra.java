@@ -39,6 +39,22 @@ public class Pedra extends CelulaTerreno {
 
         BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconPedra);
 
+        if (this.getJogadorOcupante() != null) {
+            String caminhoJogador;
+            if (getJogadorOcupante().getNome().equals("J1"))
+                caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador1.png";
+            else
+                caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador2.png";
+
+            ImageIcon iconJogador = new ImageIcon(this.getClass().getResource(caminhoJogador));
+
+            ImageIcon combinacaoAnterior =  new ImageIcon(imagemCombinada);
+
+            imagemCombinada = Imagem.combinarImagens(combinacaoAnterior, iconJogador);
+
+            return new ImageIcon(imagemCombinada);
+        }
+
         return new ImageIcon(imagemCombinada);
     }
 }

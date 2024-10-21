@@ -37,6 +37,10 @@ public class GrafoJogador {
         this.dimensao = mapa.getDimensao();
     }
 
+    public Integer[][] getMatrizCaminhos() {
+        return MatrizCaminhos;
+    }
+  
     /**
      * Preenche a matriz de valores mínimos.
      * @param mapa Mapa de referência, deve ser o mesmo que o preencher grafo.

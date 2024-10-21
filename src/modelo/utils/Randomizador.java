@@ -41,13 +41,14 @@ public abstract class Randomizador {
         return numeroSorteado < probabilidadeParaTrue;
     }
 
+    // TODO: Verificar como resolver a questão de nao conseguir sortear diretamente dos pacotes no diretório imagens/blocos.
+    // A ideia é que o desenvolvedor nao se preocupe atualizar essa lista de pacotes disponíveis, isso deve ser consultado.
+
     /**
      * Essa função tem o propósito de selecionar dentro dos sprites um pacote padrão.
      */
     public static String sortearPacoteTextura() {
         List<String> pacotes = new ArrayList<>();
-
-        // TODO: Verificar como resolver a questão de nao conseguir sortear diretamente dos pacotes no diretório imagens/blocos.
 
         pacotes.add("verde");
         pacotes.add("verde_claro");
@@ -59,6 +60,25 @@ public abstract class Randomizador {
             return pacotes.get(indice);
         } else {
             System.out.println("Nenhum pacote de textura foi encontrado.");
+            return null;
+        }
+    }
+
+    public static String sortearFlor() {
+        List<String> flores = new ArrayList<>();
+
+        flores.add("azul_marinho");
+        flores.add("branco");
+        flores.add("ciano");
+        flores.add("laranja");
+        flores.add("rosa");
+        flores.add("vermelho");
+
+        if (!flores.isEmpty()) {
+            int indice = (int) (Math.random() * flores.size());
+            return flores.get(indice);
+        } else {
+            System.out.println("Nenhuma sprite de flor foi encontrada.");
             return null;
         }
     }

@@ -1,5 +1,6 @@
 package modelo.MovimentoJogador;
 
+import interfaceVisual.telas.Preview;
 import modelo.arquivo.GerenciadorMapaArquivo;
 import modelo.mapa.Mapa;
 import modelo.mapa.MapaConfiguracao;
@@ -24,6 +25,11 @@ public class Teste {
             grafo.preencherMatriz(mapa, cTeste);
             System.out.println("");
             grafo.printMatriz();
+
+
+            Preview preview = new Preview(mapa);
+            //preview.getPainelMapa().mostrarPesos(grafo.getMatrizCaminhos());
+
             System.out.println("");
             Stack<Coordenada> passos = grafo.passosAtePosicao(coordenadaTeste);
             while(!passos.isEmpty()){

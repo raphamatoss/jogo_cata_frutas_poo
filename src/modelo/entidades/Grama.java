@@ -60,9 +60,46 @@ public class Grama extends CelulaTerreno {
 
             BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconFruta);
 
-            return new ImageIcon(imagemCombinada);
+            BufferedImage imagemComJogador = combinarJogador(imagemCombinada);
+
+            if (imagemComJogador == null)
+                return new ImageIcon(imagemCombinada);
+            else
+                return new ImageIcon(imagemComJogador);
         }
 
+       if (this.getJogadorOcupante() != null) {
+           String caminhoJogador;
+           if (getJogadorOcupante().getNome().equals("J1"))
+               caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador1.png";
+           else
+               caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador2.png";
+
+           ImageIcon iconJogador = new ImageIcon(this.getClass().getResource(caminhoJogador));
+
+           BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconJogador);
+           return new ImageIcon(imagemCombinada);
+       }
+
         return iconGrama;
+    }
+
+    public BufferedImage combinarJogador(BufferedImage combinacaoAnterior) {
+        if (this.getJogadorOcupante() != null) {
+            String caminhoJogador;
+            if (getJogadorOcupante().getNome().equals("J1"))
+                caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador1.png";
+            else
+                caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador2.png";
+
+            ImageIcon iconJogador = new ImageIcon(this.getClass().getResource(caminhoJogador));
+
+            ImageIcon combinacaoAnteriorIcon =  new ImageIcon(combinacaoAnterior);
+
+            BufferedImage imagemCombinada = Imagem.combinarImagens(combinacaoAnteriorIcon, iconJogador);
+
+            return imagemCombinada;
+        }
+        return null;
     }
 }
