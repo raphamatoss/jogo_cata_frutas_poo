@@ -11,8 +11,8 @@ public class Jogo extends Tela {
     public Jogo(Frame frame, Mapa mapa) {
         super(frame);
 
-        painelMapa = new PainelMapa(mapa);
-
+        painelMapa = new PainelMapa(mapa, 624, 624);
+        
         painelInterfaceJogador = new PainelInterfaceJogador();
 
         panel.add(painelMapa);
