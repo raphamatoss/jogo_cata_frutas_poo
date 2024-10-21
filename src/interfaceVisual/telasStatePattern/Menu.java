@@ -15,7 +15,7 @@ public class Menu extends Tela{
     public Menu (Frame frame) {
         super(frame);
 
-        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menu.png"));
+        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/telas/menu.png"));
         JLabel background = new JLabel(bgImage);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);

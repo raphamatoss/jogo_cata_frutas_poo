@@ -22,7 +22,7 @@ public class ImportarTerreno extends Tela{
     public ImportarTerreno(Frame frame) {
         super(frame);
 
-        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuImportarTerreno.png"));
+        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/telas/menuImportarTerreno.png"));
         JLabel background = new JLabel(bgImage);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
@@ -54,7 +54,7 @@ public class ImportarTerreno extends Tela{
             }
         });
 
-        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/displayPath.png"));
+        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/icones/displayPath.png"));
         JLabel displayPath = new JLabel(bgDisplay);
         displayPath.setBounds(333, 450, 357,49);
 

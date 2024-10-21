@@ -15,7 +15,7 @@ public class Start extends Tela {
     public Start(Frame frame){
         super(frame);
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/backgroundTelaInicial.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/telas/backgroundTelaInicial.png"));
         JLabel background = new JLabel(icon);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);

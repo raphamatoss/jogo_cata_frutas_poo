@@ -26,7 +26,7 @@ public class ConfigurarTerreno extends Tela{
 
         VerificadorConfiguracao verificador = new VerificadorConfiguracao();
 
-        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuConfigurarTerreno.png"));
+        ImageIcon bgImage = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/telas/menuConfigurarTerreno.png"));
         JLabel background = new JLabel(bgImage);
         background.setSize(1024, 624);
         background.setBounds(0, 0, 1024, 624);
@@ -54,7 +54,7 @@ public class ConfigurarTerreno extends Tela{
 
         ImageIcon bgAdicionar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/mais.png"));
         ImageIcon bgRemover = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/menos.png"));
-        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/displayContador.png"));
+        ImageIcon bgDisplay = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/icones/displayContador.png"));
 
         ImageIcon bgSalvar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/salvar.png"));
         JButton botaoSalvar = new JButton(bgSalvar);
