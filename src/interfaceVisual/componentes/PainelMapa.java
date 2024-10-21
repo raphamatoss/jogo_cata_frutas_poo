@@ -15,6 +15,7 @@ public class PainelMapa extends JPanel {
 
     private Mapa mapa;               // Mapa que contém a estrutura das células do terreno
     private String pacoteTextura;    // Pacote de texturas a ser usado para os ícones das células
+    private Frame frame;
 
     /**
      * Construtor padrão que inicializa o painel do mapa com um layout nulo e uma cor de fundo.
@@ -25,7 +26,7 @@ public class PainelMapa extends JPanel {
         setLayout(null);
 
         // Define uma cor de fundo temporária
-        setBackground(Color.decode("#b90826"));  // Cor de fundo para visualizar a área reservada
+        setBackground(Color.decode("#8a2501"));  // Cor de fundo para visualizar a área reservada
 
         // Define o tamanho e posição do painel
         setBounds(0, 0, 624, 624);

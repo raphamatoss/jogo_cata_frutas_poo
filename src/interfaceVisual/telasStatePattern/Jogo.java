@@ -14,8 +14,59 @@ public class Jogo extends Tela {
     public Jogo(Frame frame) {
         super(frame);
 
-        painelMapa = new PainelMapa();
+        // botão configurações do jogo
+        ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
+        JButton botaoConfiguracoesJogo = new JButton(bgConfiguracoes);
+        botaoConfiguracoesJogo.setBounds(29, 32, 47, 49); // Define o tamanho e a posição do botão
+        botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
+        botaoConfiguracoesJogo.setFocusPainted(false);    // Remove o foco visual do botão
+        botaoConfiguracoesJogo.setContentAreaFilled(false); // Remove a área de conteúdo padrão do botão
+        botaoConfiguracoesJogo.addActionListener(e -> {
+            // Cria um novo diálogo para as configurações
+            JDialog configuracoesDialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(panel), "Configurações do Jogo", true);
+            configuracoesDialog.setSize(300, 200); // Define o tamanho da janela de diálogo
+            configuracoesDialog.setLayout(null); // Define o layout
+            configuracoesDialog.getContentPane().setBackground(Color.decode("#d05000")); // Cor de fundo da janela
 
+            // Botão "Voltar para Configurar Terreno"
+            ImageIcon bgVoltar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/voltarJogo.png"));
+            JButton botaoVoltar = new JButton(bgVoltar);
+            botaoVoltar.setBounds(53, 45, 70, 70);
+            botaoVoltar.setBorderPainted(false);
+            botaoVoltar.setFocusPainted(false);
+            botaoVoltar.setContentAreaFilled(false);
+            botaoVoltar.setToolTipText("Encerrar o jogo e voltar para o menu inicial");
+            botaoVoltar.addActionListener(ev -> {
+                frame.setState(frame.getStart()); // Retorna à tela anterior
+                configuracoesDialog.dispose(); // Fecha o diálogo
+            });
+
+            // botão "ativar/desativar som"
+            ImageIcon bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png"));
+            JButton botaoAtivarSom = new JButton(bgSom);
+            botaoAtivarSom.setBounds(153, 45, 70, 70);
+            botaoAtivarSom.setBorderPainted(false);
+            botaoAtivarSom.setFocusPainted(false);
+            botaoAtivarSom.setContentAreaFilled(false);
+            botaoAtivarSom.setToolTipText("Ativar/Desativar o som do jogo");
+            botaoAtivarSom.addActionListener(ev -> {
+                configuracoesDialog.dispose(); // Fecha o diálogo
+            });
+            // Adiciona os botões ao diálogo
+            configuracoesDialog.add(botaoAtivarSom);
+            configuracoesDialog.add(botaoVoltar);
+
+            // Define a posição do diálogo no centro da tela
+            configuracoesDialog.setLocationRelativeTo(null);
+
+            // Torna o diálogo visível
+            configuracoesDialog.setVisible(true);
+        });
+
+// Adiciona o botão ao painel principal
+        panel.add(botaoConfiguracoesJogo);
+
+        painelMapa = new PainelMapa();
         painelInterfaceJogador = new PainelInterfaceJogador();
 
         panel.add(painelMapa);

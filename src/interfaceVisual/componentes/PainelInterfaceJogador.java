@@ -2,6 +2,8 @@ package interfaceVisual.componentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * A classe {@code PainelInterfaceJogador} estende {@link JPanel} e é utilizada para representar a interface do jogador,
@@ -20,7 +22,7 @@ public class PainelInterfaceJogador extends JPanel {
         setLayout(null);
 
         //define a cor do painel
-        setBackground(Color.decode("#ef5c00")); // Temporário
+        setBackground(Color.decode("#ff9429")); // Temporário
 
         // Define as dimensões e posição do painel
         setBounds(624, 0, 400, 624);
