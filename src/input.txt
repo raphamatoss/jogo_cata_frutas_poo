@@ -1,5 +1,5 @@
-dimensao 12
-pedras 70
+dimensao 10
+pedras 30
 maracuja 3 1
 laranja 2 1
 abacate 2 3
