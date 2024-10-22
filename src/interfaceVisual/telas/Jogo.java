@@ -1,10 +1,7 @@
 package interfaceVisual.telas;
 
-import interfaceVisual.componentes.PainelInterfaceJogador;
-import interfaceVisual.paineis.PainelBtnCelulaTerreno;
-import interfaceVisual.paineis.PainelEntidades;
-import interfaceVisual.paineis.PainelFlores;
-import interfaceVisual.paineis.PainelGrama;
+import interfaceVisual.paineis.PainelInterfaceJogador;
+import interfaceVisual.paineis.PainelMapa;
 import modelo.mapa.Mapa;
 
 public class Jogo extends Tela {
@@ -13,18 +10,8 @@ public class Jogo extends Tela {
     public Jogo(Frame frame, Mapa mapa) {
         super(frame);
 
-        PainelBtnCelulaTerreno painelBtnCelulaTerreno = new PainelBtnCelulaTerreno(mapa, 624, 624);
-        panel.add(painelBtnCelulaTerreno);
-
-        PainelEntidades painelEntidadesMapa = new PainelEntidades(mapa, 624, 624);
-        panel.add(painelEntidadesMapa);
-
-        PainelFlores painelFlores = new PainelFlores(mapa.getDimensao(), 624, 624);
-        panel.add(painelFlores);
-
-        PainelGrama painelGrama = new PainelGrama(mapa.getDimensao(), 624, 624);
-        panel.add(painelGrama);
-
+        PainelMapa painelMapa = new PainelMapa(mapa, 624, 624);
+        panel.add(painelMapa);
 
         painelInterfaceJogador = new PainelInterfaceJogador();
         panel.add(painelInterfaceJogador);

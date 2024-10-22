@@ -1,4 +1,4 @@
-package interfaceVisual.componentes;
+package interfaceVisual.paineis;
 
 import javax.swing.*;
 import java.awt.*;
