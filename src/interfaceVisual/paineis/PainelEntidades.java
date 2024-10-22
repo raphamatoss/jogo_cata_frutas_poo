@@ -5,11 +5,11 @@ import modelo.mapa.Mapa;
 
 import java.awt.*;
 
-public class PainelEntidadesMapa extends PainelBase {
+public class PainelEntidades extends PainelBase {
 
     private final Mapa mapa;
 
-    public PainelEntidadesMapa(Mapa mapa) {
+    public PainelEntidades(Mapa mapa) {
         super(mapa.getDimensao());
 
         this.mapa = mapa;
@@ -17,7 +17,7 @@ public class PainelEntidadesMapa extends PainelBase {
         inicializarPainel();
     }
 
-    public PainelEntidadesMapa(Mapa mapa, int largura, int altura) {
+    public PainelEntidades(Mapa mapa, int largura, int altura) {
         super(mapa.getDimensao(), largura, altura);
 
         this.mapa = mapa;

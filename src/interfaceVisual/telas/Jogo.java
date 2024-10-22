@@ -1,7 +1,7 @@
 package interfaceVisual.telas;
 
 import interfaceVisual.componentes.PainelInterfaceJogador;
-import interfaceVisual.paineis.PainelEntidadesMapa;
+import interfaceVisual.paineis.PainelEntidades;
 import interfaceVisual.paineis.PainelFlores;
 import interfaceVisual.paineis.PainelGrama;
 import modelo.mapa.Mapa;
@@ -16,7 +16,7 @@ public class Jogo extends Tela {
 
         PainelFlores painelFlores = new PainelFlores(mapa.getDimensao(), 624, 624);
 
-        PainelEntidadesMapa painelEntidadesMapa = new PainelEntidadesMapa(mapa, 624, 624);
+        PainelEntidades painelEntidadesMapa = new PainelEntidades(mapa, 624, 624);
 
         painelInterfaceJogador = new PainelInterfaceJogador();
 
