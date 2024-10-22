@@ -29,14 +29,16 @@ public class PainelFlores extends PainelBase {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Chama o método original para garantir a correta renderização do painel
+        super.paintComponent(g);
+        int larguraGrid = getDimensao() * 50;
+        int alturaGrid = getDimensao() * 50;
 
-        int[][] matrizFlores = geradorFlores.getMatrizFloresRotularizada();
-        int tamanhoGrid = getDimensao() * 50; // Ajuste do tamanho da área
+        int inicioX = (this.getWidth() - larguraGrid) / 2;
+        int inicioY = (this.getHeight() - alturaGrid) / 2;
 
-        for (int i = 0; i < tamanhoGrid / 10; i++) {
-            for (int j = 0; j < tamanhoGrid / 10; j++) {
-                geradorFlores.posicionarFlor(this, i, j, g); // Passa o `Graphics` para desenhar
+        for (int i = 0; i < larguraGrid / 10; i++) {
+            for (int j = 0; j < alturaGrid / 10; j++) {
+                geradorFlores.posicionarFlor(this, i, j, inicioX, inicioY, g); // Passa o `Graphics` para desenhar
             }
         }
     }

@@ -9,7 +9,7 @@ public class GeradorFlores {
 
     private final int[][] matrizFloresRotularizada;
     private final Map<Integer, String> rotuloParaFlor;
-    private final boolean DEBUG = false;
+    private final boolean DEBUG = true;
 
     public GeradorFlores(int dimensao) {
         int[][] matrizFlores = gerarMatrizFlores(dimensao);
@@ -44,8 +44,7 @@ public class GeradorFlores {
         return matrizFlores;
     }
 
-    // Agora passamos `Graphics` para evitar o uso de `getGraphics`
-    public void posicionarFlor(JPanel painel, int x, int y, Graphics g) {
+    public void posicionarFlor(JPanel painel, int x, int y, int inicioX, int inicioY, Graphics g) {
         int rotulo = this.matrizFloresRotularizada[x][y];
         if (rotulo != 0) {
             if (!rotuloParaFlor.containsKey(rotulo)) {
@@ -60,12 +59,8 @@ public class GeradorFlores {
 
             if (imagemFlor != null) {
                 // Agora desenha diretamente usando o `Graphics` fornecido
-                g.drawImage(imagemFlor, x * 10, y * 10, 10, 10, painel);
+                g.drawImage(imagemFlor,inicioY + (y * 10), inicioX + (x * 10), 10, 10, painel);
             }
         }
-    }
-
-    public int[][] getMatrizFloresRotularizada() {
-        return matrizFloresRotularizada;
     }
 }
