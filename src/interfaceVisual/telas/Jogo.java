@@ -1,6 +1,7 @@
 package interfaceVisual.telas;
 
 import interfaceVisual.componentes.PainelInterfaceJogador;
+import interfaceVisual.paineis.PainelBtnCelulaTerreno;
 import interfaceVisual.paineis.PainelEntidades;
 import interfaceVisual.paineis.PainelFlores;
 import interfaceVisual.paineis.PainelGrama;
@@ -18,6 +19,8 @@ public class Jogo extends Tela {
 
         PainelEntidades painelEntidadesMapa = new PainelEntidades(mapa, 624, 624);
 
+        PainelBtnCelulaTerreno painelBtnCelulaTerreno = new PainelBtnCelulaTerreno(mapa, 624, 624);
+
         painelInterfaceJogador = new PainelInterfaceJogador();
 
         panel.add(painelEntidadesMapa);
@@ -25,6 +28,8 @@ public class Jogo extends Tela {
         panel.add(painelFlores);
 
         panel.add(painelGrama);
+
+        panel.add(painelBtnCelulaTerreno);
 
         panel.add(painelInterfaceJogador);
     }

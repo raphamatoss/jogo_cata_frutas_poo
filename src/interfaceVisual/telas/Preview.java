@@ -1,6 +1,5 @@
 package interfaceVisual.telas;
 
-import interfaceVisual.componentes.PainelMapa;
 import modelo.mapa.Mapa;
 
 import javax.swing.*;
@@ -14,7 +13,7 @@ import java.awt.*;
 public class Preview {
     private JFrame frame;
     private JPanel panel;
-    private PainelMapa painelMapa;
+    //private PainelMapa painelMapa;
 
     /** Construtor recebe uma instância de {@link Mapa} e configura o {@link JFrame} da classe.
      * A instância de mapa é pintada sobre o {@link JPanel} a partir da classe {@link PainelMapa}.
@@ -33,15 +32,11 @@ public class Preview {
         panel.setLayout(null);
         panel.setBounds(0, 0, mapa.getDimensao() * 50, mapa.getDimensao() * 50);
 
-        painelMapa = new PainelMapa(mapa);
+        //painelMapa = new PainelMapa(mapa);
 
-        panel.add(painelMapa);
+        //panel.add(painelMapa);
 
         frame.add(panel);
         frame.setVisible(true);
-    }
-
-    public PainelMapa getPainelMapa() {
-        return painelMapa;
     }
  }
