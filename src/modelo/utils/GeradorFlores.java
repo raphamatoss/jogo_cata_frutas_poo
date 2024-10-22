@@ -11,7 +11,7 @@ public class GeradorFlores {
 
     private final Map<Integer, String> rotuloParaFlor;
 
-    private final boolean DEBUG = true;
+    private final boolean DEBUG = false;
 
     public GeradorFlores(int dimensao) {
         int[][] matrizFlores = gerarMatrizFlores(dimensao);

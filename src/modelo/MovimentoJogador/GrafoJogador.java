@@ -5,31 +5,47 @@ import modelo.entidades.Pedra;
 import modelo.mapa.Mapa;
 import modelo.tipos.Coordenada;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
- * Essa classe é responsável por lidar com a matriz de adjacência para movimentação do player.
+ * Essa classe é responsável por lidar com o grafo da implementação da movimentação do player.
  */
 public class GrafoJogador {
+
     /**
-     * Guarda as informações do grafo. É estático pois como o mapa é único todas as instâncias devem conter a mesma lista.
+     * Dimensão do mapa em que será calculada a matriz de menor caminho.
      */
-    private boolean grafoPreenchido;
-    private static HashMap<Coordenada, LinkedList<RelacaoPeso>> MapaDoGrafo = new HashMap<>();
+    private int dimensao;
+
+    /**
+     * Mapa que guarda um mapa de cada nó para seus nós adjacentes em uma fila de prioridade.
+     */
+    private HashMap<Coordenada, PriorityQueue<RelacaoPeso>> MapaDoGrafo = new HashMap<>();
+
+    /**
+     * Matriz que guarda a distância mínima de cada célula para as outras.
+     */
     private Integer MatrizCaminhos[][];
 
+    /**
+     * O construtor recebe um mapa e gera o mapa de adjacência e a Matriz de caminhos.
+     * @param mapa Mapa que será utilizado de referência para gerar o grafo.
+     */
     public GrafoJogador(Mapa mapa){
-        if (!grafoPreenchido) preencherGrafo(mapa);
+        preencherGrafo(mapa);
         this.MatrizCaminhos = new Integer[mapa.getDimensao()][mapa.getDimensao()];
+        this.dimensao = mapa.getDimensao();
     }
 
     public Integer[][] getMatrizCaminhos() {
         return MatrizCaminhos;
     }
-
+  
+    /**
+     * Preenche a matriz de valores mínimos.
+     * @param mapa Mapa de referência, deve ser o mesmo que o preencher grafo.
+     * @param coordenadaAtual Coordenada de referência para calculo relativo.
+     */
     public void preencherMatriz(Mapa mapa, Coordenada coordenadaAtual) {
         // Inicializa a matriz com -1, indicando que ainda não foi visitada
         preencherMenosUm(this.MatrizCaminhos);
@@ -43,14 +59,12 @@ public class GrafoJogador {
             // Remove o primeiro nó da fila (FIFO)
             RelacaoPeso noAtual = nosnaoVisitados.poll();
             Coordenada coordenadaRelacao = noAtual.getCoordenada();
-            int linha = coordenadaRelacao.getI();
-            int coluna = coordenadaRelacao.getJ();
             int pesoAtual = noAtual.getPeso();     // Número de passos até este nó
 
             // Verifica se a posição na matriz pode ser atualizada
-            if (MatrizCaminhos[linha][coluna] > pesoAtual || MatrizCaminhos[linha][coluna] == -1) {
+            if (getvalorPosMatriz(coordenadaRelacao) > pesoAtual || getvalorPosMatriz(coordenadaRelacao) == -1) {
                 // Atualiza a matriz com o número mínimo
-                MatrizCaminhos[linha][coluna] = pesoAtual;
+                setvalorPosMatriz(coordenadaRelacao, pesoAtual);
 
                 // Para cada coordenada adjacente válida, adiciona à lista de nós não visitados
                 for (RelacaoPeso r : chavesValidas(coordenadaRelacao, mapa)) {
@@ -61,22 +75,31 @@ public class GrafoJogador {
         }
     }
 
+    /**
+     * Preenche o grafo do mapa com todos os caminhos existentes.
+     * @param mapa Mapa de referência.
+     */
     private void preencherGrafo(Mapa mapa) {
         int dimensaoDaFloresta = mapa.getDimensao();
 
         for (int i = 0; i < dimensaoDaFloresta; i++){
             for (int j = 0; j < dimensaoDaFloresta; j++){
                 Coordenada coordenadaAtual = new Coordenada(i, j);
-                LinkedList<RelacaoPeso> chaves = chavesValidas(coordenadaAtual, mapa);
+                PriorityQueue<RelacaoPeso> chaves = chavesValidas(coordenadaAtual, mapa);
                 MapaDoGrafo.put(coordenadaAtual, chaves);
             }
         }
-        this.grafoPreenchido = true;
     }
 
-    private LinkedList<RelacaoPeso> chavesValidas(Coordenada coordenadaAtual, Mapa mapa){
+    /**
+     * Método para retornar os vizinhos válidos e seus respectivos pesos. Importante no preenchimento do mapa do grafo.
+     * @param coordenadaAtual Coordenada de referência de onde serão retornados os vizinhos.
+     * @param mapa Mapa de referência de onde a coordenada pertence.
+     * @return Retorna uma lista de Relaçoes/peso para os vizinhos da coordenada dada.
+     */
+    public PriorityQueue<RelacaoPeso> chavesValidas(Coordenada coordenadaAtual, Mapa mapa){
 
-        LinkedList<RelacaoPeso> vizinhos = new LinkedList<>();
+        PriorityQueue<RelacaoPeso> vizinhos = new PriorityQueue<>();
         int i = coordenadaAtual.getI();
         int j = coordenadaAtual.getJ();
 
@@ -116,12 +139,69 @@ public class GrafoJogador {
 
     }
 
+    /**
+     * Printa a matriz de caminhos no terminal.
+     */
     public void printMatriz(){
+        int i = 0;
         for (Integer[] linha : this.MatrizCaminhos){
+            System.out.print(i + " ");
             for (Integer distancia : linha){
                 System.out.printf("| %3d ", distancia);
             }
             System.out.println("");
+            i++;
         }
+    }
+
+    /**
+     * Retorna uma pilha com os passos de uma coordenada até outra pelo menor caminho.
+     * @param destino Coordenada de destino
+     * @return Retorna uma pilha Origem -> Nó2 -> ... -> Nó destino.
+     */
+    public Stack<Coordenada> passosAtePosicao(Coordenada destino){
+
+        Stack<Coordenada> passos = new Stack<>();
+        //O destino deve ser o último a ser lido.
+        passos.push(destino);
+
+        //Enquanto não encontramos a origem, navegue entre os menores vizinhos.
+        Coordenada atual = destino;
+        while(getvalorPosMatriz(atual) != 0){
+            PriorityQueue<RelacaoPeso> vizinhosPorMenorCaminho = new PriorityQueue<>();
+            int i = atual.getI();
+            int j = atual.getJ();
+
+            //Adiciona os vizinhos numa fila de prioridade em relação ao valor da coordenada na matriz.
+            if (i > 0){
+                Coordenada vizinho = new Coordenada(i-1, j);
+                vizinhosPorMenorCaminho.add(new RelacaoPeso(vizinho, getvalorPosMatriz(vizinho)));
+            }
+            if (i < dimensao-1){
+                Coordenada vizinho = new Coordenada(i+1, j);
+                vizinhosPorMenorCaminho.add(new RelacaoPeso(vizinho, getvalorPosMatriz(vizinho)));
+            }
+            if (j > 0){
+                Coordenada vizinho = new Coordenada(i, j-1);
+                vizinhosPorMenorCaminho.add(new RelacaoPeso(vizinho, getvalorPosMatriz(vizinho)));
+            }
+            if (j < dimensao-1){
+                Coordenada vizinho = new Coordenada(i, j+1);
+                vizinhosPorMenorCaminho.add(new RelacaoPeso(vizinho, getvalorPosMatriz(vizinho)));
+            }
+            //Retorna o menor dos vizinhos e adiciona ele na pilha.
+            RelacaoPeso menorVizinho = vizinhosPorMenorCaminho.poll();
+            atual = menorVizinho.getCoordenada();
+            passos.push(atual);
+        }
+        return passos;
+    }
+
+    private int getvalorPosMatriz(Coordenada coordenada){
+        return MatrizCaminhos[coordenada.getI()][coordenada.getJ()];
+    }
+
+    private void setvalorPosMatriz(Coordenada c, int valor){
+        MatrizCaminhos[c.getI()][c.getJ()] = valor;
     }
 }
