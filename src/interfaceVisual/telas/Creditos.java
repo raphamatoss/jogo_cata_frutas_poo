@@ -1,4 +1,4 @@
-package interfaceVisual.telasStatePattern;
+package interfaceVisual.telas;
 
 public class Creditos extends Tela{
     public Creditos(Frame frame){

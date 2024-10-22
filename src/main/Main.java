@@ -1,14 +1,6 @@
 package main;
 
-import interfaceVisual.telasStatePattern.Frame;
-
-/**
- * Essa classe é atualmente o ponto de partida do programa.
- * Sua única função é iniciar a interface gráfica com o jogador.
- * 
- *
- * @see interfaceVisual.telasStatePattern.Frame
- */
+import interfaceVisual.telas.Frame;
 
 public class Main {
 

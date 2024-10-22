@@ -1,0 +1,14 @@
+TODO - Reunião do dia 21/10:
+
+# Troca de informações:
+- Bora o que cada um fez até agora para unirmos
+
+# PainelMapa:
+- As flores não funcionam, há conflitos com a questão de como tratamos imagens
+- O mapa que é mostrado na preview não é o mesmo que aparece ao clicar no começar
+	-> Podemos tratar de uma maneira estática isso? Nao sei, vamos discutir sobre
+
+
+# Preview:
+- Um botão para Randomizar a entrada na preview
+- Adicionar a preview na tela de ImportarArquivo
