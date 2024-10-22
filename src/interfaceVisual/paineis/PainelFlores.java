@@ -17,8 +17,6 @@ public class PainelFlores extends PainelBase {
     public PainelFlores(int dimensao, int largura, int altura) {
         super(dimensao, largura, altura);
 
-        setBackground(Color.BLUE);
-
         inicializarPainel();
     }
 
@@ -38,7 +36,7 @@ public class PainelFlores extends PainelBase {
 
         for (int i = 0; i < larguraGrid / 10; i++) {
             for (int j = 0; j < alturaGrid / 10; j++) {
-                geradorFlores.posicionarFlor(this, i, j, inicioX, inicioY, g); // Passa o `Graphics` para desenhar
+                geradorFlores.posicionarFlor(this, i, j, inicioX, inicioY, g);
             }
         }
     }

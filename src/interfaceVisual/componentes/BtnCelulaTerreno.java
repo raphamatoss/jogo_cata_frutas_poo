@@ -43,8 +43,8 @@ public class BtnCelulaTerreno extends JButton {
         this.setBounds(posicaoX, posicaoY, 50, 50);
 
         // Define o ícone do botão com base na célula do terreno e no pacote de texturas fornecido
-        this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
-        setIcon(celulaIcon);
+        // this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
+       //  setIcon(celulaIcon);
 
         // Remove margens do botão para ajustar ao tamanho da célula
         setMargin(new Insets(0, 0, 0, 0));

@@ -10,6 +10,9 @@ public abstract class PainelBase extends JPanel {
         this.dimensao = dimensao;
 
         setOpaque(false);
+
+        // TODO: Consertar isso aqui para funcionar bem no preview
+        setBounds(0, 0, dimensao * 50, dimensao * 50);
     }
 
     public PainelBase(int dimensao, int largura, int altura) {
