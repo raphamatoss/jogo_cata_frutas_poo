@@ -1,31 +1,19 @@
 package interfaceVisual.telas;
 
-import interfaceVisual.componentes.PainelInterfaceJogador;
-import interfaceVisual.componentes.PainelMapa;
+import interfaceVisual.paineis.PainelInterfaceJogador;
+import interfaceVisual.paineis.PainelMapa;
 import modelo.mapa.Mapa;
 
 public class Jogo extends Tela {
-    PainelMapa painelMapa;
     PainelInterfaceJogador painelInterfaceJogador;
 
     public Jogo(Frame frame, Mapa mapa) {
         super(frame);
 
-        painelMapa = new PainelMapa(mapa, 624, 624);
-        
-        painelInterfaceJogador = new PainelInterfaceJogador();
-
+        PainelMapa painelMapa = new PainelMapa(mapa, 624, 624);
         panel.add(painelMapa);
+
+        painelInterfaceJogador = new PainelInterfaceJogador();
         panel.add(painelInterfaceJogador);
-    }
-
-    public void inicializarMapa(Mapa mapa) {
-        if (mapa != null) {
-            painelMapa.setMapa(mapa);
-
-            // painelMapa.inicializarMapa();
-        } else {
-            System.out.println("[Java Swing] - Não há um mapa carregado.");
-        }
     }
 }

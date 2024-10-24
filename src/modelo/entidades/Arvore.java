@@ -1,9 +1,7 @@
 package modelo.entidades;
 
-import modelo.utils.Imagem;
-
 import javax.swing.*;
-import java.awt.image.BufferedImage;
+import java.awt.*;
 
 /**
  * A classe árvore representa o elemento árvore do jogo, e contém os métodos para gerar frutas.
@@ -27,7 +25,6 @@ public class Arvore extends CelulaTerreno {
     }
 
 
-    // getters & setters -----------------------------------------------
     public int getRodadasRestantesParaGerarFruta() {
         return rodadasRestantesParaGerarFruta;
     }
@@ -39,7 +36,6 @@ public class Arvore extends CelulaTerreno {
     public void setFrutaDaArvore(Fruta fruta) {
         this.frutaDaArvore = fruta;
     }
-    // ------------------------------------------------------------------
 
 
     public void gerarFrutaArvore() {
@@ -76,17 +72,12 @@ public class Arvore extends CelulaTerreno {
      * Gera a imagem correspondente à árvore.
      */
     @Override
-    public ImageIcon toImageIcon(String pacoteTextura) {
-        // Caminhos das imagens
-        String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
+    public Image toImage() {
         String nomeFrutaArvore = this.frutaDaArvore.getClass().getSimpleName().toLowerCase();
         String caminhoArvore = "/interfaceVisual/imagens/arvores/arvore_" + nomeFrutaArvore + ".png";
 
-        ImageIcon texturaGrama = new ImageIcon(this.getClass().getResource(caminhoGrama));
-        ImageIcon arvore = new ImageIcon(this.getClass().getResource(caminhoArvore));
+        ImageIcon iconArvore = new ImageIcon(this.getClass().getResource(caminhoArvore));
 
-        BufferedImage imagemCombinada = Imagem.combinarImagens(texturaGrama, arvore);
-
-        return new ImageIcon(imagemCombinada);
+        return iconArvore.getImage();
     }
 }

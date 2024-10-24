@@ -1,6 +1,6 @@
 package interfaceVisual.telas;
 
-import interfaceVisual.componentes.PainelMapa;
+import interfaceVisual.paineis.PainelMapa;
 import modelo.mapa.Mapa;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.awt.*;
 public class Preview {
     private JFrame frame;
     private JPanel panel;
-    private PainelMapa painelMapa;
+    //private PainelMapa painelMapa;
 
     /** Construtor recebe uma instância de {@link Mapa} e configura o {@link JFrame} da classe.
      * A instância de mapa é pintada sobre o {@link JPanel} a partir da classe {@link PainelMapa}.
@@ -22,6 +22,7 @@ public class Preview {
      */
     public Preview(Mapa mapa) {
         frame = new JFrame("Preview");
+
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/icones/previewIcon.png")));
         frame.setSize(mapa.getDimensao() * 50, mapa.getDimensao() * 50);
         frame.setLayout(null);
@@ -31,17 +32,16 @@ public class Preview {
 
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(0, 0, mapa.getDimensao() * 50, mapa.getDimensao() * 50);
 
-        painelMapa = new PainelMapa(mapa);
+        int dimensao = mapa.getDimensao();
+
+        panel.setBounds(0, 0, (dimensao * 50) + 50, (dimensao * 50) + 50);
+
+        PainelMapa painelMapa = new PainelMapa(mapa);
 
         panel.add(painelMapa);
 
         frame.add(panel);
         frame.setVisible(true);
-    }
-
-    public PainelMapa getPainelMapa() {
-        return painelMapa;
     }
  }

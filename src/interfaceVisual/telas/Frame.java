@@ -24,7 +24,18 @@ public class Frame{
      */
     public Frame(){
         frame = new JFrame("Cata-Frutas");
-        frame.setSize(1024,624);
+
+        // Verificar o sistema operacional
+        String os = System.getProperty("os.name").toLowerCase();
+        int margem = 0;
+
+        // Se o sistema for Windows, adicionar margem
+        if (os.contains("win")) {
+            // TODO: Rapha veja qual o valor exato de margem que precisamos usar aqui.
+            margem = 32; // Ajuste a margem conforme necessário
+        }
+
+        frame.setSize(1024,624 + margem);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
