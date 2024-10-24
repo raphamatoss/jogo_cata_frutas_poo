@@ -1,6 +1,5 @@
 package modelo.entidades;
 
-import javax.xml.namespace.QName;
 /**
  * Essa classe implementa o comportamento abstrato das frutas do jogo.
  */
@@ -22,18 +21,16 @@ public abstract class Fruta {
     }
 
 
-    // getters & setters ------------------------------
     public void bicharFruta() {
-    	bichada=true;
+        bichada=true;
     }
+
     public boolean isBichada() {
         return bichada;
     }
     public void setBichada(boolean bichada) {
         this.bichada = bichada;
     }
-    // ------------------------------------------------
-
 
     public abstract void causarEfeito(); // TODO: Precisamos criar a lógica do causarEfeito()
 

@@ -3,6 +3,7 @@ package modelo.entidades;
 import modelo.utils.Imagem;
 
 import javax.swing.ImageIcon;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -43,13 +44,10 @@ public class Grama extends CelulaTerreno {
         } else return ".";
     }
 
-    /**
-     * Gera a imagem da grama com base em uma seleção de pacotes de sprites.
-     */
     @Override
-    public ImageIcon toImageIcon(String pacoteTextura) {
-        String caminhoGrama = "/interfaceVisual/imagens/blocos/" + pacoteTextura + "/grama.png";
-        ImageIcon iconGrama = new ImageIcon(this.getClass().getResource(caminhoGrama));
+    public Image toImage() {
+        BufferedImage imagemVazia = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
+        ImageIcon iconCombinado = new ImageIcon(imagemVazia);
 
         if (this.frutaOcupante != null) {
             // Caso haja uma fruta naquela célula -> Combinar o sprite da fruta com o da grama.
@@ -58,33 +56,9 @@ public class Grama extends CelulaTerreno {
 
             ImageIcon iconFruta = new ImageIcon(this.getClass().getResource(caminhoFruta));
 
-            BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconFruta);
-
-            BufferedImage imagemComJogador = combinarJogador(imagemCombinada);
-
-            if (imagemComJogador == null)
-                return new ImageIcon(imagemCombinada);
-            else
-                return new ImageIcon(imagemComJogador);
+            iconCombinado = new ImageIcon(Imagem.combinarImagens(iconCombinado, iconFruta));
         }
 
-       if (this.getJogadorOcupante() != null) {
-           String caminhoJogador;
-           if (getJogadorOcupante().getNome().equals("J1"))
-               caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador1.png";
-           else
-               caminhoJogador = "/interfaceVisual/imagens/jogadores/jogador2.png";
-
-           ImageIcon iconJogador = new ImageIcon(this.getClass().getResource(caminhoJogador));
-
-           BufferedImage imagemCombinada = Imagem.combinarImagens(iconGrama, iconJogador);
-           return new ImageIcon(imagemCombinada);
-       }
-
-        return iconGrama;
-    }
-
-    public BufferedImage combinarJogador(BufferedImage combinacaoAnterior) {
         if (this.getJogadorOcupante() != null) {
             String caminhoJogador;
             if (getJogadorOcupante().getNome().equals("J1"))
@@ -94,12 +68,9 @@ public class Grama extends CelulaTerreno {
 
             ImageIcon iconJogador = new ImageIcon(this.getClass().getResource(caminhoJogador));
 
-            ImageIcon combinacaoAnteriorIcon =  new ImageIcon(combinacaoAnterior);
-
-            BufferedImage imagemCombinada = Imagem.combinarImagens(combinacaoAnteriorIcon, iconJogador);
-
-            return imagemCombinada;
+            iconCombinado = new ImageIcon(Imagem.combinarImagens(iconCombinado, iconJogador));
         }
-        return null;
+
+        return iconCombinado.getImage();
     }
 }
