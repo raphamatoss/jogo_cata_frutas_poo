@@ -13,8 +13,7 @@ import java.awt.*;
  */
 public class Preview {
     private JFrame frame;
-    private JPanel panel;
-    //private PainelMapa painelMapa;
+    private PainelMapa painelMapa;
 
     /** Construtor recebe uma instância de {@link Mapa} e configura o {@link JFrame} da classe.
      * A instância de mapa é pintada sobre o {@link JPanel} a partir da classe {@link PainelMapa}.
@@ -23,25 +22,30 @@ public class Preview {
     public Preview(Mapa mapa) {
         frame = new JFrame("Preview");
 
+        int dimensao = mapa.getDimensao();
+
+        // Verificar o sistema operacional
+        String os = System.getProperty("os.name").toLowerCase();
+        int margemX = 0, margemY = 0;
+
+        // Se o sistema for Windows, adicionar margem
+        if (os.contains("win")) {
+            // TODO: Rapha veja qual o valor exato de margem que precisamos usar aqui.
+            margemX = 10;
+            margemY = 32; // Ajuste a margem conforme necessário
+        }
+
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/icones/previewIcon.png")));
-        frame.setSize(mapa.getDimensao() * 50, mapa.getDimensao() * 50);
+        frame.setSize((dimensao * 50) + margemX, (dimensao * 50) + margemY);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        panel = new JPanel();
-        panel.setLayout(null);
-
-        int dimensao = mapa.getDimensao();
-
-        panel.setBounds(0, 0, (dimensao * 50) + 50, (dimensao * 50) + 50);
-
         PainelMapa painelMapa = new PainelMapa(mapa);
 
-        panel.add(painelMapa);
+        frame.add(painelMapa);
 
-        frame.add(panel);
         frame.setVisible(true);
     }
  }
