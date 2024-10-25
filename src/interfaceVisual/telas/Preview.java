@@ -21,9 +21,21 @@ public class Preview {
      * @param mapa Um mapa do jogo.
      */
     public Preview(Mapa mapa) {
+
+        // Verificar o sistema operacional
+        String os = System.getProperty("os.name").toLowerCase();
+        int margemX = 0, margemY = 0;
+
+        // Se o sistema for Windows, adicionar margem
+        if (os.contains("win")) {
+            // TODO: Rapha veja qual o valor exato de margem que precisamos usar aqui.
+            margemX = 16;
+            margemY = 35; // Ajuste a margem conforme necessário
+        }
+
         frame = new JFrame("Preview");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/interfaceVisual/imagens/icones/previewIcon.png")));
-        frame.setSize(mapa.getDimensao() * 50, mapa.getDimensao() * 50);
+        frame.setSize(mapa.getDimensao() * 50 + margemX, mapa.getDimensao() * 50 + margemY);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
