@@ -23,8 +23,19 @@ public class Frame{
      * reprodutor musical, este último desabilitado temporariamente.
      */
     public Frame(){
+        // Verificar o sistema operacional
+        String os = System.getProperty("os.name").toLowerCase();
+        int margemX = 0, margemY = 0;
+
+        // Se o sistema for Windows, adicionar margem
+        if (os.contains("win")) {
+            // TODO: Rapha veja qual o valor exato de margem que precisamos usar aqui.
+            margemX = 16;
+            margemY = 35; // Ajuste a margem conforme necessário
+        }
+
         frame = new JFrame("Cata-Frutas");
-        frame.setSize(1024,624);
+        frame.setSize(1024+margemX,624+margemY);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
