@@ -3,18 +3,27 @@ package modelo.entidades;
 import java.util.ArrayList;
 
 // TODO: Provavelmente vamos precisar rever essa classe aqui
-public class Mochila {
-    private ArrayList<Fruta> frutas = new ArrayList<>();
+public class Mochila<T> extends ArrayList<T> {
 
-    public ArrayList<Fruta> getFrutas() {
-        return frutas;
+    private int tamanhoMochila;
+
+    public Mochila(int tamanhoMochila){
+        this.tamanhoMochila = tamanhoMochila;
     }
 
-    public void armazenarFruta(Fruta fruta) {
-        frutas.add(fruta);
+    public boolean armazenarFruta(T fruta) {
+        if (this.size() < tamanhoMochila){
+            this.add(fruta);
+            return true;
+        }
+        return false;
     }
 
-    public void desalocarFruta(Fruta fruta) {
-        frutas.remove(fruta);
+    public Fruta retirarFrutaTipo(Fruta fruta) {
+        int index = this.indexOf(fruta);
+        if(index != -1){
+            return (Fruta) this.remove(index);
+        }
+        return null;
     }
 }
