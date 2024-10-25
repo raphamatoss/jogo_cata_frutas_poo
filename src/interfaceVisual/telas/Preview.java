@@ -31,7 +31,7 @@ public class Preview {
         // Se o sistema for Windows, adicionar margem
         if (os.contains("win")) {
             // TODO: Rapha veja qual o valor exato de margem que precisamos usar aqui.
-            margemX = 10;
+            margemX = 16;
             margemY = 32; // Ajuste a margem conforme necessário
         }
 
