@@ -28,6 +28,7 @@ public class Jogador extends ElementoDinamico {
     public String getNome() {
         return nome;
     }
+
     public int getForca() {
         return this.forca;
     }
