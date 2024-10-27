@@ -2,6 +2,7 @@ package interfaceVisual.telas;
 
 import javax.swing.*;
 
+import interfaceVisual.soundtrack.ReprodutorDeSom;
 import modelo.mapa.Mapa;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Frame{
 
     private Tela atual;
     private JFrame frame;
+    private ReprodutorDeSom reprodutorDeSom;
     /**
      * O construtor estabelece a configuração do JFrame e inicializa as telas do jogo, bem como o
      * reprodutor musical, este último desabilitado temporariamente.
@@ -52,9 +54,8 @@ public class Frame{
         this.jogo = null; // Essa tela é especial e deve ser criada apenas quando um mapa é feito
 
         frame.add(atual.getPanel());
-      
-        // jaco mp3 player precisa receber o caminho do arquivo de som a partir do src/
-        // reprodutorDeSom = new ReprodutorDeSom("src/interfaceVisual/soundtrack/CataFrutasOST_1.mp3");
+
+        reprodutorDeSom = new ReprodutorDeSom();
 
         //tem terreno e comecou partida são falsos quando instanciados.
         frame.setVisible(true);
@@ -68,6 +69,10 @@ public class Frame{
         this.atual = novaTela;
         frame.add(atual.getPanel());
         frame.repaint();
+    }
+
+    public ReprodutorDeSom getReprodutorDeSom() {
+        return reprodutorDeSom;
     }
 
     public Tela getStart() {

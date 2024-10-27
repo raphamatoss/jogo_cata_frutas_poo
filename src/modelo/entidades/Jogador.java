@@ -25,9 +25,9 @@ public class Jogador extends ElementoDinamico {
     public String getNome() {
         return nome;
     }
-    public int getForca() {
-        return this.mochila.getFrutas().size();
-    }
+//    public int getForca() {
+//        return this.mochila.getFrutas().size();
+//    }
     public int getPtsMovimento() {
         return this.ptsMovimento;
     }
@@ -55,12 +55,12 @@ public class Jogador extends ElementoDinamico {
         return "J" + this.nome;
     }
 
-    public void atualizar(){
-        this.calcularForca();
-        this.RemoverEfeito();
-        this.
-
-    }
+//    public void atualizar(){
+//        this.calcularForca();
+//        this.RemoverEfeito();
+//        this.
+//
+//    }
 
 
 }
