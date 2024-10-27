@@ -24,6 +24,7 @@ public class Jogo extends Tela {
         botaoConfiguracoesJogo.setFocusPainted(false);    // Remove o foco visual do botão
         botaoConfiguracoesJogo.setContentAreaFilled(false); // Remove a área de conteúdo padrão do botão
         botaoConfiguracoesJogo.addActionListener(e -> {
+            frame.getReprodutorDeSom().tocarBotao();
             // Cria um novo diálogo para as configurações
             JDialog configuracoesDialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(panel), "Configurações do Jogo", true);
             configuracoesDialog.setSize(300, 200); // Define o tamanho da janela de diálogo
@@ -39,12 +40,18 @@ public class Jogo extends Tela {
             botaoVoltar.setContentAreaFilled(false);
             botaoVoltar.setToolTipText("Encerrar o jogo e voltar para o menu inicial");
             botaoVoltar.addActionListener(ev -> {
+                frame.getReprodutorDeSom().tocarBotao();
                 frame.setState(frame.getStart()); // Retorna à tela anterior
                 configuracoesDialog.dispose(); // Fecha o diálogo
             });
 
             // botão "ativar/desativar som"
-            ImageIcon bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png"));
+            ImageIcon bgSom;
+            if (frame.getReprodutorDeSom().getIsAtivo()) {
+                bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png"));
+            } else {
+                bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/soundOff.png"));
+            }
             JButton botaoAtivarSom = new JButton(bgSom);
             botaoAtivarSom.setBounds(153, 45, 70, 70);
             botaoAtivarSom.setBorderPainted(false);
@@ -52,6 +59,14 @@ public class Jogo extends Tela {
             botaoAtivarSom.setContentAreaFilled(false);
             botaoAtivarSom.setToolTipText("Ativar/Desativar o som do jogo");
             botaoAtivarSom.addActionListener(ev -> {
+                frame.getReprodutorDeSom().tocarBotao();
+                if (frame.getReprodutorDeSom().getIsAtivo()) {
+                    frame.getReprodutorDeSom().pausarMusica();
+                    frame.getReprodutorDeSom().setIsAtivo(false);
+                } else {
+                    frame.getReprodutorDeSom().reproduzirMusica();
+                    frame.getReprodutorDeSom().setIsAtivo(true);
+                }
                 configuracoesDialog.dispose(); // Fecha o diálogo
             });
             // Adiciona os botões ao diálogo
