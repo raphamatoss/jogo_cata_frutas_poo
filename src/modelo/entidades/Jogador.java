@@ -4,6 +4,7 @@ package modelo.entidades;
 // Definitivamente não está nem perto de finalizar
 
 import modelo.tipos.Coordenada;
+import modelo.utils.Efeitos;
 
 /**
  * Classe que lida com o jogador.
@@ -13,6 +14,8 @@ public class Jogador extends ElementoDinamico {
     private final String nome;
     private final Mochila<Fruta> mochila;
     private int ptsMovimento;
+    private int forca = 0;
+    private Efeitos efeito = Efeitos.NEUTRO;
 
     public Jogador(String nome, Coordenada coordenada, int tamanhoMochila) {
         super(coordenada);
@@ -26,7 +29,7 @@ public class Jogador extends ElementoDinamico {
         return nome;
     }
     public int getForca() {
-        return this.mochila.getFrutas().size();
+        return this.forca;
     }
     public int getPtsMovimento() {
         return this.ptsMovimento;
@@ -57,10 +60,31 @@ public class Jogador extends ElementoDinamico {
 
     public void atualizar(){
         this.calcularForca();
-        this.RemoverEfeito();
-        this.
+        this.atualizarEfeito();
+    }
+
+    public void atualizarFimTurno(){
 
     }
 
+    public void atualizarEfeito(){
+        switch (this.efeito){
+            case VELOCIDADE -> {
+
+            }
+            case FORCA -> {
+
+            }
+            case ENVENENAMENTO -> {
+
+            }
+        }
+    }
+
+    public void calcularForca(){
+        this.forca = mochila.size();
+    }
+
+    // Verificar a classe Jogador Utils;
 
 }
