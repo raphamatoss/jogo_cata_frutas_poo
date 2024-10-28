@@ -13,9 +13,10 @@ public class Jogador extends ElementoDinamico {
 
     private final String nome;
     private final Mochila<Fruta> mochila;
-    private int ptsMovimento;
+    private Integer ptsMovimento;
     private int forca = 0;
     private Efeitos efeito = Efeitos.NEUTRO;
+    private CelulaTerreno celulaOcupada;
 
     public Jogador(String nome, Coordenada coordenada, int tamanhoMochila) {
         super(coordenada);
@@ -25,6 +26,14 @@ public class Jogador extends ElementoDinamico {
 
 
     // getters & setters ------------------------------
+    public CelulaTerreno getCelulaOcupada() {
+        return celulaOcupada;
+    }
+
+    public void setCelulaOcupada(CelulaTerreno celulaOcupada) {
+        this.celulaOcupada = celulaOcupada;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -32,19 +41,19 @@ public class Jogador extends ElementoDinamico {
     public int getForca() {
         return this.forca;
     }
-    public int getPtsMovimento() {
+    public Integer getPtsMovimento() {
         return this.ptsMovimento;
     }
-    public void setPtsMovimento(int pontos) {
+    public void setPtsMovimento(Integer pontos) {
         this.ptsMovimento = pontos;
     }
     // ---------------------------------------------------
 
-    public boolean ColetarFruta(Fruta fruta){
+    public boolean coletarFruta(Fruta fruta){
         return this.mochila.armazenarFruta(fruta);
     }
 
-    public boolean ComerFruta(Fruta fruta){
+    public boolean comerFruta(Fruta fruta){
         Fruta frutaMochila = this.mochila.retirarFrutaTipo(fruta);
         if (frutaMochila != null){
             frutaMochila.causarEfeito();
