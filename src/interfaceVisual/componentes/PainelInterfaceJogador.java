@@ -1,6 +1,7 @@
 package interfaceVisual.componentes;
 
 import modelo.Partida;
+import modelo.entidades.Grama;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,20 +15,24 @@ import java.awt.event.ActionListener;
  */
 public class PainelInterfaceJogador extends JPanel {
     private Partida partida;
+    private PainelMapa painelMapa;
     private boolean controle;
+    private JLabel pontosDeMovimento;
     /**
      * Construtor padrão que inicializa o painel com configurações temporárias.
      * O painel tem fundo azul e está posicionado à direita do mapa com um layout absoluto.
      * No futuro, essa área será usada para o menu do jogador.
      */
-    public PainelInterfaceJogador(Partida partida) {
+    public PainelInterfaceJogador(Partida partida, PainelMapa painel) {
         this.partida = partida;
+        painelMapa = painel;
+        controle = true;
 
         // Define o layout absoluto (null layout)
         setLayout(null);
 
         //define a cor do painel
-        setBackground(Color.decode("#ff9429")); // Temporário
+        setBackground(Color.decode("#EF5C00")); // Temporário
 
         // Define as dimensões e posição do painel
         setBounds(624, 0, 400, 624);
@@ -50,8 +55,13 @@ public class PainelInterfaceJogador extends JPanel {
         // label turno
         ImageIcon turnoPlayer = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/turno.png"));
         JLabel turno = new JLabel(turnoPlayer);
-        turno.setBounds(204, 28, 167, 52);
+        turno.setBounds(202, 28, 111, 53);
         turno.setOpaque(true);
+        turno.setText(Integer.toString(partida.getTurno()));
+        turno.setForeground(Color.white);
+        turno.setHorizontalTextPosition(JLabel.CENTER);
+        turno.setVerticalTextPosition(JLabel.CENTER);
+        turno.setIconTextGap(10);
         this.add(turno);
 
         // label quantidade de frutas ouro
@@ -183,8 +193,8 @@ public class PainelInterfaceJogador extends JPanel {
         // botão consumir fruta
         ImageIcon consumir = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consumir.png"));
         JButton consumirFruta = new JButton(consumir);
-        consumirFruta.setBounds(17, 305, 354, 46);
-        consumirFruta.setBorderPainted(false);
+        consumirFruta.setBounds(17, 300, 354, 46);
+        //consumirFruta.setBorderPainted(false);
         consumirFruta.setFocusPainted(false);
         consumirFruta.setContentAreaFilled(false);
         this.add(consumirFruta);
@@ -192,12 +202,15 @@ public class PainelInterfaceJogador extends JPanel {
             // Ação a ser executada quando o botão for clicado
         });
 
-        controle = true;
+        ImageIcon pontos = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/pontosDeMovimento.png"));
+        pontosDeMovimento = new JLabel(pontos);
+        pontosDeMovimento.setBounds(17, 370, 140, 43);
+        this.add(pontosDeMovimento);
 
         // botão jogarDados
         ImageIcon dados = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/dados.png"));
         JButton jogarDados = new JButton(dados);
-        jogarDados.setBounds(17, 384, 127, 76);
+        jogarDados.setBounds(170, 370, 202, 43);
         //jogarDados.setBorderPainted(false);
         jogarDados.setFocusPainted(false);
         jogarDados.setContentAreaFilled(false);
@@ -206,16 +219,25 @@ public class PainelInterfaceJogador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (controle == true) {
-                    partida.jogarDados();
+                    int dados = partida.jogarDados();
                     setControle(false);
+                    pontosDeMovimento.setText(Integer.toString(dados));
+                    pontosDeMovimento.setHorizontalTextPosition(JLabel.RIGHT);
+                    pontosDeMovimento.setVerticalTextPosition(JLabel.CENTER);
+                    pontosDeMovimento.setIconTextGap(-40);
+                    pontosDeMovimento.setForeground(Color.white);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "O jogador já jogou os dados.", "Opção Inválida", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
 
         //botão passar a vez
-        ImageIcon pularVez = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/pularVez.png"));
+        ImageIcon pularVez = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/proximoTurno.png"));
         JButton passarVez = new JButton(pularVez);
-        passarVez.setBounds(151, 384, 219, 76);
+        passarVez.setBounds(17, 550, 354, 49);
         //passarVez.setBorderPainted(false);
         passarVez.setFocusPainted(false);
         passarVez.setContentAreaFilled(false);
@@ -225,35 +247,66 @@ public class PainelInterfaceJogador extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 setControle(true);
                 partida.proximoTurno();
+                pontosDeMovimento.setText("");
             }
         });
 
         //botão pegar fruta
-        ImageIcon pegaFruta = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/pegaFruta.png"));
+        ImageIcon pegaFruta = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/coletarFruta.png"));
         JButton pegarFruta = new JButton(pegaFruta);
-        pegarFruta.setBounds(17, 504, 127, 76);
-        pegarFruta.setBorderPainted(false);
+        pegarFruta.setBounds(17, 420, 353, 32);
+        //pegarFruta.setBorderPainted(false);
         pegarFruta.setFocusPainted(false);
         pegarFruta.setContentAreaFilled(false);
         this.add(pegarFruta);
-        pegarFruta.addActionListener(e -> {
-            // Ação a ser executada quando o botão for clicado
-        });
-
-        //botão encrenca
-        ImageIcon encrencar = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/encrencar.png"));
-        JButton encrenca = new JButton(encrencar);
-        encrenca.setBounds(151, 504, 219, 76);
-        encrenca.setBorderPainted(false);
-        encrenca.setFocusPainted(false);
-        encrenca.setContentAreaFilled(false);
-        this.add(encrenca);
-        encrenca.addActionListener(e -> {
-            // Ação a ser executada quando o botão for clicado
+        pegarFruta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (partida.getVez().getCelulaOcupada() instanceof Grama){
+                    Grama grama = (Grama) partida.getVez().getCelulaOcupada();
+                    if (grama.frutaOcupante != null) {
+                        if (partida.getVez().getPtsMovimento() != 0 && partida.getVez().getPtsMovimento() != null) {
+                            boolean coleta = partida.getVez().coletarFruta(grama.frutaOcupante);
+                            if (coleta == true) {
+                                grama.frutaOcupante = null;
+                                partida.getVez().setPtsMovimento(partida.getVez().getPtsMovimento() - 1);
+                                atualizarPontos(partida.getVez().getPtsMovimento());
+                                painelMapa.atualizarMapa();
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null,
+                                        "A mochila do jogador está cheia!", "Mochila cheia", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(null,
+                                    "Pontos de movimento insuficientes ou inválidos!", "Pontos Insuficientes", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,
+                                "Não há fruta nessa célula.", "Opção Inválida", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "Não há fruta nessa célula.", "Opção Inválida", JOptionPane.INFORMATION_MESSAGE);
+                }
+                partida.getVez().getCelulaOcupada();
+            }
         });
     }
 
     private void setControle(boolean valor) {
         controle = valor;
+    }
+
+    public void atualizarPontos(int pontos) {
+        setControle(false);
+        pontosDeMovimento.setText(Integer.toString(pontos));
+        pontosDeMovimento.setHorizontalTextPosition(JLabel.RIGHT);
+        pontosDeMovimento.setVerticalTextPosition(JLabel.CENTER);
+        pontosDeMovimento.setIconTextGap(-40);
+        pontosDeMovimento.setForeground(Color.white);
     }
 }

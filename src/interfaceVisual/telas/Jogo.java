@@ -17,13 +17,15 @@ public class Jogo extends Tela {
         super(frame);
 
         partida = new Partida(mapa);
-        painelMapa = new PainelMapa(mapa, 624, 624, partida);
+        painelMapa = new PainelMapa(mapa, 624, 624);
+        painelInterfaceJogador = new PainelInterfaceJogador(partida, painelMapa);
+        painelMapa.inicializarMapa(partida, painelInterfaceJogador);
 
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
         JButton botaoConfiguracoesJogo = new JButton(bgConfiguracoes);
-        botaoConfiguracoesJogo.setBounds(29, 32, 47, 49); // Define o tamanho e a posição do botão
-        botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
+        botaoConfiguracoesJogo.setBounds(945, 26, 53, 55); // Define o tamanho e a posição do botão
+        //botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
         botaoConfiguracoesJogo.setFocusPainted(false);    // Remove o foco visual do botão
         botaoConfiguracoesJogo.setContentAreaFilled(false); // Remove a área de conteúdo padrão do botão
         botaoConfiguracoesJogo.addActionListener(e -> {
@@ -85,8 +87,6 @@ public class Jogo extends Tela {
 
 // Adiciona o botão ao painel principal
         panel.add(botaoConfiguracoesJogo);
-
-        painelInterfaceJogador = new PainelInterfaceJogador(partida);
 
         panel.add(painelMapa);
         panel.add(painelInterfaceJogador);

@@ -112,6 +112,7 @@ public class Mapa {
         Coordenada c = mapaTools.gerarCoordenadaValidaJogador();
         jogador.setCoordenada(c);
         floresta[c.getI()][c.getJ()].setJogadorOcupante(jogador);
+        jogador.setCelulaOcupada(floresta[c.getI()][c.getJ()]);
     }
 
     /**
@@ -176,6 +177,7 @@ public class Mapa {
         Coordenada coordenada = jogador.getCoordenada();
         floresta[coordenada.getI()][coordenada.getJ()].setJogadorOcupante(null);
         jogador.setCoordenada(new Coordenada(i, j));
+        jogador.setCelulaOcupada(floresta[i][j]);
         floresta[i][j].setJogadorOcupante(jogador);
     }
 

@@ -25,7 +25,7 @@ public class Partida {
 
     public void proximoTurno() {
         turno++;
-        vez.setPtsMovimento(0);
+        vez.setPtsMovimento(null);
         if (vez == jogador1)
             vez = jogador2;
         else

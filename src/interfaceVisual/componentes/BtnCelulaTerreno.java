@@ -35,7 +35,8 @@ public class BtnCelulaTerreno extends JButton {
      *                       representada pelo botão.
      * @param pacoteTextura  O caminho para o pacote de texturas que contém a imagem a ser usada como ícone do botão.
      */
-    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, PainelMapa painel, int posicaoX, int posicaoY) {
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura,
+                            PainelMapa painel, int posicaoX, int posicaoY) {
         super();
 
         this.painelMapa = painel;
@@ -59,7 +60,8 @@ public class BtnCelulaTerreno extends JButton {
         setBorder(BorderFactory.createEmptyBorder());
     }
 
-    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, PainelMapa painel, int posicaoX, int posicaoY, Partida partida, int i, int j) {
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, PainelMapa painel,
+                            PainelInterfaceJogador painelInterface, int posicaoX, int posicaoY, Partida partida, int i, int j) {
         this(celulaTerreno, pacoteTextura, painel, posicaoX, posicaoY);
 
         this.partida = partida;
@@ -73,10 +75,11 @@ public class BtnCelulaTerreno extends JButton {
             public void mouseEntered(MouseEvent e) {
                 // Define uma borda preta fina quando o mouse está sobre o botão
                 setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-                if (celulaTerreno.getJogadorOcupante() != null && partida.getVez() == celulaTerreno.getJogadorOcupante()) {
+                if (celulaTerreno.getJogadorOcupante() != null && partida.getVez() == celulaTerreno.getJogadorOcupante()
+                && partida.getVez().getPtsMovimento() != null) {
                     GrafoJogador grafoJogador = new GrafoJogador(painelMapa.getMapa());
                     grafoJogador.preencherMatriz(painelMapa.getMapa(), celulaTerreno.getJogadorOcupante().getCoordenada());
-                    painel.mostrarPesos(grafoJogador.getMatrizCaminhos());
+                    painel.mostrarPesos(grafoJogador.getMatrizCaminhos(), partida.getVez().getPtsMovimento());
                 }
             }
 
@@ -95,9 +98,19 @@ public class BtnCelulaTerreno extends JButton {
                 GrafoJogador grafoJogador = new GrafoJogador(painelMapa.getMapa());
                 grafoJogador.preencherMatriz(painelMapa.getMapa(), partida.getVez().getCoordenada());
                 Integer[][] matrizCaminhos = grafoJogador.getMatrizCaminhos();
+                if (partida.getVez().getPtsMovimento() == null) {
+                    JOptionPane.showMessageDialog(null,
+                            "Jogue os dados para ganhar pontos de movimento.", "Jogue os dados", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
                 if (partida.getVez().getPtsMovimento() >= matrizCaminhos[tupla[0]][tupla[1]]) {
                         partida.moverJogador(tupla[0], tupla[1], matrizCaminhos[tupla[0]][tupla[1]]);
                         painel.atualizarMapa();
+                        painelInterface.atualizarPontos(partida.getVez().getPtsMovimento());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "Pontos de movimento insuficientes.", "Pontos Insuficientes", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
