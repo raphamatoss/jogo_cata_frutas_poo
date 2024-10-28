@@ -46,7 +46,7 @@ public class PainelInterfaceJogador extends JPanel {
         ImageIcon spritePlayer1 = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/spriteJogador1.png"));
         JLabel player1 = new JLabel(spritePlayer1);
         player1.setSize(130, 115);
-        player1.setBounds(32, 45, 130, 115);
+        player1.setBounds(21, 32, 152, 140);
         this.add(player);
         this.add(player1);
         this.setComponentZOrder(player1, 0); // Coloca o player1 no topo
@@ -64,33 +64,55 @@ public class PainelInterfaceJogador extends JPanel {
         turno.setIconTextGap(10);
         this.add(turno);
 
-        // label quantidade de frutas ouro
-        JLabel quantMaracuja = new JLabel();
-        quantMaracuja.setBounds(200, 90, 80, 40);
+        // label efeito forca(abacate)
+        ImageIcon forca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoForcaCinza.png"));
+        JLabel quantMaracuja = new JLabel(forca);
+        quantMaracuja.setBounds(325, 90, 48, 41);
         quantMaracuja.setOpaque(true);
         quantMaracuja.setBackground(Color.decode("#ffe414"));
         this.add(quantMaracuja);
 
-        // label efeito antídoto(laranja)
-        JLabel efeitoAntidoto = new JLabel();
-        efeitoAntidoto.setBounds(200, 137, 80, 40);
-        efeitoAntidoto.setOpaque(true);
-        efeitoAntidoto.setBackground(Color.decode("#ff2727"));
-        this.add(efeitoAntidoto);
-
         // label efeito agilidade(coco)
-        JLabel efeitoAgilidade = new JLabel();
-        efeitoAgilidade.setBounds(290, 90, 80, 40);
+        ImageIcon agilidade = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoAgilidadeCinza.png"));
+        JLabel efeitoAgilidade = new JLabel(agilidade);
+        efeitoAgilidade.setBounds(263, 90, 48, 41);
         efeitoAgilidade.setOpaque(true);
         efeitoAgilidade.setBackground(Color.decode("#2912f4"));
         this.add(efeitoAgilidade);
 
         // label efeito bichada
-        JLabel efeitoBichada = new JLabel();
-        efeitoBichada.setBounds(290, 137, 80, 40);
+        ImageIcon bichada = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoEnvenenamentoCinza.png"));
+        JLabel efeitoBichada = new JLabel(bichada);
+        efeitoBichada.setBounds(200, 90, 48, 41);
         efeitoBichada.setOpaque(true);
         efeitoBichada.setBackground(Color.decode("#bc0aa4"));
         this.add(efeitoBichada);
+
+        // label numero frutas ouro
+        ImageIcon frutasOuro = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/numeroFrutasOuro.png"));
+        JLabel numeroFrutasOuro = new JLabel(frutasOuro);
+        numeroFrutasOuro.setBounds(200, 138, 84, 40);
+        numeroFrutasOuro.setOpaque(true);
+        numeroFrutasOuro.setText(Integer.toString(partida.getVez().getMochila().getQuantidadeFrutasOuro()) + "/" +
+                Integer.toString(partida.getMapa().getQuantidadeFrutasOuro()));
+        numeroFrutasOuro.setForeground(Color.white);
+        numeroFrutasOuro.setHorizontalTextPosition(JLabel.CENTER);
+        numeroFrutasOuro.setVerticalTextPosition(JLabel.CENTER);
+        //numeroFrutasOuro.setBackground(Color.decode("#bc0aa4"));
+        this.add(numeroFrutasOuro);
+
+        // label capacidadeMochila
+        ImageIcon capacidadeMochila = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/capacidadeMochila.png"));
+        JLabel numeroCapacidadeMochila = new JLabel(capacidadeMochila);
+        numeroCapacidadeMochila.setBounds(288, 138, 84, 40);
+        numeroCapacidadeMochila.setOpaque(true);
+        numeroCapacidadeMochila.setText(Integer.toString(partida.getVez().getMochila().size()) + "/" +
+                Integer.toString(partida.getVez().getMochila().getTamanhoMochila()));
+        numeroCapacidadeMochila.setForeground(Color.white);
+        numeroCapacidadeMochila.setHorizontalTextPosition(JLabel.CENTER);
+        numeroCapacidadeMochila.setVerticalTextPosition(JLabel.CENTER);
+        //numeroCapacidadeMochila.setBackground(Color.decode("#bc0aa4"));
+        this.add(numeroCapacidadeMochila);
 
         // label jogador 1
         ImageIcon jogador1 = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/jogador1.png"));
@@ -99,12 +121,13 @@ public class PainelInterfaceJogador extends JPanel {
         jogador.setOpaque(true);
         this.add(jogador);
 
-        // label efeito força(abacate)
-        ImageIcon forca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/força.png"));
-        JLabel efeitoForca = new JLabel(forca);
-        efeitoForca.setBounds(204, 197, 164, 31);
-        efeitoForca.setOpaque(true);
-        this.add(efeitoForca);
+        // label valor força
+        ImageIcon vForca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/força.png"));
+        JLabel valorForca = new JLabel(vForca);
+        valorForca.setBounds(204, 197, 164, 31);
+        valorForca.setOpaque(true);
+        this.add(valorForca);
+
 
         // botão consumir abacate
         ImageIcon consomeAbacate = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/consomeAbacate.png"));
@@ -247,6 +270,8 @@ public class PainelInterfaceJogador extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 setControle(true);
                 partida.proximoTurno();
+                ImageIcon spritePlayer = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/spriteJogador" + partida.getVez().getNome().charAt(1) + ".png"));
+                player1.setIcon(spritePlayer);
                 pontosDeMovimento.setText("");
             }
         });
@@ -265,6 +290,11 @@ public class PainelInterfaceJogador extends JPanel {
                 if (partida.getVez().getCelulaOcupada() instanceof Grama){
                     Grama grama = (Grama) partida.getVez().getCelulaOcupada();
                     if (grama.frutaOcupante != null) {
+                        if (partida.getVez().getPtsMovimento() == null) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Pontos de movimento inválidos! Jogue os dados.", "Jogue os dados", JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
                         if (partida.getVez().getPtsMovimento() != 0 && partida.getVez().getPtsMovimento() != null) {
                             boolean coleta = partida.getVez().coletarFruta(grama.frutaOcupante);
                             if (coleta == true) {
@@ -308,5 +338,9 @@ public class PainelInterfaceJogador extends JPanel {
         pontosDeMovimento.setVerticalTextPosition(JLabel.CENTER);
         pontosDeMovimento.setIconTextGap(-40);
         pontosDeMovimento.setForeground(Color.white);
+    }
+
+    public void trocarJogador() {
+        
     }
 }

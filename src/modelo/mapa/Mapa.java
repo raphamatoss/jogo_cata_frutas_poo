@@ -2,6 +2,7 @@ package modelo.mapa;
 
 import modelo.MovimentoJogador.RelacaoPeso;
 import modelo.entidades.*;
+import modelo.frutas.Maracuja;
 import modelo.tipos.*;
 import modelo.utils.*;
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ public class Mapa {
     private final ArrayList<Arvore> arvoresFloresta = new ArrayList<>();
     private final ArrayList<Jogador> jogadores = new ArrayList<>();
     public MapaTools mapaTools;
+    public int quantidadeFrutasOuro;
 
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
+        quantidadeFrutasOuro = configuracaoDoMapa.getFrutasOuroTotais();
         floresta = new CelulaTerreno[dimensao][dimensao];
         this.mapaTools = new MapaTools(floresta, dimensao);
         for (int i = 0; i < numeroJogadores; i++)
@@ -224,5 +227,9 @@ public class Mapa {
     public void posicinarFruta(Fruta fruta){
         Coordenada c = mapaTools.gerarCoordenadaValidaFruta();
         ((Grama) mapaTools.celulaEm(c)).frutaOcupante = fruta;
+    }
+
+    public int getQuantidadeFrutasOuro() {
+        return quantidadeFrutasOuro;
     }
 }
