@@ -1,6 +1,7 @@
 package interfaceVisual.componentes;
 
 import modelo.MovimentoJogador.GrafoJogador;
+import modelo.Partida;
 import modelo.entidades.CelulaTerreno;
 import modelo.entidades.Grama;
 import modelo.utils.Imagem;
@@ -20,8 +21,11 @@ public class BtnCelulaTerreno extends JButton {
     private PainelMapa painelMapa;
     private final int posicaoX;
     private final int posicaoY;
-    private final CelulaTerreno celulaTerreno;
+    private  CelulaTerreno celulaTerreno;
     private ImageIcon celulaIcon;
+    private Partida partida;
+    private int[] tupla;
+    private String pacoteTextura;
 
     /**
      * Construtor que cria um botão personalizado para representar uma célula de terreno no mapa.
@@ -44,6 +48,8 @@ public class BtnCelulaTerreno extends JButton {
 
         // Define o ícone do botão com base na célula do terreno e no pacote de texturas fornecido
         this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
+        this.pacoteTextura = pacoteTextura;
+
         setIcon(celulaIcon);
 
         // Remove margens do botão para ajustar ao tamanho da célula
@@ -51,6 +57,15 @@ public class BtnCelulaTerreno extends JButton {
 
         // Remove a borda padrão do botão
         setBorder(BorderFactory.createEmptyBorder());
+    }
+
+    public BtnCelulaTerreno(CelulaTerreno celulaTerreno, String pacoteTextura, PainelMapa painel, int posicaoX, int posicaoY, Partida partida, int i, int j) {
+        this(celulaTerreno, pacoteTextura, painel, posicaoX, posicaoY);
+
+        this.partida = partida;
+        this.tupla = new int[2];
+        tupla[0] = i;
+        tupla[1] = j;
 
         // Adiciona um listener para mudar a borda quando o mouse interage com o botão
         addMouseListener(new MouseAdapter() {
@@ -58,7 +73,7 @@ public class BtnCelulaTerreno extends JButton {
             public void mouseEntered(MouseEvent e) {
                 // Define uma borda preta fina quando o mouse está sobre o botão
                 setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-                if (celulaTerreno.getJogadorOcupante() != null) {
+                if (celulaTerreno.getJogadorOcupante() != null && partida.getVez() == celulaTerreno.getJogadorOcupante()) {
                     GrafoJogador grafoJogador = new GrafoJogador(painelMapa.getMapa());
                     grafoJogador.preencherMatriz(painelMapa.getMapa(), celulaTerreno.getJogadorOcupante().getCoordenada());
                     painel.mostrarPesos(grafoJogador.getMatrizCaminhos());
@@ -77,8 +92,21 @@ public class BtnCelulaTerreno extends JButton {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                GrafoJogador grafoJogador = new GrafoJogador(painelMapa.getMapa());
+                grafoJogador.preencherMatriz(painelMapa.getMapa(), partida.getVez().getCoordenada());
+                Integer[][] matrizCaminhos = grafoJogador.getMatrizCaminhos();
+                if (partida.getVez().getPtsMovimento() >= matrizCaminhos[tupla[0]][tupla[1]]) {
+                        partida.moverJogador(tupla[0], tupla[1], matrizCaminhos[tupla[0]][tupla[1]]);
+                        painel.atualizarMapa();
+                }
             }
         });
+    }
+
+    public void atualizar(CelulaTerreno celulaTerreno) {
+        this.celulaTerreno = celulaTerreno;
+        this.celulaIcon = celulaTerreno.toImageIcon(pacoteTextura);
+        setIcon(celulaIcon);
     }
 
     public void atualizarPeso(int peso) {

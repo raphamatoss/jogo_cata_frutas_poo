@@ -2,6 +2,7 @@ package interfaceVisual.telas;
 
 import interfaceVisual.componentes.PainelInterfaceJogador;
 import interfaceVisual.componentes.PainelMapa;
+import modelo.Partida;
 import modelo.mapa.Mapa;
 
 import javax.swing.*;
@@ -10,11 +11,13 @@ import java.awt.*;
 public class Jogo extends Tela {
     PainelMapa painelMapa;
     PainelInterfaceJogador painelInterfaceJogador;
+    private Partida partida;
 
     public Jogo(Frame frame, Mapa mapa) {
         super(frame);
 
-        painelMapa = new PainelMapa(mapa, 624, 624);
+        partida = new Partida(mapa);
+        painelMapa = new PainelMapa(mapa, 624, 624, partida);
 
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
@@ -32,9 +35,9 @@ public class Jogo extends Tela {
             configuracoesDialog.getContentPane().setBackground(Color.decode("#d05000")); // Cor de fundo da janela
 
             // Botão "Voltar para Configurar Terreno"
-            ImageIcon bgVoltar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/voltarJogo.png"));
+            ImageIcon bgVoltar = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/sair.png"));
             JButton botaoVoltar = new JButton(bgVoltar);
-            botaoVoltar.setBounds(53, 45, 70, 70);
+            botaoVoltar.setBounds(40, 45, 125, 70);
             botaoVoltar.setBorderPainted(false);
             botaoVoltar.setFocusPainted(false);
             botaoVoltar.setContentAreaFilled(false);
@@ -50,10 +53,10 @@ public class Jogo extends Tela {
             if (frame.getReprodutorDeSom().getIsAtivo()) {
                 bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png"));
             } else {
-                bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/soundOff.png"));
+                bgSom = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogoOff.png"));
             }
             JButton botaoAtivarSom = new JButton(bgSom);
-            botaoAtivarSom.setBounds(153, 45, 70, 70);
+            botaoAtivarSom.setBounds(170, 45, 70, 70);
             botaoAtivarSom.setBorderPainted(false);
             botaoAtivarSom.setFocusPainted(false);
             botaoAtivarSom.setContentAreaFilled(false);
@@ -83,7 +86,7 @@ public class Jogo extends Tela {
 // Adiciona o botão ao painel principal
         panel.add(botaoConfiguracoesJogo);
 
-        painelInterfaceJogador = new PainelInterfaceJogador();
+        painelInterfaceJogador = new PainelInterfaceJogador(partida);
 
         panel.add(painelMapa);
         panel.add(painelInterfaceJogador);
