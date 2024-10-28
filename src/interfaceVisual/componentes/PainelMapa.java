@@ -1,5 +1,6 @@
 package interfaceVisual.componentes;
 
+import modelo.Partida;
 import modelo.entidades.CelulaTerreno;
 import modelo.mapa.Mapa;
 import modelo.utils.GeradorFlores;
@@ -40,6 +41,21 @@ public class PainelMapa extends JPanel {
         this.pacoteTextura = Randomizador.sortearPacoteTextura();
 
         this.inicializarMapa();
+    }
+
+    public PainelMapa(Mapa mapa, int largura, int altura, Partida partida) {
+        this.mapa = mapa;
+
+        // Define o layout absoluto (null layout)
+        setLayout(null);
+
+        // Define o tamanho e posição do painel
+        setBounds(0, 0, largura, altura);
+
+        // Sorteia um pacote de textura para ser usado no mapa
+        this.pacoteTextura = Randomizador.sortearPacoteTextura();
+
+        this.inicializarMapa(partida);
     }
 
     /**
@@ -115,8 +131,60 @@ public class PainelMapa extends JPanel {
         this.repaint();
     }
 
-    public static void atualizarMapa() {
+    private void inicializarMapa(Partida partida) {
+        int dimensao = this.mapa.getDimensao();
 
+        CelulaTerreno[][] floresta = this.mapa.getFloresta();
+
+        GeradorFlores geradorFlores = new GeradorFlores(dimensao);
+
+        // Obtém a matriz de células do mapa
+        matrizBotoes = new BtnCelulaTerreno[dimensao][dimensao];
+
+        // Calcula as dimensões totais do grid
+        int larguraGrid = dimensao * 50;
+        int alturaGrid = dimensao * 50;
+
+        // Calcula a posição inicial para centralizar o grid dentro do painel
+        int startX = (this.getWidth() - larguraGrid) / 2;
+        int startY = (this.getHeight() - alturaGrid) / 2;
+
+        // Remove os componentes antigos, caso o mapa esteja sendo atualizado
+        this.removeAll();
+
+        // Cria e posiciona os botões que representam as células do terreno
+        for (int i = 0; i < dimensao; i++) {
+            for (int j = 0; j < dimensao; j++) {
+                // Calcula a posição do botão no grid
+                int posicaoX = startX + j * 50;
+                int posicaoY = startY + i * 50;
+
+                // Cria o botão para a célula de terreno e define o pacote de texturas
+                BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(
+                        floresta[i][j], this.pacoteTextura, this, posicaoX, posicaoY, partida, i, j
+                );
+
+                // TODO: Refatorar toda essa parte de imagens
+                // geradorFlores.posicionarFloresBloco(btnCelulaTerreno, i, j);
+
+                matrizBotoes[i][j] = btnCelulaTerreno;
+
+                // Adiciona o botão ao painel
+                this.add(btnCelulaTerreno);
+            }
+        }
+
+        // Atualiza o layout e repinta o painel após adicionar os componentes
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void atualizarMapa() {
+        for (int i = 0; i < mapa.getDimensao(); i++) {
+            for (int j = 0; j < mapa.getDimensao(); j++) {
+                matrizBotoes[i][j].atualizar(mapa.getFloresta()[i][j]);
+            }
+        }
     }
 
     /** Mostra no mapa o esquema de cores da distância de um jogador em um determinado

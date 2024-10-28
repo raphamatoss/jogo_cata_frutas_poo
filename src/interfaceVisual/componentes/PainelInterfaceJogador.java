@@ -1,5 +1,7 @@
 package interfaceVisual.componentes;
 
+import modelo.Partida;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,13 +13,16 @@ import java.awt.event.ActionListener;
  * Atualmente, o painel é configurado de forma temporária com um fundo azul e um layout absoluto.
  */
 public class PainelInterfaceJogador extends JPanel {
-
+    private Partida partida;
+    private boolean controle;
     /**
      * Construtor padrão que inicializa o painel com configurações temporárias.
      * O painel tem fundo azul e está posicionado à direita do mapa com um layout absoluto.
      * No futuro, essa área será usada para o menu do jogador.
      */
-    public PainelInterfaceJogador() {
+    public PainelInterfaceJogador(Partida partida) {
+        this.partida = partida;
+
         // Define o layout absoluto (null layout)
         setLayout(null);
 
@@ -187,28 +192,40 @@ public class PainelInterfaceJogador extends JPanel {
             // Ação a ser executada quando o botão for clicado
         });
 
+        controle = true;
+
         // botão jogarDados
         ImageIcon dados = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/dados.png"));
         JButton jogarDados = new JButton(dados);
         jogarDados.setBounds(17, 384, 127, 76);
-        jogarDados.setBorderPainted(false);
+        //jogarDados.setBorderPainted(false);
         jogarDados.setFocusPainted(false);
         jogarDados.setContentAreaFilled(false);
         this.add(jogarDados);
-        jogarDados.addActionListener(e -> {
-            // Ação a ser executada quando o botão for clicado
+        jogarDados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (controle == true) {
+                    partida.jogarDados();
+                    setControle(false);
+                }
+            }
         });
 
         //botão passar a vez
         ImageIcon pularVez = new ImageIcon(getClass().getResource("/interfaceVisual/imagens/menuJogador/pularVez.png"));
         JButton passarVez = new JButton(pularVez);
         passarVez.setBounds(151, 384, 219, 76);
-        passarVez.setBorderPainted(false);
+        //passarVez.setBorderPainted(false);
         passarVez.setFocusPainted(false);
         passarVez.setContentAreaFilled(false);
         this.add(passarVez);
-        passarVez.addActionListener(e -> {
-            // Ação a ser executada quando o botão for clicado
+        passarVez.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setControle(true);
+                partida.proximoTurno();
+            }
         });
 
         //botão pegar fruta
@@ -234,5 +251,9 @@ public class PainelInterfaceJogador extends JPanel {
         encrenca.addActionListener(e -> {
             // Ação a ser executada quando o botão for clicado
         });
+    }
+
+    private void setControle(boolean valor) {
+        controle = valor;
     }
 }

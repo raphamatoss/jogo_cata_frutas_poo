@@ -170,6 +170,13 @@ public class Mapa {
 
     }
 
+    public void moverJogador(Jogador jogador, int i, int j) {
+        Coordenada coordenada = jogador.getCoordenada();
+        floresta[coordenada.getI()][coordenada.getJ()].setJogadorOcupante(null);
+        jogador.setCoordenada(new Coordenada(i, j));
+        floresta[i][j].setJogadorOcupante(jogador);
+    }
+
     /**
      * vizualiza o terreno atual no terminal.
      */
