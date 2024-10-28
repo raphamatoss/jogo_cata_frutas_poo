@@ -6,6 +6,9 @@ package modelo.entidades;
 import modelo.tipos.Coordenada;
 import modelo.utils.Efeitos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe que lida com o jogador.
  */
@@ -17,6 +20,7 @@ public class Jogador extends ElementoDinamico {
     private int forca = 0;
     private Efeitos efeito = Efeitos.NEUTRO;
     private CelulaTerreno celulaOcupada;
+    private ArrayList<Efeitos> efeitos = new ArrayList<>(List.of(Efeitos.NEUTRO));
 
     public Jogador(String nome, Coordenada coordenada, int tamanhoMochila) {
         super(coordenada);
@@ -68,28 +72,7 @@ public class Jogador extends ElementoDinamico {
         return "J" + this.nome;
     }
 
-    public void atualizar(){
-        this.calcularForca();
-        this.atualizarEfeito();
-    }
 
-    public void atualizarFimTurno(){
-
-    }
-
-    public void atualizarEfeito(){
-        switch (this.efeito){
-            case VELOCIDADE -> {
-
-            }
-            case FORCA -> {
-
-            }
-            case ENVENENAMENTO -> {
-
-            }
-        }
-    }
 
     public void calcularForca(){
         this.forca = mochila.size();

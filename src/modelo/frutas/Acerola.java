@@ -7,9 +7,5 @@ public class Acerola extends Fruta {
         super(bichada, "ac");
     }
 
-    @Override
-    public void causarEfeito() {
-
-    }
 
 }
