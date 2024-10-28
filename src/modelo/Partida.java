@@ -54,4 +54,7 @@ public class Partida {
     public int getTurno() {
         return turno;
     }
+    public Mapa getMapa() {
+        return mapa;
+    }
 }

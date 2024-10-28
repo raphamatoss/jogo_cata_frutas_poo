@@ -25,7 +25,7 @@ public class Jogador extends ElementoDinamico {
     public Jogador(String nome, Coordenada coordenada, int tamanhoMochila) {
         super(coordenada);
         this.nome = nome;
-        this.mochila = new Mochila(tamanhoMochila);
+        this.mochila = new Mochila(tamanhoMochila, 0);
     }
 
 

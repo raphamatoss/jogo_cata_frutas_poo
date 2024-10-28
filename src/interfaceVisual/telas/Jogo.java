@@ -21,6 +21,10 @@ public class Jogo extends Tela {
         painelInterfaceJogador = new PainelInterfaceJogador(partida, painelMapa);
         painelMapa.inicializarMapa(partida, painelInterfaceJogador);
 
+        // TODO: melhorar a msg de tutorial
+        JOptionPane.showMessageDialog(null,
+                "Para movimentar seu jogador é necessário jogar os dados.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
+
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
         JButton botaoConfiguracoesJogo = new JButton(bgConfiguracoes);
