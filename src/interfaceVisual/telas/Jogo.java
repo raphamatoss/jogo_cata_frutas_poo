@@ -17,7 +17,9 @@ public class Jogo extends Tela {
         super(frame);
 
         partida = new Partida(mapa);
-        painelMapa = new PainelMapa(mapa, 624, 624, partida);
+        painelMapa = new PainelMapa(mapa, 624, 624);
+        painelInterfaceJogador = new PainelInterfaceJogador(partida, painelMapa);
+        painelMapa.inicializarMapa(partida, painelInterfaceJogador);
 
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
@@ -85,8 +87,6 @@ public class Jogo extends Tela {
 
 // Adiciona o botão ao painel principal
         panel.add(botaoConfiguracoesJogo);
-
-        painelInterfaceJogador = new PainelInterfaceJogador(partida);
 
         panel.add(painelMapa);
         panel.add(painelInterfaceJogador);

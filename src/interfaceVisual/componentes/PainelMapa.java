@@ -43,20 +43,18 @@ public class PainelMapa extends JPanel {
         this.inicializarMapa();
     }
 
-    public PainelMapa(Mapa mapa, int largura, int altura, Partida partida) {
-        this.mapa = mapa;
-
-        // Define o layout absoluto (null layout)
-        setLayout(null);
-
-        // Define o tamanho e posição do painel
-        setBounds(0, 0, largura, altura);
-
-        // Sorteia um pacote de textura para ser usado no mapa
-        this.pacoteTextura = Randomizador.sortearPacoteTextura();
-
-        this.inicializarMapa(partida);
-    }
+//    public PainelMapa(Mapa mapa, int largura, int altura, Partida partida) {
+//        this.mapa = mapa;
+//
+//        // Define o layout absoluto (null layout)
+//        setLayout(null);
+//
+//        // Define o tamanho e posição do painel
+//        setBounds(0, 0, largura, altura);
+//
+//        // Sorteia um pacote de textura para ser usado no mapa
+//        this.pacoteTextura = Randomizador.sortearPacoteTextura();
+//    }
 
     /**
      * Construtor que não recebe largura e altura do painel, e utiliza o tamanho do mapa (m) multiplicado por 50 como tamanho.
@@ -131,7 +129,7 @@ public class PainelMapa extends JPanel {
         this.repaint();
     }
 
-    private void inicializarMapa(Partida partida) {
+    public void inicializarMapa(Partida partida, PainelInterfaceJogador painelInterface) {
         int dimensao = this.mapa.getDimensao();
 
         CelulaTerreno[][] floresta = this.mapa.getFloresta();
@@ -161,7 +159,7 @@ public class PainelMapa extends JPanel {
 
                 // Cria o botão para a célula de terreno e define o pacote de texturas
                 BtnCelulaTerreno btnCelulaTerreno = new BtnCelulaTerreno(
-                        floresta[i][j], this.pacoteTextura, this, posicaoX, posicaoY, partida, i, j
+                        floresta[i][j], this.pacoteTextura, this, painelInterface, posicaoX, posicaoY, partida, i, j
                 );
 
                 // TODO: Refatorar toda essa parte de imagens
@@ -191,10 +189,11 @@ public class PainelMapa extends JPanel {
      * quadrado do mapa a todos os outros alcançaveis.
      * @param matrizCaminhos matriz com a quantidade de pontos de movimento necessários para o jogador se mover
      */
-    public void mostrarPesos(Integer[][] matrizCaminhos) {
+    public void mostrarPesos(Integer[][] matrizCaminhos, int pontos) {
         for (int i = 0; i < matrizCaminhos.length; i++) {
             for (int j = 0; j < matrizCaminhos.length; j++) {
-                matrizBotoes[i][j].atualizarPeso(matrizCaminhos[i][j]);
+                if (matrizCaminhos[i][j] <= pontos)
+                    matrizBotoes[i][j].atualizarPeso(matrizCaminhos[i][j]);
             }
         }
     }
