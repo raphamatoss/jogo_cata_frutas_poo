@@ -55,12 +55,13 @@ public class PainelInterfaceJogador extends JPanel {
         // label turno
         ImageIcon turnoPlayer = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/turno.png"));
         JLabel turno = new JLabel(turnoPlayer);
-        turno.setBounds(204, 28, 167, 52);
+        turno.setBounds(202, 28, 111, 53);
         turno.setOpaque(true);
         turno.setText(Integer.toString(partida.getTurno()));
         turno.setForeground(Color.white);
         turno.setHorizontalTextPosition(JLabel.CENTER);
         turno.setVerticalTextPosition(JLabel.CENTER);
+        turno.setIconTextGap(10);
         this.add(turno);
 
         // label quantidade de frutas ouro
@@ -264,14 +265,22 @@ public class PainelInterfaceJogador extends JPanel {
                 if (partida.getVez().getCelulaOcupada() instanceof Grama){
                     Grama grama = (Grama) partida.getVez().getCelulaOcupada();
                     if (grama.frutaOcupante != null) {
-                        boolean coleta = partida.getVez().coletarFruta(grama.frutaOcupante);
-                        if (coleta == true) {
-                            grama.frutaOcupante = null;
-                            painelMapa.atualizarMapa();
+                        if (partida.getVez().getPtsMovimento() != 0 && partida.getVez().getPtsMovimento() != null) {
+                            boolean coleta = partida.getVez().coletarFruta(grama.frutaOcupante);
+                            if (coleta == true) {
+                                grama.frutaOcupante = null;
+                                partida.getVez().setPtsMovimento(partida.getVez().getPtsMovimento() - 1);
+                                atualizarPontos(partida.getVez().getPtsMovimento());
+                                painelMapa.atualizarMapa();
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null,
+                                        "A mochila do jogador está cheia!", "Mochila cheia", JOptionPane.INFORMATION_MESSAGE);
+                            }
                         }
                         else {
                             JOptionPane.showMessageDialog(null,
-                                    "A mochila do jogador está cheia!", "Mochila cheia", JOptionPane.INFORMATION_MESSAGE);
+                                    "Pontos de movimento insuficientes ou inválidos!", "Pontos Insuficientes", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
                     else {
