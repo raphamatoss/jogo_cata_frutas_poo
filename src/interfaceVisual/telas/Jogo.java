@@ -24,8 +24,8 @@ public class Jogo extends Tela {
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
         JButton botaoConfiguracoesJogo = new JButton(bgConfiguracoes);
-        botaoConfiguracoesJogo.setBounds(29, 32, 47, 49); // Define o tamanho e a posição do botão
-        botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
+        botaoConfiguracoesJogo.setBounds(945, 26, 53, 55); // Define o tamanho e a posição do botão
+        //botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
         botaoConfiguracoesJogo.setFocusPainted(false);    // Remove o foco visual do botão
         botaoConfiguracoesJogo.setContentAreaFilled(false); // Remove a área de conteúdo padrão do botão
         botaoConfiguracoesJogo.addActionListener(e -> {
