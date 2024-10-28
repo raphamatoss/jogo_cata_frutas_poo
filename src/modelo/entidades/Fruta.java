@@ -1,6 +1,9 @@
 package modelo.entidades;
 
-import javax.xml.namespace.QName;
+import modelo.utils.Efeitos;
+
+import java.util.ArrayList;
+
 /**
  * Essa classe implementa o comportamento abstrato das frutas do jogo.
  */
@@ -35,7 +38,12 @@ public abstract class Fruta {
     // ------------------------------------------------
 
 
-    public abstract void causarEfeito(); // TODO: Precisamos criar a lógica do causarEfeito()
+    public ArrayList<Efeitos> causarEfeito(){
+        ArrayList<Efeitos> efeitos = new ArrayList<>();
+        if (this.bichada) efeitos.add(Efeitos.ENVENENAMENTO);
+        efeitos.add(Efeitos.NEUTRO);
+        return efeitos;
+    }
 
     @Override
     public String toString(){
