@@ -22,7 +22,7 @@ public class Jogo extends Tela {
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
         JButton botaoConfiguracoesJogo = new JButton(bgConfiguracoes);
-        botaoConfiguracoesJogo.setBounds(29, 32, 47, 49); // Define o tamanho e a posição do botão
+        botaoConfiguracoesJogo.setBounds(945, 28, 53, 53); // Define o tamanho e a posição do botão
         botaoConfiguracoesJogo.setBorderPainted(false);   // Remove a borda
         botaoConfiguracoesJogo.setFocusPainted(false);    // Remove o foco visual do botão
         botaoConfiguracoesJogo.setContentAreaFilled(false); // Remove a área de conteúdo padrão do botão
@@ -66,11 +66,12 @@ public class Jogo extends Tela {
                 if (frame.getReprodutorDeSom().getIsAtivo()) {
                     frame.getReprodutorDeSom().pausarMusica();
                     frame.getReprodutorDeSom().setIsAtivo(false);
+                    botaoAtivarSom.setIcon(new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogoOff.png")));
                 } else {
                     frame.getReprodutorDeSom().reproduzirMusica();
                     frame.getReprodutorDeSom().setIsAtivo(true);
+                    botaoAtivarSom.setIcon(new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png")));
                 }
-                configuracoesDialog.dispose(); // Fecha o diálogo
             });
             // Adiciona os botões ao diálogo
             configuracoesDialog.add(botaoAtivarSom);

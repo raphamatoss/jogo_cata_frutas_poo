@@ -50,7 +50,7 @@ public class PainelInterfaceJogador extends JPanel {
         // label turno
         ImageIcon turnoPlayer = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/turno.png"));
         JLabel turno = new JLabel(turnoPlayer);
-        turno.setBounds(204, 28, 167, 52);
+        turno.setBounds(204, 28, 111, 53);
         turno.setOpaque(true);
         this.add(turno);
 
