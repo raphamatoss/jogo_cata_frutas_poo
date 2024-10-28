@@ -1,6 +1,7 @@
 package modelo.entidades;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 // TODO: Provavelmente vamos precisar rever essa classe aqui
 public class Mochila<T> extends ArrayList<T> {
@@ -25,5 +26,14 @@ public class Mochila<T> extends ArrayList<T> {
             return (Fruta) this.remove(index);
         }
         return null;
+    }
+
+    public ArrayList<Fruta> removeNFrutas(int quantidadeFrutas){
+        ArrayList<Fruta> frutasRemovidas = new ArrayList<>();
+        Random r = new Random();
+        for(int n = 0; n < quantidadeFrutas && !this.isEmpty();n++){
+            frutasRemovidas.add((Fruta) this.remove(r.nextInt(this.size())));
+        }
+        return frutasRemovidas;
     }
 }

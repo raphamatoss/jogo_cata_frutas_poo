@@ -41,6 +41,7 @@ public class Jogador extends ElementoDinamico {
     public void setPtsMovimento(int pontos) {
         this.ptsMovimento = pontos;
     }
+    public Mochila getMochila(){return this.mochila;}
     // ---------------------------------------------------
 
     public boolean ColetarFruta(Fruta fruta){

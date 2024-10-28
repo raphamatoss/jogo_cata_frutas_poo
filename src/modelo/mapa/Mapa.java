@@ -1,10 +1,12 @@
 package modelo.mapa;
 
+import modelo.MovimentoJogador.RelacaoPeso;
 import modelo.entidades.*;
 import modelo.tipos.*;
 import modelo.utils.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * Essa classe configura e contém a floresta na qual o jogo ocorre.
@@ -190,5 +192,35 @@ public class Mapa {
     @Override
     public String toString(){
         return mapaTools.FlorestaToString();
+    }
+
+
+
+    public ArrayList<CelulaTerreno> getGramasLivres(CelulaTerreno[][] floresta){
+        ArrayList<CelulaTerreno> celulasLivres = new ArrayList<>();
+        for (CelulaTerreno[] linha : floresta){
+            for (CelulaTerreno celula : linha){
+                if (celula instanceof Grama){
+                    if(((Grama) celula).frutaOcupante == null) celulasLivres.add(celula);
+                }
+            }
+        }
+        return celulasLivres;
+    }
+
+    public void encrenca(Coordenada c, Jogador jogadorAtacante, Jogador jogadorDefensor){
+
+        ArrayList<CelulaTerreno> gramasLivres = getGramasLivres(this.floresta);
+        if (gramasLivres == null) return;
+        ArrayList<Fruta> frutasDerrubadas = JogadorUtils.frutasDerrubadas(jogadorAtacante, jogadorDefensor, gramasLivres.size());
+        if (frutasDerrubadas == null) return;
+        for (Fruta fruta : frutasDerrubadas){
+            posicinarFruta(fruta);
+        }
+    }
+
+    public void posicinarFruta(Fruta fruta){
+        Coordenada c = mapaTools.gerarCoordenadaValidaFruta();
+        ((Grama) mapaTools.celulaEm(c)).frutaOcupante = fruta;
     }
 }
