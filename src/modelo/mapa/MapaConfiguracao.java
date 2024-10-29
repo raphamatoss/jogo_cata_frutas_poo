@@ -38,6 +38,7 @@ public class MapaConfiguracao {
      */
     protected int tamanhoMochila;
     private int frutasOuroTotais;
+    public int frutasOuroChão;
 
     public MapaConfiguracao() {}
 
@@ -47,6 +48,7 @@ public class MapaConfiguracao {
         this.probabilidadeBichadas = verificador.getChanceBichada();
         this.tamanhoMochila = verificador.getTamanhoMochila();
         frutasOuroTotais = verificador.getFrutasOuroTotais();
+        frutasOuroChão = verificador.getFrutasOuroChao();
 
         String[] FrutasValidas = {"maracuja", "laranja", "abacate", "coco", "acerola", "amora", "goiaba" };
 
@@ -74,6 +76,7 @@ public class MapaConfiguracao {
         this.tamanhoMochila = tamanhoMochila;
     }
 
+    public int getProbabilidadeBichadas(){return this.probabilidadeBichadas;}
     public int getFrutasOuroTotais() {
         return frutasOuroTotais;
     }

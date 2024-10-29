@@ -1,8 +1,11 @@
 package modelo;
 
+import modelo.entidades.Fruta;
 import modelo.entidades.Jogador;
+import modelo.frutas.Maracuja;
 import modelo.mapa.Mapa;
 import modelo.tipos.Coordenada;
+import modelo.utils.FrutaTools;
 
 import java.util.Random;
 
@@ -13,6 +16,7 @@ public class Partida {
     private Jogador jogador2;
     private Jogador vez;
     private Random random;
+    private int numeroOuroAsurgir;
 
     public Partida(Mapa mapa) {
         random = new Random(System.currentTimeMillis());
@@ -21,6 +25,7 @@ public class Partida {
         jogador1 = mapa.getJogador(0);
         jogador2 = mapa.getJogador(1);
         vez = jogador1;
+        numeroOuroAsurgir = this.mapa.quantidadeFrutasOuro - this.mapa.configuracao.frutasOuroChão;
     }
 
     public void proximoTurno() {
@@ -32,7 +37,12 @@ public class Partida {
             vez = jogador1;
 
         if (turno % 2 == 0) {
-            // gerar frutaOuro;
+            if(mapa.getGramasLivres().size() != 0){
+                if(numeroOuroAsurgir > 0){
+                    this.mapa.posicinarFruta(new Maracuja(false));
+                    numeroOuroAsurgir--;
+                }
+            }
         }
     }
 

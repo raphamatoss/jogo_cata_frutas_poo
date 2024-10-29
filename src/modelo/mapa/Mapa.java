@@ -22,6 +22,7 @@ public class Mapa {
     private final ArrayList<Jogador> jogadores = new ArrayList<>();
     public MapaTools mapaTools;
     public int quantidadeFrutasOuro;
+    public MapaConfiguracao configuracao;
 
     public Mapa(MapaConfiguracao configuracaoDoMapa, int numeroJogadores) {
         this.dimensao = configuracaoDoMapa.dimensao;
@@ -31,6 +32,7 @@ public class Mapa {
         for (int i = 0; i < numeroJogadores; i++)
             this.jogadores.add(new Jogador("J" + (i+1), Coordenada.origem(), configuracaoDoMapa.tamanhoMochila));
         carregarTerreno(configuracaoDoMapa);
+        configuracao = configuracaoDoMapa;
     }
 
 
@@ -222,9 +224,9 @@ public class Mapa {
 
 
 
-    public ArrayList<CelulaTerreno> getGramasLivres(CelulaTerreno[][] floresta){
+    public ArrayList<CelulaTerreno> getGramasLivres(){
         ArrayList<CelulaTerreno> celulasLivres = new ArrayList<>();
-        for (CelulaTerreno[] linha : floresta){
+        for (CelulaTerreno[] linha : this.floresta){
             for (CelulaTerreno celula : linha){
                 if (celula instanceof Grama){
                     if(((Grama) celula).frutaOcupante == null) celulasLivres.add(celula);
@@ -236,7 +238,7 @@ public class Mapa {
 
     public void encrenca(Jogador jogadorAtacante, Jogador jogadorDefensor){
 
-        ArrayList<CelulaTerreno> gramasLivres = getGramasLivres(this.floresta);
+        ArrayList<CelulaTerreno> gramasLivres = getGramasLivres();
         if (gramasLivres == null) return;
         ArrayList<Fruta> frutasDerrubadas = JogadorUtils.frutasDerrubadas(jogadorAtacante, jogadorDefensor, gramasLivres.size());
         if (frutasDerrubadas == null) return;
