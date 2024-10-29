@@ -21,9 +21,25 @@ public class Jogo extends Tela {
         painelInterfaceJogador = new PainelInterfaceJogador(partida, painelMapa);
         painelMapa.inicializarMapa(partida, painelInterfaceJogador);
 
-        // TODO: melhorar a msg de tutorial
-        JOptionPane.showMessageDialog(null,
-                "Para movimentar seu jogador é necessário jogar os dados.", "Tutorial", JOptionPane.INFORMATION_MESSAGE);
+        // Janela de tutorial personalizada
+        JDialog tutorialDialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(panel), "Tutorial", true);
+        tutorialDialog.setSize(800, 500);
+        tutorialDialog.setLayout(null);
+
+        // Definindo o fundo com uma imagem
+        ImageIcon backgroundIcon = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/tutorial/tutorialJogo.png"));
+        JLabel backgroundLabel = new JLabel(backgroundIcon);
+        backgroundLabel.setBounds(0, 0, 800, 400);
+        tutorialDialog.setContentPane(backgroundLabel);  // Define o fundo como content pane
+
+        ImageIcon bgOk = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/tutorial/botãoOk.png"));
+        JButton okButton = new JButton(bgOk);
+        okButton.setBounds(350, 430, 86, 30);
+        okButton.addActionListener(e -> tutorialDialog.dispose());
+        backgroundLabel.add(okButton);
+
+        tutorialDialog.setLocationRelativeTo(null);
+        tutorialDialog.setVisible(true);
 
         // botão configurações do jogo
         ImageIcon bgConfiguracoes = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/configuraçõesJogo.png"));
@@ -69,14 +85,14 @@ public class Jogo extends Tela {
             botaoAtivarSom.setToolTipText("Ativar/Desativar o som do jogo");
             botaoAtivarSom.addActionListener(ev -> {
                 frame.getReprodutorDeSom().tocarBotao();
+                frame.getReprodutorDeSom().setIsAtivo(!frame.getReprodutorDeSom().getIsAtivo());
                 if (frame.getReprodutorDeSom().getIsAtivo()) {
-                    frame.getReprodutorDeSom().pausarMusica();
-                    frame.getReprodutorDeSom().setIsAtivo(false);
-                } else {
                     frame.getReprodutorDeSom().reproduzirMusica();
-                    frame.getReprodutorDeSom().setIsAtivo(true);
+                    botaoAtivarSom.setIcon(new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogo.png")));
+                } else {
+                    frame.getReprodutorDeSom().pausarMusica();
+                    botaoAtivarSom.setIcon(new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/botoes/somJogoOff.png")));
                 }
-                configuracoesDialog.dispose(); // Fecha o diálogo
             });
             // Adiciona os botões ao diálogo
             configuracoesDialog.add(botaoAtivarSom);
