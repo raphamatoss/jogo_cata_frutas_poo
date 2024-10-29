@@ -3,6 +3,8 @@ package modelo.entidades;
 // TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
 // Definitivamente não está nem perto de finalizar
 
+import modelo.frutas.Laranja;
+import modelo.frutas.Maracuja;
 import modelo.tipos.Coordenada;
 import modelo.utils.Efeitos;
 
@@ -55,10 +57,12 @@ public class Jogador extends ElementoDinamico {
     // ---------------------------------------------------
 
     public boolean coletarFruta(Fruta fruta){
+        ptsMovimento--;
         return this.mochila.armazenarFruta(fruta);
     }
 
     public boolean comerFruta(Fruta fruta){
+        ptsMovimento--;
         Fruta frutaMochila = this.mochila.retirarFrutaTipo(fruta);
         if (frutaMochila != null){
             frutaMochila.causarEfeito();

@@ -103,6 +103,7 @@ public class Mapa {
                 Coordenada coordenadaValida = mapaTools.gerarCoordenadaValidaFruta();
                 Grama grama = (Grama) mapaTools.celulaEm(coordenadaValida);
                 grama.setFrutaOcupante(fruta);
+                //fruta.setNome(entry.getKey());
             }
         }
     }
