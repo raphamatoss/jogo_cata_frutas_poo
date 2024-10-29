@@ -29,9 +29,11 @@ public class PainelInterfaceJogador extends JPanel {
     private JLabel numeroFrutasOuro;
     private JLabel player1;
     private JLabel turno;
-    JLabel efeitoAgilidade, efeitoBichada, efeitoForca;
-    ImageIcon anterior;
-    JButton consumirAbacate, consumirAcerola, consumirAmora, consumirCoco, consumirGoiaba, consumirLaranja, consumirMaracuja;
+    private JLabel jogador;
+    private JLabel efeitoAgilidade, efeitoBichada, efeitoForca;
+    private JLabel valorForca;
+    private ImageIcon anterior;
+    private JButton consumirAbacate, consumirAcerola, consumirAmora, consumirCoco, consumirGoiaba, consumirLaranja, consumirMaracuja;
 
     /**
      * Construtor padrão que inicializa o painel com configurações temporárias.
@@ -133,15 +135,19 @@ public class PainelInterfaceJogador extends JPanel {
 
         // label jogador 1
         ImageIcon jogador1 = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/jogador1.png"));
-        JLabel jogador = new JLabel(jogador1);
+        jogador = new JLabel(jogador1);
         jogador.setBounds(17, 197, 161, 31);
         jogador.setOpaque(true);
         this.add(jogador);
 
         // label valor força
         ImageIcon vForca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/força.png"));
-        JLabel valorForca = new JLabel(vForca);
+        valorForca = new JLabel(vForca);
         valorForca.setBounds(204, 197, 164, 31);
+        valorForca.setText(Integer.toString(partida.getVez().calcularForca()));
+        valorForca.setForeground(Color.white);
+        valorForca.setHorizontalTextPosition(JLabel.CENTER);
+        valorForca.setVerticalTextPosition(JLabel.CENTER);
         valorForca.setOpaque(true);
         this.add(valorForca);
 
@@ -434,6 +440,7 @@ public class PainelInterfaceJogador extends JPanel {
         if (fruta instanceof Abacate) {
             ImageIcon forca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoForca.png"));
             efeitoForca.setIcon(forca);
+            atualizarNumeros();
         }
         frutaAtiva = null;
         botaoFrutaAtiva.setIcon(anterior);
@@ -459,6 +466,9 @@ public class PainelInterfaceJogador extends JPanel {
         player1.setIcon(spritePlayer);
         pontosDeMovimento.setText("");
 
+        ImageIcon jogadorVez = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/jogador" + partida.getVez().getNome().charAt(1) + ".png"));
+        jogador.setIcon(jogadorVez);
+
         ImageIcon forca = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoForcaCinza.png"));
         efeitoForca.setIcon(forca);
         ImageIcon agilidade = new ImageIcon(this.getClass().getResource("/interfaceVisual/imagens/menuJogador/efeitoAgilidadeCinza.png"));
@@ -474,6 +484,7 @@ public class PainelInterfaceJogador extends JPanel {
                 Integer.toString(partida.getMapa().getQuantidadeFrutasOuro()/2 + 1));
         numeroCapacidadeMochila.setText(Integer.toString(partida.getVez().getMochila().size()) + "/" +
                 Integer.toString(partida.getVez().getMochila().getTamanhoMochila()));
+        valorForca.setText(Integer.toString(partida.getVez().calcularForca()));
         if (partida.getVez().getPtsMovimento() != null)
             pontosDeMovimento.setText(Integer.toString(partida.getVez().getPtsMovimento()));
         consumirAbacate.setText("x" + Integer.toString(partida.getVez().getMochila().getQntAbacate()));
