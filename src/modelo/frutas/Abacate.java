@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Abacate extends Fruta {
 
     public Abacate(boolean bichada) {
-        super(bichada, "ab");
+        super(bichada, "Abacate");
     }
 
     @Override

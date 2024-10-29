@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Coco extends Fruta {
     public Coco(boolean bichada) {
-        super(bichada, "co");
+        super(bichada, "Coco");
     }
 
     @Override
