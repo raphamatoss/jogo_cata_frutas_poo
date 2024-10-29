@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Maracuja extends Fruta {
     public Maracuja(boolean bichada) {
-        super(bichada, "ma");
+        super(bichada, "Maracuja");
     }
 
 }
