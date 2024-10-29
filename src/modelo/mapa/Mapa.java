@@ -1,5 +1,6 @@
 package modelo.mapa;
 
+import modelo.MovimentoJogador.GrafoJogador;
 import modelo.MovimentoJogador.RelacaoPeso;
 import modelo.entidades.*;
 import modelo.frutas.Maracuja;
@@ -8,6 +9,7 @@ import modelo.utils.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * Essa classe configura e contém a floresta na qual o jogo ocorre.
@@ -177,11 +179,29 @@ public class Mapa {
     }
 
     public void moverJogador(Jogador jogador, int i, int j) {
-        Coordenada coordenada = jogador.getCoordenada();
-        floresta[coordenada.getI()][coordenada.getJ()].setJogadorOcupante(null);
-        jogador.setCoordenada(new Coordenada(i, j));
-        jogador.setCelulaOcupada(floresta[i][j]);
-        floresta[i][j].setJogadorOcupante(jogador);
+        GrafoJogador grafo = new GrafoJogador(this);
+        grafo.preencherMatriz(this, jogador.getCoordenada());
+        Stack<Coordenada> passos = grafo.passosAtePosicao(new Coordenada(i, j));
+
+        if (floresta[i][j].getJogadorOcupante() == null){
+            Coordenada coordenada = jogador.getCoordenada();
+            floresta[coordenada.getI()][coordenada.getJ()].setJogadorOcupante(null);
+            jogador.setCoordenada(new Coordenada(i, j));
+            jogador.setCelulaOcupada(floresta[i][j]);
+            floresta[i][j].setJogadorOcupante(jogador);
+        }
+        else {
+            while (passos.size() > 2) passos.pop();
+            Coordenada novaCoordenada = passos.pop();
+            Coordenada coordenada = jogador.getCoordenada();
+            floresta[coordenada.getI()][coordenada.getJ()].setJogadorOcupante(null);
+            jogador.setCoordenada(novaCoordenada);
+            jogador.setCelulaOcupada(floresta[novaCoordenada.getI()][novaCoordenada.getJ()]);
+            floresta[novaCoordenada.getI()][novaCoordenada.getJ()].setJogadorOcupante(jogador);
+            Jogador jogadorDefensor = floresta[i][j].getJogadorOcupante();
+            encrenca(jogador, jogadorDefensor);
+        }
+
     }
 
     /**
@@ -213,7 +233,7 @@ public class Mapa {
         return celulasLivres;
     }
 
-    public void encrenca(Coordenada c, Jogador jogadorAtacante, Jogador jogadorDefensor){
+    public void encrenca(Jogador jogadorAtacante, Jogador jogadorDefensor){
 
         ArrayList<CelulaTerreno> gramasLivres = getGramasLivres(this.floresta);
         if (gramasLivres == null) return;

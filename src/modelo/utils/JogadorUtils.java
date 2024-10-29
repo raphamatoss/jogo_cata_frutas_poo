@@ -10,8 +10,8 @@ import static java.lang.Math.*;
 public class JogadorUtils {
 
     public static int numeroDerrubadas(Jogador jogadorAtacante, Jogador jogadorDefensor, int espacoDisponivel) {
-        int fa = jogadorAtacante.getForca();
-        int fd = jogadorDefensor.getForca();
+        int fa = jogadorAtacante.calcularForca();
+        int fd = jogadorDefensor.calcularForca();
         return  min((int) (round(log2(fa+1)) - round(log2(fd+1))), espacoDisponivel);
     }
 

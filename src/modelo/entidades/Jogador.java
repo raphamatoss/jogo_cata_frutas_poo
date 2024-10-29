@@ -3,6 +3,7 @@ package modelo.entidades;
 // TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
 // Definitivamente não está nem perto de finalizar
 
+import com.sun.source.tree.BreakTree;
 import modelo.tipos.Coordenada;
 import modelo.utils.Efeitos;
 
@@ -17,7 +18,6 @@ public class Jogador extends ElementoDinamico {
     private final String nome;
     private final Mochila<Fruta> mochila;
     private Integer ptsMovimento;
-    private int forca = 0;
     private Efeitos efeito = Efeitos.NEUTRO;
     private CelulaTerreno celulaOcupada;
     private ArrayList<Efeitos> efeitos = new ArrayList<>(List.of(Efeitos.NEUTRO));
@@ -40,10 +40,6 @@ public class Jogador extends ElementoDinamico {
 
     public String getNome() {
         return nome;
-    }
-
-    public int getForca() {
-        return this.forca;
     }
     public Integer getPtsMovimento() {
         return this.ptsMovimento;
@@ -75,8 +71,8 @@ public class Jogador extends ElementoDinamico {
 
 
 
-    public void calcularForca(){
-        this.forca = mochila.size();
+    public int calcularForca(){
+        return mochila.size();
     }
 
     // Verificar a classe Jogador Utils;
