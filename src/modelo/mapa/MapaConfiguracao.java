@@ -12,7 +12,7 @@ import modelo.tipos.QuantidadeFrutas;
 public class MapaConfiguracao {
 
     /**
-     * Dinmensão escolhida.
+     * Dimensão escolhida.
      */
     protected int dimensao;
 

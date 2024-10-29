@@ -1,8 +1,5 @@
 package modelo.entidades;
 
-// TODO: Provavelmente essa é uma das classes mais complexas!! Vamos precisar voltar aqui mais vezes...
-// Definitivamente não está nem perto de finalizar
-
 import modelo.tipos.Coordenada;
 import modelo.utils.Efeitos;
 
@@ -10,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe que lida com o jogador.
+ * Representa um jogador no jogo.
+ *
+ * O jogador possui atributos como nome, mochila, força, efeitos e posição no mapa.
+ * Ele pode coletar frutas, comer frutas, mover-se pelo mapa e ter seus atributos
+ * modificados por efeitos.
  */
 public class Jogador extends ElementoDinamico {
 
@@ -54,10 +55,26 @@ public class Jogador extends ElementoDinamico {
     public Mochila getMochila(){return this.mochila;}
     // ---------------------------------------------------
 
+    /**
+     * Coleta uma fruta e a adiciona à mochila do jogador.
+     *
+     * Se a mochila estiver cheia, a fruta não será coletada.
+     *
+     * @param fruta A fruta a ser coletada.
+     * @return `true` se a fruta foi coletada com sucesso, `false` caso contrário.
+     */
     public boolean coletarFruta(Fruta fruta){
         return this.mochila.armazenarFruta(fruta);
     }
 
+    /**
+     * Consome uma fruta da mochila do jogador.
+     *
+     * Ao consumir a fruta, os efeitos da fruta são aplicados ao jogador.
+     *
+     * @param fruta A fruta a ser consumida.
+     * @return `true` se a fruta foi consumida com sucesso, `false` caso contrário.
+     */
     public boolean comerFruta(Fruta fruta){
         Fruta frutaMochila = this.mochila.retirarFrutaTipo(fruta);
         if (frutaMochila != null){
@@ -73,8 +90,11 @@ public class Jogador extends ElementoDinamico {
         return "J" + this.nome;
     }
 
-
-
+    /**
+     * Calcula a força do jogador com base no número de frutas na mochila.
+     *
+     * A força do jogador é diretamente proporcional ao número de frutas na mochila.
+     */
     public void calcularForca(){
         this.forca = mochila.size();
     }

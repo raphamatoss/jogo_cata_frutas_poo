@@ -60,7 +60,6 @@ public class GrafoJogador {
             RelacaoPeso noAtual = nosnaoVisitados.poll();
             Coordenada coordenadaRelacao = noAtual.getCoordenada();
             int pesoAtual = noAtual.getPeso();     // Número de passos até este nó
-
             // Verifica se a posição na matriz pode ser atualizada
             if (getvalorPosMatriz(coordenadaRelacao) > pesoAtual || getvalorPosMatriz(coordenadaRelacao) == -1) {
                 // Atualiza a matriz com o número mínimo

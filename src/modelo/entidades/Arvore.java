@@ -95,6 +95,16 @@ public class Arvore extends CelulaTerreno {
             return new ImageIcon(imagemComJogador);
     }
 
+    /**
+     * Combina a imagem de um jogador com uma imagem de combinação anterior.
+     *
+     * Este método verifica se há um jogador ocupando a posição atual.
+     * Se houver, carrega a imagem do jogador correspondente e a combina com a
+     * imagem fornecida como parâmetro. A imagem combinada é então retornada.
+     *
+     * @param combinacaoAnterior A imagem de combinação anterior.
+     * @return A imagem combinada com o jogador, ou null se não houver jogador.
+     */
     public BufferedImage combinarJogador(BufferedImage combinacaoAnterior) {
         if (this.getJogadorOcupante() != null) {
             String caminhoJogador;

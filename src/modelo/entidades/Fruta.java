@@ -37,7 +37,15 @@ public abstract class Fruta {
     }
     // ------------------------------------------------
 
-
+    /**
+     * Retorna uma lista com os efeitos causados pelo consumo da fruta.
+     *
+     * Se a fruta estiver bichada, o efeito de envenenamento será adicionado.
+     * Em todos os casos, o efeito neutro também será adicionado, indicando que a fruta
+     * não possui efeitos adicionais além do envenenamento ou da falta dele.
+     *
+     * @return Uma lista com os efeitos causados pela fruta.
+     */
     public ArrayList<Efeitos> causarEfeito(){
         ArrayList<Efeitos> efeitos = new ArrayList<>();
         if (this.bichada) efeitos.add(Efeitos.ENVENENAMENTO);
@@ -45,6 +53,13 @@ public abstract class Fruta {
         return efeitos;
     }
 
+    /**
+     * Retorna uma representação em string do objeto Fruta.
+     *
+     * A representação em string é o nome da fruta.
+     *
+     * @return O nome da fruta.
+     */
     @Override
     public String toString(){
         return this.nome;
